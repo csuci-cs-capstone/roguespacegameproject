@@ -1,0 +1,18 @@
+Converting GML script: ${project_dir}\scripts\infinitydog_wrap_room\infinitydog_wrap_room.gml
+Converted builtin - line 15: view_xview[view_current] -> __view_get( e__VW.XView, view_current )
+Converted builtin - line 16: view_xview[view_current] -> __view_get( e__VW.XView, view_current )
+Converted builtin - line 37: view_xview[view_current] -= X_BUFFER -> __view_set( e__VW.XView, view_current, __view_get( e__VW.XView, view_current ) - (X_BUFFER) )
+Converted builtin - line 48: view_xview[view_current] += X_BUFFER -> __view_set( e__VW.XView, view_current, __view_get( e__VW.XView, view_current ) + (X_BUFFER) )
+Converted builtin - line 17: view_yview[view_current] -> __view_get( e__VW.YView, view_current )
+Converted builtin - line 18: view_yview[view_current] -> __view_get( e__VW.YView, view_current )
+Converted builtin - line 61: view_yview[view_current] -= Y_BUFFER -> __view_set( e__VW.YView, view_current, __view_get( e__VW.YView, view_current ) - (Y_BUFFER) )
+Converted builtin - line 72: view_yview[view_current] += Y_BUFFER -> __view_set( e__VW.YView, view_current, __view_get( e__VW.YView, view_current ) + (Y_BUFFER) )
+Converted builtin - line 12: view_wview[view_current] -> __view_get( e__VW.WView, view_current )
+Converted builtin - line 13: view_hview[view_current] -> __view_get( e__VW.HView, view_current )
+Converted description /// @description infinitydog_wrap_room()
+
+Added compatibility script 'view/__view_get.gml'
+Added compatibility script 'view/__view_set.gml'
+Added compatibility script 'view/__view_set_internal.gml'
+Added compatibility script 'view/__init_view.gml'
+Added compatibility script '__init_global.gml'
