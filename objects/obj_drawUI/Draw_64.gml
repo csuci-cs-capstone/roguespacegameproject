@@ -31,7 +31,7 @@ for (var i = 1; i <= health; i++)
 	draw_rectangle(20 + (25 * i), 20, 40 + (25 * i), 60, false);
 }
 
-draw_text(20, 130, "DIFFICULTY: " + string(global.level));
+draw_text(20, 130, "DIFFICULTY: NOT SET");
 
 draw_text(20, 150, "NUMBER OF ENEMIES: " + string(instance_number(obj_defaultEnemyParams)));
 
