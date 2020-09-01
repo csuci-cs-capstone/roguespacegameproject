@@ -9,6 +9,7 @@ theta = 0;
 
 maxHealth = 6;
 health = maxHealth;
+depth = 0;
 
 image_speed = 0;
 
@@ -18,19 +19,28 @@ enginePower = 1
 
 localMovement = false;
 
-countdown = 0;
 dodgeCooldown = 0;
 dodge = false;
 dodging = false;
 
-hardpointLeft = [-12, 10];
-hardpointRight = [12, 10];
+hardpointLeft = [-13, -12];
+hardpointRight = [13, -12];
 
-equippedWeapon = obj_defaultWeapon;
+playerWeapon = obj_playerWeapon;
+
+leftHardpointX = 0;
+leftHardpointY = 0;
+
+rightHardpointX = 0;
+rightHardpointY = 0;
+
+var weapon = instance_create_layer(0, 0, "Interactible", playerWeapon);
+weapon.side = 0;
+
+var weapon = instance_create_layer(0, 0, "Interactible", playerWeapon);
+weapon.side = 1;
 
 flash = 0
-
-side = 0;
 
 trueX = x;
 trueY = y;

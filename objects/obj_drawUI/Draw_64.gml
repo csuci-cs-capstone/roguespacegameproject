@@ -5,7 +5,7 @@ draw_sprite(spr_radarBackground, -1, 1080, 520);
 
 if (instance_exists(obj_player))
 {
-	draw_sprite(spr_playerBlip , -1, 1080 + obj_player.trueX / 16.66, 520 + obj_player.trueY / 16.66)
+	draw_sprite(spr_playerBlip , -1, 1080 + obj_player.x / 16.66, 520 + obj_player.y / 16.66)
 }
 if (instance_exists(obj_defaultEnemyParams))
 {
@@ -20,8 +20,8 @@ draw_set_color(c_yellow);
 
 if (instance_exists(obj_player))
 {
-	draw_text(20, 70, "X: " + string(obj_player.trueX));
-	draw_text(20, 90, "Y: " + string(obj_player.trueY));
+	draw_text(20, 70, "X: " + string(obj_player.x));
+	draw_text(20, 90, "Y: " + string(obj_player.y));
 }
 
 draw_set_color(c_red);

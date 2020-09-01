@@ -23,8 +23,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Weapons",
-    "path": "folders/Objects/Weapons.yy",
+    "name": "Enemy Weapons",
+    "path": "folders/Objects/Weapons/Enemy Weapons.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_defaultWeaponParm",
