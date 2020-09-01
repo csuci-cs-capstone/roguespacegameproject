@@ -11,12 +11,12 @@ else
 	
 	fireKey = mouse_check_button(mb_left);
 	
-	if charged
+	if charged & (obj_player.side = side)
 	{
 		if fireKey
 		{
 			charged = false;
-			alarm_set(0, room_speed * 0.25);
+			alarm_set(0, room_speed * 0.125);
 			var projectile = instance_create_layer(x, y, "Interactible", obj_simpleProjectile)
 			projectile.direction = image_angle;
 			projectile.projectileSpeedX = obj_player.xVelocity

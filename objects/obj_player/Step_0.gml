@@ -1,12 +1,6 @@
 /// @description Movement
 // You can write your code in this editor
 
-upKey = keyboard_check(ord("W"));
-downKey = keyboard_check(ord("S"));
-leftKey = keyboard_check(ord("A"));
-rightKey = keyboard_check(ord("D"));
-specialKey = keyboard_check(vk_space);
-
 x += xVelocity;
 y += yVelocity;
 
@@ -138,12 +132,12 @@ else if (!dodging)
 	alarm_set(0, room_speed * 0.5);
 }
 
-// Weapon Firing
-
 if (dodgeCooldown > 0 && !dodge)
 {
 	dodgeCooldown--;
 }
+
+// Update Weapon Placement Coordinates
 
 leftHardpointX = ((hardpointLeft[0] * sin(degtorad(image_angle))) + (hardpointLeft[1] * cos(degtorad(image_angle)))) + x;
 leftHardpointY = ((hardpointLeft[0] * cos(degtorad(image_angle))) + (hardpointLeft[1] * -sin(degtorad(image_angle)))) + y;

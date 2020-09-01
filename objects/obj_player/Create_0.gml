@@ -17,22 +17,26 @@ rotationSpeed = 20;
 maxVelocity = 8;
 enginePower = 1
 
+// Up Down Left Right Relative to either the universe or the player ship
+
 localMovement = false;
+
+//
 
 dodgeCooldown = 0;
 dodge = false;
 dodging = false;
 
+// Placement of Weapons
+
 hardpointLeft = [-13, -12];
 hardpointRight = [13, -12];
 
+//
+
+// Creating Weapon Objects
+
 playerWeapon = obj_playerWeapon;
-
-leftHardpointX = 0;
-leftHardpointY = 0;
-
-rightHardpointX = 0;
-rightHardpointY = 0;
 
 var weapon = instance_create_layer(0, 0, "Interactible", playerWeapon);
 weapon.side = 0;
@@ -40,9 +44,10 @@ weapon.side = 0;
 var weapon = instance_create_layer(0, 0, "Interactible", playerWeapon);
 weapon.side = 1;
 
-flash = 0
+side = 0;
 
-trueX = x;
-trueY = y;
+//
+
+flash = 0
 
 alarm_set(1, room_speed);

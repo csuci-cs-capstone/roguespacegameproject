@@ -12,7 +12,7 @@ if (instance_exists(obj_defaultEnemyParams))
 	var i;
 	for (i = 0; i < instance_number(obj_defaultEnemyParams); i++)
 	{
-		draw_sprite(spr_enemyBlip, -1, 1080 + (instance_find(obj_defaultEnemyParams, i).trueX / 16.66), 520 + (instance_find(obj_defaultEnemyParams, i).trueY / 16.66))
+		draw_sprite(spr_enemyBlip, -1, 1080 + (instance_find(obj_defaultEnemyParams, i).x / 16.66), 520 + (instance_find(obj_defaultEnemyParams, i).y / 16.66))
 	}
 }
 
@@ -22,6 +22,7 @@ if (instance_exists(obj_player))
 {
 	draw_text(20, 70, "X: " + string(obj_player.x));
 	draw_text(20, 90, "Y: " + string(obj_player.y));
+	draw_text(20, 200, "SIDE: " + string(obj_player.side))
 }
 
 draw_set_color(c_red);
