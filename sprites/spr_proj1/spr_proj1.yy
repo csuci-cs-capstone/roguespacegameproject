@@ -44,7 +44,7 @@
             {"id":"7748cffa-b0b8-4f7f-a519-1c3a69a074fb","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"02ba39e8-d17b-411b-bcd0-9651fad73c4f","path":"sprites/spr_proj1/spr_proj1.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
-    "visibleRange": {"x":0.0,"y":0.0,},
+    "visibleRange": null,
     "lockOrigin": false,
     "showBackdrop": true,
     "showBackdropImage": false,
@@ -69,7 +69,7 @@
   ],
   "parent": {
     "name": "Weapon Projectiles",
-    "path": "folders/Sprites/Weapon Projectiles.yy",
+    "path": "folders/Sprites/Weapons/Weapon Projectiles.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_proj1",
