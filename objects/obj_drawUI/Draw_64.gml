@@ -3,6 +3,10 @@
 
 draw_sprite(spr_radarBackground, -1, 1080, 520);
 
+
+draw_sprite(spr_equippedWeaponBackground, -1, 50, 610);
+draw_sprite_ext(object_get_sprite(obj_playerWeapon), 0, 80, 635, 4, 4, 0, c_white, 1);
+
 if (instance_exists(obj_player))
 {
 	draw_sprite(spr_playerBlip , -1, 1080 + obj_player.x / 16.66, 520 + obj_player.y / 16.66)
@@ -15,26 +19,6 @@ if (instance_exists(obj_defaultEnemyParams))
 		draw_sprite(spr_enemyBlip, -1, 1080 + (instance_find(obj_defaultEnemyParams, i).x / 16.66), 520 + (instance_find(obj_defaultEnemyParams, i).y / 16.66))
 	}
 }
-
-draw_set_color(c_yellow);
-
-if (instance_exists(obj_player))
-{
-	draw_text(20, 70, "X: " + string(obj_player.x));
-	draw_text(20, 90, "Y: " + string(obj_player.y));
-	draw_text(20, 200, "SIDE: " + string(obj_player.side))
-}
-
-draw_set_color(c_red);
-
-for (var i = 1; i <= health; i++)
-{
-	draw_rectangle(20 + (25 * i), 20, 40 + (25 * i), 60, false);
-}
-
-draw_text(20, 130, "DIFFICULTY: NOT SET");
-
-draw_text(20, 150, "NUMBER OF ENEMIES: " + string(instance_number(obj_defaultEnemyParams)));
 
 if (obj_gameOver.dead)
 {

@@ -21,6 +21,7 @@
     {"id":{"name":"obj_bigSlow1","path":"objects/obj_bigSlow1/obj_bigSlow1.yy",},"order":1,},
     {"id":{"name":"obj_bigSlowSpread","path":"objects/obj_bigSlowSpread/obj_bigSlowSpread.yy",},"order":2,},
     {"id":{"name":"obj_bigSlowSpreadProj","path":"objects/obj_bigSlowSpreadProj/obj_bigSlowSpreadProj.yy",},"order":3,},
+    {"id":{"name":"spr_equippedWeaponBackground","path":"sprites/spr_equippedWeaponBackground/spr_equippedWeaponBackground.yy",},"order":3,},
     {"id":{"name":"obj_bigFast","path":"objects/obj_bigFast/obj_bigFast.yy",},"order":0,},
     {"id":{"name":"obj_enemy_spawner","path":"objects/obj_enemy_spawner/obj_enemy_spawner.yy",},"order":0,},
     {"id":{"name":"obj_gameOver","path":"objects/obj_gameOver/obj_gameOver.yy",},"order":6,},
