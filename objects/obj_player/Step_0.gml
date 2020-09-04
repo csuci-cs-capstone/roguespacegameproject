@@ -43,48 +43,37 @@ if !dodging && dodgeCooldown <= 0 && specialKey
 {
 	dodging = true;
 	
+	phy_speed_x = 0;
+	phy_speed_y = 0;
+	
 	physics_remove_fixture(id, myFix);
 	
 	var newFix = physics_fixture_create()
 	physics_fixture_set_polygon_shape(newFix)
-	physics_fixture_add_point(newFix, 49.9972, 21)
-	physics_fixture_add_point(newFix, 11, 39.56863)
-	physics_fixture_add_point(newFix, 2.300925, 21)
-	physics_fixture_add_point(newFix, 10.9832, 2.271708)
-	physics_set_density(newFix,0.5)
-	physics_set_restitution(newFix,0.1)
+	physics_fixture_add_point(newFix, 24, 0)
+	physics_fixture_add_point(newFix, -13, 20)
+	physics_fixture_add_point(newFix, -24, 0)
+	physics_fixture_add_point(newFix, -13, -20)
+	physics_fixture_set_density(newFix,0.5)
+	physics_fixture_set_restitution(newFix,0.1)
 	physics_fixture_set_linear_damping(newFix,2)
 	physics_fixture_set_angular_damping(newFix,4)
-	physics_set_friction(newFix,0.2)
+	physics_fixture_set_friction(newFix,0.2)
 	physics_fixture_set_collision_group(newFix,-1)
 	myFix = physics_fixture_bind(newFix,id)
 	physics_fixture_delete(newFix);
 	
-	var upDown = 0;
-	var leftRight = 0;
+	var leftRight = rightKey - leftKey;
+	var upDown = downKey - upKey;
 	
-	if upKey
+	if leftRight != 0 || upDown != 0
 	{
-		upDown -= 1;
-	}
-	if downKey
-	{
-		upDown += 1;
-	}
-	if leftKey
-	{
-		leftRight -= 1;
-	}
-	if rightKey
-	{
-		leftRight += 1;
+		var dodgeDirection = point_direction(0, 0, leftRight, upDown);
+	
+		physics_apply_impulse(x, y, lengthdir_x(enginePower, dodgeDirection) , lengthdir_y(enginePower, dodgeDirection));
 	}
 	
-	var dodgeDirection = point_direction(0, 0, leftRight, upDown);
-	
-	physics_apply_impulse(x, y, lengthdir_x(enginePower, dodgeDirection) , lengthdir_y(enginePower, dodgeDirection));
-	
-	image_speed = (phy_speed != 0 ? sign(-phy_speed_x) : 1);
+	image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1);
 	physics_apply_impulse(x, y, 0, 0)
 	alarm_set(0, room_speed * 0.4)
 }

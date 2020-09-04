@@ -11,7 +11,7 @@
     "name": "obj_DynamicParent",
     "path": "objects/obj_DynamicParent/obj_DynamicParent.yy",
   },
-  "physicsObject": true,
+  "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 2,
   "physicsGroup": 1,
