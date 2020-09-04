@@ -3,5 +3,5 @@
 
 
 other.flash = 3;
-other.enemyHealth--;
+// other.enemyHealth--;
 instance_destroy();

@@ -9,17 +9,17 @@ image_index = 0;
 
 physics_remove_fixture(id, myFix);
 
-var oldFix = physics_fixture_create()
-physics_fixture_set_polygon_shape(oldFix)
-physics_fixture_add_point(oldFix, 24, 0)
-physics_fixture_add_point(oldFix, -13, 20)
-physics_fixture_add_point(oldFix, -24, 0)
-physics_fixture_add_point(oldFix, -13, -20)
-physics_fixture_set_density(oldFix,0.5)
-physics_fixture_set_restitution(oldFix,0.1)
-physics_fixture_set_linear_damping(oldFix,2)
-physics_fixture_set_angular_damping(oldFix,4)
-physics_fixture_set_friction(oldFix,0.2)
-physics_fixture_set_collision_group(oldFix,1)
-myFix = physics_fixture_bind(oldFix,id)
+var oldFix = physics_fixture_create();
+physics_fixture_set_polygon_shape(oldFix);
+physics_fixture_add_point(oldFix, 24, 0);
+physics_fixture_add_point(oldFix, -13, 20);
+physics_fixture_add_point(oldFix, -24, 0);
+physics_fixture_add_point(oldFix, -13, -20);
+physics_fixture_set_density(oldFix,0.5);
+physics_fixture_set_restitution(oldFix,0.1);
+physics_fixture_set_linear_damping(oldFix,2);
+physics_fixture_set_angular_damping(oldFix,4);
+physics_fixture_set_friction(oldFix,0.2);
+physics_fixture_set_collision_group(oldFix,1);
+myFix = physics_fixture_bind(oldFix,id);
 physics_fixture_delete(oldFix);

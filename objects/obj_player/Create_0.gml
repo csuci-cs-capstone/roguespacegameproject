@@ -1,21 +1,21 @@
 /// @description Initial Variables
 // You can write your code in this editor
 
-// fixtures
+// Custom Fixture
 
-var fix = physics_fixture_create()
-physics_fixture_set_polygon_shape(fix)
-physics_fixture_add_point(fix, 24, 0)
-physics_fixture_add_point(fix, -13, 20)
-physics_fixture_add_point(fix, -24, 0)
-physics_fixture_add_point(fix, -13, -20)
-physics_fixture_set_density(fix,0.5)
+var fix = physics_fixture_create();
+physics_fixture_set_polygon_shape(fix);
+physics_fixture_add_point(fix, 24, 0);
+physics_fixture_add_point(fix, -13, 20);
+physics_fixture_add_point(fix, -24, 0);
+physics_fixture_add_point(fix, -13, -20);
+physics_fixture_set_density(fix,0.5);
 physics_fixture_set_restitution(fix,0.1)
-physics_fixture_set_linear_damping(fix,2)
-physics_fixture_set_angular_damping(fix,4)
-physics_fixture_set_friction(fix,0.2)
-physics_fixture_set_collision_group(fix,1)
-myFix = physics_fixture_bind(fix,id)
+physics_fixture_set_linear_damping(fix,2);
+physics_fixture_set_angular_damping(fix,4);
+physics_fixture_set_friction(fix,0.2);
+physics_fixture_set_collision_group(fix,1);
+myFix = physics_fixture_bind(fix,id);
 physics_fixture_delete(fix);
 
 //
@@ -26,7 +26,7 @@ depth = 0;
 
 image_speed = 0;
 
-rotationSpeed = 10;
+rotationSpeed = 20;
 enginePower = 300;
 
 //
