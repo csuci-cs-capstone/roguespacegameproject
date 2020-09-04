@@ -7,3 +7,4 @@ leftKey = keyboard_check(ord("A"));
 rightKey = keyboard_check(ord("D"));
 specialKey = keyboard_check(vk_space);
 fireKey = mouse_check_button(mb_left);
+

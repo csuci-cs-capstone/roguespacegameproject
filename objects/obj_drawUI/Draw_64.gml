@@ -19,6 +19,14 @@ if (instance_exists(obj_defaultEnemyParams))
 		draw_sprite(spr_enemyBlip, -1, 1080 + (instance_find(obj_defaultEnemyParams, i).x / 16.66), 520 + (instance_find(obj_defaultEnemyParams, i).y / 16.66))
 	}
 }
+if (instance_exists(obj_simpleProjectile))
+{
+	var i;
+	for (i = 0; i < instance_number(obj_simpleProjectile); i++)
+	{
+		draw_sprite(spr_projectileBlip, -1, 1080 + (instance_find(obj_simpleProjectile, i).x / 16.66), 520 + (instance_find(obj_simpleProjectile, i).y / 16.66))
+	}
+}
 
 if (obj_gameOver.dead)
 {

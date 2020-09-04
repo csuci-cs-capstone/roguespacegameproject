@@ -17,10 +17,7 @@ else
 		{
 			charged = false;
 			alarm_set(0, room_speed * 0.125);
-			var projectile = instance_create_layer(x, y, "Interactible", obj_simpleProjectile)
-			projectile.direction = image_angle;
-			projectile.projectileSpeedX = obj_player.xVelocity
-			projectile.projectileSpeedY = obj_player.yVelocity
+			instance_create_layer(x, y, "Interactible", obj_simpleProjectile)
 			image_index = 1;
 			image_speed = 1;
 		}

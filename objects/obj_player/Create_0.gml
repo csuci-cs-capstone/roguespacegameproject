@@ -1,25 +1,14 @@
 /// @description Initial Variables
 // You can write your code in this editor
 
-xVelocity = 0;
-yVelocity = 0;
-xAcceleration = 0;
-yAcceleration = 0;
-theta = 0;
-
 maxHealth = 6;
 health = maxHealth;
 depth = 0;
 
 image_speed = 0;
 
-rotationSpeed = 20;
-maxVelocity = 8;
-enginePower = 1
-
-// Up Down Left Right Relative to either the universe or the player ship
-
-localMovement = false;
+rotationSpeed = 10;
+enginePower = 300;
 
 //
 
@@ -51,3 +40,23 @@ side = 0;
 flash = 0
 
 alarm_set(1, room_speed);
+
+phy_fixed_rotation = true;
+
+// fixtures
+
+fix = physics_fixture_create()
+physics_fixture_set_polygon_shape(fix)
+physics_fixture_add_point(fix, 49.9972, 21)
+physics_fixture_add_point(fix, 11, 39.56863)
+physics_fixture_add_point(fix, 2.300925, 21)
+physics_fixture_add_point(fix, 10.9832, 2.271708)
+physics_set_density(fix,0.5)
+physics_set_restitution(fix,0.1)
+physics_fixture_set_linear_damping(fix,2)
+physics_fixture_set_angular_damping(fix,4)
+physics_set_friction(fix,0.2)
+physics_fixture_set_collision_group(fix,1)
+myFix = physics_fixture_bind(fix,id)
+physics_fixture_delete(fix);
+

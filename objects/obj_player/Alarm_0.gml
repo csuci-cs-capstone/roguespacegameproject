@@ -6,3 +6,20 @@ dodging = false;
 dodgeCooldown = 10;
 image_speed = 0;
 image_index = 0;
+
+physics_remove_fixture(id, myFix);
+
+var oldFix = physics_fixture_create()
+physics_fixture_set_polygon_shape(oldFix)
+physics_fixture_add_point(oldFix, 49.9972, 21)
+physics_fixture_add_point(oldFix, 11, 39.56863)
+physics_fixture_add_point(oldFix, 2.300925, 21)
+physics_fixture_add_point(oldFix, 10.9832, 2.271708)
+physics_set_density(oldFix,0.5)
+physics_set_restitution(oldFix,0.1)
+physics_fixture_set_linear_damping(oldFix,2)
+physics_fixture_set_angular_damping(oldFix,4)
+physics_set_friction(oldFix,0.2)
+physics_fixture_set_collision_group(oldFix,1)
+myFix = physics_fixture_bind(oldFix,id)
+physics_fixture_delete(oldFix);
