@@ -11,6 +11,7 @@
     {"id":{"name":"spr_testSprite3","path":"sprites/spr_testSprite3/spr_testSprite3.yy",},"order":4,},
     {"id":{"name":"spr_testSprite4","path":"sprites/spr_testSprite4/spr_testSprite4.yy",},"order":5,},
     {"id":{"name":"spr_radarBackground","path":"sprites/spr_radarBackground/spr_radarBackground.yy",},"order":0,},
+    {"id":{"name":"scr_physicsPathfind","path":"scripts/scr_physicsPathfind/scr_physicsPathfind.yy",},"order":0,},
     {"id":{"name":"spr_playerBlip","path":"sprites/spr_playerBlip/spr_playerBlip.yy",},"order":1,},
     {"id":{"name":"spr_enemyBlip","path":"sprites/spr_enemyBlip/spr_enemyBlip.yy",},"order":2,},
     {"id":{"name":"spr_obstacleBlip","path":"sprites/spr_obstacleBlip/spr_obstacleBlip.yy",},"order":5,},
@@ -38,10 +39,8 @@
     {"id":{"name":"rm_sandbox","path":"rooms/rm_sandbox/rm_sandbox.yy",},"order":0,},
     {"id":{"name":"spr_basicWeapon","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},"order":0,},
     {"id":{"name":"rm_mainmenu","path":"rooms/rm_mainmenu/rm_mainmenu.yy",},"order":1,},
-    {"id":{"name":"compatibility_report_250420_2252255225","path":"notes/compatibility_report_250420_2252255225/compatibility_report_250420_2252255225.yy",},"order":0,},
     {"id":{"name":"spr_staticAsteroid","path":"sprites/spr_staticAsteroid/spr_staticAsteroid.yy",},"order":0,},
     {"id":{"name":"obj_testEnemy","path":"objects/obj_testEnemy/obj_testEnemy.yy",},"order":7,},
-    {"id":{"name":"compatibility_report_250420_231009109","path":"notes/compatibility_report_250420_231009109/compatibility_report_250420_231009109.yy",},"order":1,},
   ],
   "Options": [
     {"name":"Linux","path":"options/linux/options_linux.yy",},

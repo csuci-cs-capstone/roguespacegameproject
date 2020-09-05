@@ -16,10 +16,6 @@ if instance_exists(obj_player)
 	
 	var theta = point_direction(phy_position_x, phy_position_y, targetX, targetY);
 	
-	var playerTheta = point_direction(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y);
-	
-	phy_rotation += sin(degtorad(-phy_rotation - playerTheta)) * rotationSpeed;
-	
 	var xForce = lengthdir_x(enginePower, theta);
 	var yForce = lengthdir_y(enginePower, theta);
 	if distance_to_object(obj_player) >= 100
