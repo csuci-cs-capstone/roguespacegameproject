@@ -4,6 +4,11 @@
 if instance_exists(obj_player)
 {
 	myPath = path_add();
+	
+	// if mp_grid_get_cell(obj_grid.grid, obj_player.phy_position_x div obj_grid.gridXSize, obj_player.phy_position_y div obj_grid.gridYSize)
+	
+	mp_grid_clear_rectangle(obj_grid.grid, obj_player.phy_position_x - 12, obj_player.phy_position_y - 12, obj_player.phy_position_x + 12, obj_player.phy_position_y + 12);
+	
 	mp_grid_path(obj_grid.grid, myPath, phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y, true);
 	
 	var targetX = path_get_point_x(myPath, 1);
