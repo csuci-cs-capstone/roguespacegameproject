@@ -6,3 +6,5 @@ phy_fixed_rotation = true;
 
 rotationSpeed = 20;
 enginePower = 200;
+
+myPath = path_add();

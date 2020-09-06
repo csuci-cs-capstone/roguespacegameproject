@@ -12,26 +12,24 @@ phy_rotation += sin(degtorad(-phy_rotation - theta)) * rotationSpeed;
 
 //
 
+mp_grid_clear_rectangle(obj_grid.grid, obj_player.phy_position_x - 12, obj_player.phy_position_y - 12, obj_player.phy_position_x + 12, obj_player.phy_position_y + 12);
+
+//
+
 if !dodging
 {
 	if upKey || downKey || leftKey || rightKey
 	{
-		phy_linear_damping = 1
-		if upKey
+		phy_linear_damping = 1 
+		
+		var leftRight = rightKey - leftKey;
+		var upDown = downKey - upKey;
+	
+		if leftRight != 0 || upDown != 0
 		{
-			physics_apply_force(x, y, 0, -enginePower);
-		}
-		if downKey
-		{
-			physics_apply_force(x, y, 0, enginePower);
-		}
-		if leftKey
-		{
-			physics_apply_force(x, y, -enginePower, 0);
-		}
-		if rightKey
-		{
-			physics_apply_force(x, y, enginePower, 0);
+			var theta = point_direction(0, 0, leftRight, upDown);
+	
+			physics_apply_force(x, y, lengthdir_x(enginePower, theta) , lengthdir_y(enginePower, theta));
 		}
 	}
 	else

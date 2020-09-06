@@ -6,46 +6,15 @@ draw_text(32, 64, "Entity Count = " + string(instance_number(obj_player) + insta
 
 draw_sprite(spr_radarBackground, -1, 1080, 520);
 
-
 draw_sprite(spr_equippedWeaponBackground, -1, 50, 610);
 draw_sprite_ext(object_get_sprite(obj_playerWeapon), 0, 80, 635, 4, 4, 0, c_white, 1);
 
-if (instance_exists(obj_player))
-{
-	draw_sprite(spr_playerBlip , -1, 1080 + obj_player.x / 16.66, 520 + obj_player.y / 16.66)
-}
-if (instance_exists(obj_defaultEnemyParams))
-{
-	var i;
-	for (i = 0; i < instance_number(obj_defaultEnemyParams); i++)
-	{
-		draw_sprite(spr_enemyBlip, -1, 1080 + (instance_find(obj_defaultEnemyParams, i).x / 16.66), 520 + (instance_find(obj_defaultEnemyParams, i).y / 16.66))
-	}
-}
-if (instance_exists(obj_simpleProjectile))
-{
-	var i;
-	for (i = 0; i < instance_number(obj_simpleProjectile); i++)
-	{
-		draw_sprite(spr_projectileBlip, -1, 1080 + (instance_find(obj_simpleProjectile, i).x / 16.66), 520 + (instance_find(obj_simpleProjectile, i).y / 16.66))
-	}
-}
-if (instance_exists(obj_obstacleParent))
-{
-	var i;
-	for (i = 0; i < instance_number(obj_obstacleParent); i++)
-	{
-		draw_sprite(spr_obstacleBlip, -1, 1080 + (instance_find(obj_obstacleParent, i).x / 16.66), 520 + (instance_find(obj_obstacleParent, i).y / 16.66))
-	}
-}
-if (instance_exists(obj_enemyWeapons))
-{
-	var i;
-	for (i = 0; i < instance_number(obj_enemyWeapons); i++)
-	{
-		draw_sprite(spr_projectileBlip, -1, 1080 + (instance_find(obj_enemyWeapons, i).x / 16.66), 520 + (instance_find(obj_enemyWeapons, i).y / 16.66))
-	}
-}
+draw_radar_blip(obj_defaultEnemyParams, spr_enemyBlip);
+draw_radar_blip(obj_obstacleParent, spr_obstacleBlip);
+draw_radar_blip(obj_simpleProjectile, spr_projectileBlip);
+draw_radar_blip(obj_enemyWeapons, spr_projectileBlip);
+draw_radar_blip(obj_player, spr_playerBlip);
+
 
 if (obj_gameOver.dead)
 {
