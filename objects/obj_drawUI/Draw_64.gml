@@ -1,7 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-draw_text(32, 32, "FPS = " + string(fps));
 draw_text(32, 64, "Entity Count = " + string(instance_number(obj_player) + instance_number(obj_defaultEnemyParams) + instance_number(obj_simpleProjectile) + instance_number(obj_obstacleParent) + instance_number(obj_enemyWeapons)));
 
 draw_sprite(spr_radarBackground, -1, 1080, 520);

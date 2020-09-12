@@ -12,7 +12,7 @@ phy_rotation += sin(degtorad(-phy_rotation - theta)) * rotationSpeed;
 
 //
 
-mp_grid_clear_rectangle(obj_grid.grid, obj_player.phy_position_x - 12, obj_player.phy_position_y - 12, obj_player.phy_position_x + 12, obj_player.phy_position_y + 12);
+mp_grid_clear_cell(obj_grid.grid, phy_position_x div obj_grid.gridSize, phy_position_y div obj_grid.gridSize);
 
 //
 
