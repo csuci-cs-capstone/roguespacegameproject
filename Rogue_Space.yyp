@@ -30,7 +30,7 @@
     {"id":{"name":"obj_obstacleSpawner","path":"objects/obj_obstacleSpawner/obj_obstacleSpawner.yy",},"order":2,},
     {"id":{"name":"obj_obstacleParent","path":"objects/obj_obstacleParent/obj_obstacleParent.yy",},"order":1,},
     {"id":{"name":"obj_bigSlowSpreadProj","path":"objects/obj_bigSlowSpreadProj/obj_bigSlowSpreadProj.yy",},"order":3,},
-    {"id":{"name":"scr_enemyBehaviors","path":"scripts/scr_enemyBehaviors/scr_enemyBehaviors.yy",},"order":2,},
+    {"id":{"name":"scr_enemyStates","path":"scripts/scr_enemyStates/scr_enemyStates.yy",},"order":2,},
     {"id":{"name":"spr_equippedWeaponBackground","path":"sprites/spr_equippedWeaponBackground/spr_equippedWeaponBackground.yy",},"order":3,},
     {"id":{"name":"obj_bigFast","path":"objects/obj_bigFast/obj_bigFast.yy",},"order":0,},
     {"id":{"name":"scr_radarBipDrawing","path":"scripts/scr_radarBipDrawing/scr_radarBipDrawing.yy",},"order":1,},

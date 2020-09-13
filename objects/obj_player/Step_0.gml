@@ -12,7 +12,7 @@ phy_rotation += sin(degtorad(-phy_rotation - theta)) * rotationSpeed;
 
 //
 
-mp_grid_clear_cell(obj_grid.grid, phy_position_x div obj_grid.gridSize, phy_position_y div obj_grid.gridSize);
+// mp_grid_clear_cell(obj_grid.grid, phy_position_x div obj_grid.gridSize, phy_position_y div obj_grid.gridSize);
 
 //
 
@@ -75,7 +75,7 @@ if !dodging && dodgeCooldown <= 0 && specialKey
 		physics_apply_impulse(x, y, lengthdir_x(enginePower, dodgeDirection) , lengthdir_y(enginePower, dodgeDirection));
 	}
 	
-	image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1);
+	image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 1.2;
 	physics_apply_impulse(x, y, 0, 0)
 	alarm_set(0, room_speed * 0.4)
 }
