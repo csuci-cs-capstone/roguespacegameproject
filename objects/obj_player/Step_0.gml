@@ -76,7 +76,7 @@ if !dodging && dodgeCooldown <= 0 && specialKey
 	}
 	
 	image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 1.2;
-	physics_apply_impulse(x, y, 0, 0)
+
 	alarm_set(0, room_speed * 0.4)
 }
 

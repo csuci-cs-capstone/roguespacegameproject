@@ -70,13 +70,39 @@ function generate_random_valid_coordinates(grid, rCheck)
 	return validXY;
 }
 
+// @function			generate_random_valid_coordinates_in_radius(grid, x, y, r, rCheck)
+// @param {index} grid	grid for checking obstacles
+// @param {real} x		x coordinates of the center for	generated coordinates
+// @param {real} y		y coordinates of the center for generated coordinates
+// @param {real} r		radius surrounding the center where the generated coordinates will be in
+// @param {real} rCheck	radius to check around generated coordinates if generated coordinates is invalid
 function generate_random_valid_coordinates_in_radius(grid, x, y, r, rCheck)
 {
 	var validXY = [-1, -1];
 	
 	while validXY[0] == -1 && validXY[1] == -1
 	{
-		validXY = find_closest_valid_coordinates(grid, clamp(random_range(x - r, x + r), 0, room_width), clamp(random_range(y - r, y + r), 0, room_height), r);
+		validXY = find_closest_valid_coordinates(grid, clamp(random_range(x - r, x + r), 0, room_width), clamp(random_range(y - r, y + r), 0, room_height), rCheck);
+	}
+	
+	return validXY;
+}
+
+// @function				generate_random_valid_coordinates_in_specific_radius(grid, x, y, r, rCheck)
+// @param {index} grid		grid for checking obstacles
+// @param {real} x			x coordinates of the center for	generated coordinates
+// @param {real} y			y coordinates of the center for generated coordinates
+// @param {real} distance	distance from the center where the generated coordinates will be in
+// @param {real} rCheck		radius to check around generated coordinates if generated coordinates is invalid
+function generate_random_valid_coordinates_in_specific_radius(grid, x, y, distance, rCheck)
+{
+	var validXY = [-1, -1];
+	var randDirection;
+	
+	while validXY[0] == -1 && validXY[1] == -1
+	{
+		randDirection = random_range(0, 360);
+		validXY = find_closest_valid_coordinates(grid, clamp(lengthdir_x(distance, randDirection), 0, room_width), clamp(lengthdir_y(distance, randDirection), 0, room_height), rCheck);
 	}
 	
 	return validXY;
