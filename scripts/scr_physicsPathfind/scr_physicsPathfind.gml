@@ -108,6 +108,37 @@ function generate_random_valid_coordinates_in_specific_radius(grid, x, y, distan
 	return validXY;
 }
 
+// @function			generate_opposite_direction(grid, x, y, x2, y2)
+// @param {index} grid	Grid to check if a direction is not going into an invalid cell
+// @param {real} x		
+// @param {real} y		
+// @param {real} x2		
+// @param {real} y2		
+function generate_opposite_direction(grid, x, y, x2, y2)
+{
+	var i;
+	
+	var theta = point_direction(x, y, x2, y2) + 180;
+	
+	var checkTheta = theta;
+	
+	var randomSign = irandom_range(0, 1) ? -1 : 1;
+	
+	for (i = 1; i < 8 && mp_grid_get_cell(grid, (x + lengthdir_x(1.5, checkTheta)) div obj_grid.gridSize, (y + lengthdir_y(1.5, checkTheta)) div obj_grid.gridSize) == -1; i++)
+	{
+		if i % 2
+		{
+			checkTheta = theta + (randomSign * 45) * (i / 2);
+		}
+		else
+		{
+			checkTheta = theta - (randomSign * 45) * (i / 2);
+		}
+	}
+	
+	return checkTheta;
+}
+
 // @function				pathfind(grid, xStart, yStart, xGoal, yGoal)
 // @param {index} grid		grid to obtain node weights
 // @param {index} path		path to save path to
