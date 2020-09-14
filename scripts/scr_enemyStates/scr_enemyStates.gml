@@ -37,14 +37,14 @@ function behavior_idle()
 function behavior_move()
 {
 	phy_linear_damping = 2;
-	physics_pathfind(myPath, obj_grid.grid, enginePower, destination[0], destination[1]);
+	physics_pathfind_towards(myPath, obj_grid.grid, enginePower, destination[0], destination[1]);
 }
 
 // @function	behavior_pursue();
 function behavior_pursue()
 {
 	phy_linear_damping = 2;
-	physics_pathfind(myPath, obj_grid.grid, enginePower, obj_player.phy_position_x, obj_player.phy_position_y);
+	physics_pathfind_towards(myPath, obj_grid.grid, enginePower, obj_player.phy_position_x, obj_player.phy_position_y);
 }
 
 // @function	behavior_attracted()
@@ -79,5 +79,6 @@ function behavior_teleport()
 // @function	behavior_avoid()
 function behavior_avoid()
 {
-	
+	var theta = generate_opposite_direction(obj_grid.grid, phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y);
+	physics_apply_force(phy_position_x, phy_position_y, lengthdir_x(enginePower, theta), lengthdir_y(enginePower, theta));
 }

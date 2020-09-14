@@ -7,7 +7,7 @@
 // @param {real} xGoal		X coordinate of destination
 // @param {real} yGoal		Y coordinate of destination
 
-function physics_pathfind(path, grid, force, xGoal, yGoal)
+function physics_pathfind_towards(path, grid, force, xGoal, yGoal)
 {
 	var coords = find_closest_valid_coordinates(grid, xGoal, yGoal, 3);
 	
@@ -25,29 +25,29 @@ function physics_pathfind(path, grid, force, xGoal, yGoal)
 // @param {real} r		radius to check
 function find_closest_valid_coordinates(grid, x, y, r)
 {
-	var gridX = x div obj_grid.gridSize;
-	var gridY = y div obj_grid.gridSize;
+	var gridX = x div global.gridSize;
+	var gridY = y div global.gridSize;
 	
 	var validX, validY, i;
 	
 	if mp_grid_get_cell(grid, gridX, gridY) == -1
 	{
-		var tempGrid = ds_grid_create(obj_grid.gridSize, obj_grid.gridSize);
+		var tempGrid = ds_grid_create(global.gridSize, global.gridSize);
 		mp_grid_to_ds_grid(grid, tempGrid);
 		for (i = 1; i <= r; i++)
 		{
 		
-			validX = ds_grid_value_disk_x(tempGrid, gridX, gridY, i, 0) * obj_grid.gridSize;
-			validY = ds_grid_value_disk_y(tempGrid, gridX, gridY, i, 0) * obj_grid.gridSize;
+			validX = ds_grid_value_disk_x(tempGrid, gridX, gridY, i, 0) * global.gridSize;
+			validY = ds_grid_value_disk_y(tempGrid, gridX, gridY, i, 0) * global.gridSize;
 			
 			if validX != -1 && validY != -1
 			{
 				ds_grid_destroy(tempGrid);
-				return [validX, validY]
+				return [validX * global.gridSize, validY * global.gridSize]
 			}
 		}
 		
-		return [validX, validY]
+		return [-1, -1]
 	}
 	else
 	{
@@ -109,34 +109,45 @@ function generate_random_valid_coordinates_in_specific_radius(grid, x, y, distan
 }
 
 // @function			generate_opposite_direction(grid, x, y, x2, y2)
-// @param {index} grid	Grid to check if a direction is not going into an invalid cell
-// @param {real} x		
-// @param {real} y		
-// @param {real} x2		
-// @param {real} y2		
+// @param {index} grid	Grid to check if a direction is going into an invalid cell
+// @param {real} x		x coordinates for direction to point from
+// @param {real} y		y coordinates for direction to point from
+// @param {real} x2		x coordinates for direction to point away from
+// @param {real} y2		y coordinates for direction to point away from
 function generate_opposite_direction(grid, x, y, x2, y2)
 {
-	var i;
+	var i, angle, neighborX, neighborY;
+	
+	var xDiv = x div global.gridSize;
+	var yDiv = y div global.gridSize;
 	
 	var theta = point_direction(x, y, x2, y2) + 180;
 	
-	var checkTheta = theta;
+	var xVector = lengthdir_x(1, theta);
+	var yVector = lengthdir_y(1, theta);
 	
-	var randomSign = irandom_range(0, 1) ? -1 : 1;
-	
-	for (i = 1; i < 8 && mp_grid_get_cell(grid, (x + lengthdir_x(1.5, checkTheta)) div obj_grid.gridSize, (y + lengthdir_y(1.5, checkTheta)) div obj_grid.gridSize) == -1; i++)
+	for (i = 0; i < 8; i++)
 	{
-		if i % 2
+		angle = 45 * i;
+		neighborX = floor(lengthdir_x(1, angle) + 0.5) + xDiv;
+		neighborY = floor(lengthdir_y(1, angle) + 0.5) + yDiv;
+		
+		if mp_grid_get_cell(grid, neighborX, neighborY) == -1
 		{
-			checkTheta = theta + (randomSign * 45) * (i / 2);
-		}
-		else
-		{
-			checkTheta = theta - (randomSign * 45) * (i / 2);
+			theta = point_direction(xDiv, yDiv, neighborX, neighborY) + 180;
+			xVector += lengthdir_x(1, theta);
+			yVector += lengthdir_y(1, theta);
 		}
 	}
 	
-	return checkTheta;
+	if xVector == 0 && yVector == 0
+	{
+		theta = point_direction(x, y, x2, y2) + 90;	
+	}
+	
+	theta = point_direction(0, 0, xVector, yVector);
+	
+	return theta;
 }
 
 // @function				pathfind(grid, xStart, yStart, xGoal, yGoal)

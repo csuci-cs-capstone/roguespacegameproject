@@ -8,11 +8,11 @@ draw_sprite(spr_radarBackground, -1, 1080, 520);
 draw_sprite(spr_equippedWeaponBackground, -1, 50, 610);
 draw_sprite_ext(object_get_sprite(obj_playerWeapon), 0, 80, 635, 4, 4, 0, c_white, 1);
 
-draw_radar_blip(obj_defaultEnemyParams, spr_enemyBlip);
-draw_radar_blip(obj_obstacleParent, spr_obstacleBlip);
-draw_radar_blip(obj_simpleProjectile, spr_projectileBlip);
-draw_radar_blip(obj_enemyWeapons, spr_projectileBlip);
-draw_radar_blip(obj_player, spr_playerBlip);
+draw_radar_blip(obj_defaultEnemyParams, spr_enemyBlip);		// Enemy Blips
+draw_radar_blip(obj_obstacleParent, spr_obstacleBlip);		// Obstacle Blips
+// draw_radar_blip(obj_simpleProjectile, spr_projectileBlip);	// Player Projectile Blips
+// draw_radar_blip(obj_enemyWeapons, spr_projectileBlip);		// Enemy Weapon Blips
+draw_radar_blip(obj_player, spr_playerBlip);				// Player Blip
 
 
 if (obj_gameOver.dead)
