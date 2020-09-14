@@ -15,22 +15,28 @@ function behavior_calcDestG()
 	destination = generate_random_valid_coordinates(obj_grid.grid, rCheck);
 }
 
-// @function	behavior_calcDestR(x, y, r)
-function behavior_calcDestR(x, y, r)
+// @function	behavior_calcDestR()
+function behavior_calcDestR()
 {
-	destination = generate_random_valid_coordinates_in_radius(obj_grid.grid, x, y, r, rCheck)
+	destination = generate_random_valid_coordinates_in_radius(obj_grid.grid, destGenX, destGenY, radius, rCheck)
 }
 
 // @function	behavior_calcDestSR(x, y, r);
-function behavior_calcDestSR(x, y, distance)
+function behavior_calcDestSR()
 {
-	destination = generate_random_valid_coordinates_in_specific_radius(obj_grid.grid, x, y, distance, rCheck);
+	destination = generate_random_valid_coordinates_in_specific_radius(obj_grid.grid, destGenX, destGenY, radius, rCheck);
 }
 
 // @function	behavior_idle();
 function behavior_idle()
 {
 	phy_linear_damping = 5;
+}
+
+// @function	behavior_drift();
+function behavior_drift()
+{
+	phy_linear_damping = 0;	
 }
 
 // @function	behavior_move();
@@ -58,12 +64,18 @@ function behavior_attracted()
 // @function	behavior_dash()
 function behavior_dash()
 {
-	phy_speed_x = 0;
-	phy_speed_y = 0;
-	phy_linear_damping = 0;
-	physics_apply_impulse(phy_position_x, phy_position_y, lengthdir_x(enginePower, dodgeDirection) , lengthdir_y(enginePower, dodgeDirection));
-	image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 1.2;
-	alarm_set(0, room_speed * 0.4)
+	if (canDodge)
+	{
+		canDodge = false;
+		dodging = true;
+		phy_speed_x = 0;
+		phy_speed_y = 0;
+		phy_linear_damping = 0;
+		physics_apply_impulse(phy_position_x, phy_position_y, lengthdir_x(enginePower, dodgeDirection) , lengthdir_y(enginePower, dodgeDirection));
+		image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 1.2;
+		alarm_set(1, room_speed * 0.6)
+		alarm_set(2, room_speed * 0.4)
+	}
 }
 
 // @function	behavior_teleport()
@@ -79,6 +91,7 @@ function behavior_teleport()
 // @function	behavior_avoid()
 function behavior_avoid()
 {
+	phy_linear_damping = 2;
 	var theta = generate_opposite_direction_avoid_obstacles(obj_grid.grid, phy_position_x, phy_position_y, point_direction(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y));
 	physics_apply_force(phy_position_x, phy_position_y, lengthdir_x(enginePower, theta), lengthdir_y(enginePower, theta));
 }

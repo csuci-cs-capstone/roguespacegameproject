@@ -2,8 +2,8 @@
 // @param {index} path		Path variable used for pathfinding
 // @param {index} grid		Grid to use for pathfinding
 // @param {real} force		Amount of force desired to move to the next waypoint
-// @param {real} xStart	X coordinate of start
-// @param {real} yStart	Y coordinate of start
+// @param {real} xStart		X coordinate of start
+// @param {real} yStart		Y coordinate of start
 // @param {real} xGoal		X coordinate of destination
 // @param {real} yGoal		Y coordinate of destination
 
@@ -40,10 +40,10 @@ function find_closest_valid_coordinates(grid, x, y, r)
 			validX = ds_grid_value_disk_x(tempGrid, gridX, gridY, i, 0) * global.gridSize;
 			validY = ds_grid_value_disk_y(tempGrid, gridX, gridY, i, 0) * global.gridSize;
 			
-			if validX != -1 && validY != -1
+			if validX >= 0 && validY >= 0
 			{
 				ds_grid_destroy(tempGrid);
-				return [validX * global.gridSize, validY * global.gridSize]
+				return [validX, validY]
 			}
 		}
 		
@@ -188,4 +188,9 @@ function generate_towards_direction_avoid_obstacles(grid, x, y, theta)
 	theta = point_direction(0, 0, xVector, yVector);
 	
 	return theta;
+}
+
+function can_see_player()
+{
+	return collision_line(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y, obj_obstacleParent, false, true) == noone	
 }

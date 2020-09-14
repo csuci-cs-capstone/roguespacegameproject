@@ -20,7 +20,7 @@ switch state
 		{
 			state = behaviorStates.pursue;	
 		}
-		if distance_to_object(obj_player) <= 60
+		if distance_to_object(obj_player) <= 30
 		{
 			state = behaviorStates.avoid;	
 		}
@@ -53,7 +53,7 @@ switch state
 		break;
 	case behaviorStates.avoid:
 		behavior_avoid();
-		if distance_to_object(obj_player) > 80
+		if distance_to_object(obj_player) > 50
 		{
 			state = behaviorStates.idle;	
 		}
@@ -63,4 +63,4 @@ switch state
 		break;
 }
 
-attack_basic();
+attack_spread();

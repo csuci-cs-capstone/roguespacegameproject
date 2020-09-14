@@ -27,8 +27,8 @@
     {"x":7.0,"y":7.0,},
   ],
   "eventList": [
-    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"obj_bigFast","path":"objects/obj_bigFast/obj_bigFast.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"parent":{"name":"obj_bigFast","path":"objects/obj_bigFast/obj_bigFast.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"obj_basic","path":"objects/obj_basic/obj_basic.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"parent":{"name":"obj_basic","path":"objects/obj_basic/obj_basic.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
@@ -37,7 +37,7 @@
     "path": "folders/Objects/Weapons/Enemy Weapons.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_bigFast",
+  "name": "obj_basic",
   "tags": [],
   "resourceType": "GMObject",
 }
