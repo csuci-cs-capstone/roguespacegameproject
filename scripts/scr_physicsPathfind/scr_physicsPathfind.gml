@@ -114,14 +114,14 @@ function generate_random_valid_coordinates_in_specific_radius(grid, x, y, distan
 // @param {real} y		y coordinates for direction to point from
 // @param {real} x2		x coordinates for direction to point away from
 // @param {real} y2		y coordinates for direction to point away from
-function generate_opposite_direction(grid, x, y, x2, y2)
+function generate_opposite_direction_avoid_obstacles(grid, x, y, theta)
 {
 	var i, angle, neighborX, neighborY;
 	
 	var xDiv = x div global.gridSize;
 	var yDiv = y div global.gridSize;
 	
-	var theta = point_direction(x, y, x2, y2) + 180;
+	theta += 180;
 	
 	var xVector = lengthdir_x(1, theta);
 	var yVector = lengthdir_y(1, theta);
@@ -142,7 +142,47 @@ function generate_opposite_direction(grid, x, y, x2, y2)
 	
 	if xVector == 0 && yVector == 0
 	{
-		theta = point_direction(x, y, x2, y2) + 90;	
+		theta += 90;	
+	}
+	
+	theta = point_direction(0, 0, xVector, yVector);
+	
+	return theta;
+}
+
+// @function			generate_towards_direction(grid, x, y, x2, y2)
+// @param {index} grid	Grid to check if a direction is going into an invalid cell
+// @param {real} x		x coordinates for direction to point from
+// @param {real} y		y coordinates for direction to point from
+// @param {real} x2		x coordinates for direction to point towards
+// @param {real} y2		y coordinates for direction to point towards
+function generate_towards_direction_avoid_obstacles(grid, x, y, theta)
+{
+	var i, angle, neighborX, neighborY;
+	
+	var xDiv = x div global.gridSize;
+	var yDiv = y div global.gridSize;
+	
+	var xVector = lengthdir_x(1, theta);
+	var yVector = lengthdir_y(1, theta);
+	
+	for (i = 0; i < 8; i++)
+	{
+		angle = 45 * i;
+		neighborX = floor(lengthdir_x(1, angle) + 0.5) + xDiv;
+		neighborY = floor(lengthdir_y(1, angle) + 0.5) + yDiv;
+		
+		if mp_grid_get_cell(grid, neighborX, neighborY) == -1
+		{
+			theta = point_direction(xDiv, yDiv, neighborX, neighborY) + 180;
+			xVector += lengthdir_x(1, theta);
+			yVector += lengthdir_y(1, theta);
+		}
+	}
+	
+	if xVector == 0 && yVector == 0
+	{
+		theta +=  90;	
 	}
 	
 	theta = point_direction(0, 0, xVector, yVector);

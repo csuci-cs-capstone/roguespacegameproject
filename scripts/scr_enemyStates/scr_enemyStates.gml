@@ -79,6 +79,6 @@ function behavior_teleport()
 // @function	behavior_avoid()
 function behavior_avoid()
 {
-	var theta = generate_opposite_direction(obj_grid.grid, phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y);
+	var theta = generate_opposite_direction_avoid_obstacles(obj_grid.grid, phy_position_x, phy_position_y, point_direction(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y));
 	physics_apply_force(phy_position_x, phy_position_y, lengthdir_x(enginePower, theta), lengthdir_y(enginePower, theta));
 }

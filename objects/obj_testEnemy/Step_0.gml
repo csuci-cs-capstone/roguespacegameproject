@@ -1,8 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-event_inherited();
-
 var playerTheta = point_direction(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y);
 phy_rotation += sin(degtorad(-phy_rotation - playerTheta)) * rotationSpeed;
 
