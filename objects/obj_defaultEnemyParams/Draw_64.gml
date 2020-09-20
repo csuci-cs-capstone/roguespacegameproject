@@ -1,8 +1,4 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-// Inherit the parent event
-event_inherited();
-
-currentHealth -= collisionDamage;
-
+draw_text(32, 145, "Enemy Health = " + string(currentHealth))

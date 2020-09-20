@@ -1,5 +1,21 @@
-/// @description Look at player
+/// @description Look at player and Collision Damage
 // You can write your code in this editor
+
+if odd
+{
+	speed1 = phy_speed;
+	odd = false;
+}
+else
+{
+	speed2 = phy_speed;
+	odd = true;
+}
+
+var difference = abs(phy_speed - max(speed1, speed2))
+
+speedChange = difference;
+collisionDamage = power(speedChange, 2)
 
 canSee = can_see_player();
 
@@ -16,4 +32,9 @@ else
 	phy_fixed_rotation = true;
 	var playerTheta = point_direction(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y);
 	phy_rotation += sin(degtorad(-phy_rotation - playerTheta)) * rotationSpeed;
+}
+
+if currentHealth < 0
+{
+	instance_destroy();	
 }

@@ -3,6 +3,12 @@
 
 draw_text(32, 64, "Entity Count = " + string(instance_number(obj_player) + instance_number(obj_defaultEnemyParams) + instance_number(obj_simpleProjectile) + instance_number(obj_obstacleParent) + instance_number(obj_enemyWeapons)));
 
+if (instance_exists(obj_player))
+{
+	draw_text(32, 85, "Health = " + string(obj_player.currentHealth))
+	draw_text(32, 105, "PrevSp = " + string(obj_player.speedChange))
+}
+
 draw_sprite(spr_radarBackground, -1, 1080, 520);
 
 draw_sprite(spr_equippedWeaponBackground, -1, 50, 610);

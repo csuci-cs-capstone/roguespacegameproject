@@ -7,3 +7,6 @@ event_inherited();
 
 accuracy = 5;
 weapon = obj_basic;
+
+maxHealth = 100;
+currentHealth = maxHealth;

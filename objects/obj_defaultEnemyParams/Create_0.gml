@@ -46,3 +46,16 @@ radius = 0;				// Radius surrounding a coordinates where a destination is genera
 accuracy = 90;			// Accuracy, divided by 180 to calculate spread
 weapon = obj_basic		// Weapon that the enemy will use
 rCheck = 3				// Radius to look for valid coordinates if the random coordinates generated is invalid
+
+// Default health variables
+maxHealth = 100;
+currentHealth = maxHealth;
+
+// Values required for collision damage calculation
+speed1 = 0;
+speed2 = 0;
+
+speedChange = 0;
+collisionDamage = power(speedChange, 2)
+
+odd = true;

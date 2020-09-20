@@ -1,6 +1,22 @@
 /// @description Movement
 // You can write your code in this editor
 
+if odd
+{
+	speed1 = phy_speed;
+	odd = false;
+}
+else
+{
+	speed2 = phy_speed;
+	odd = true;
+}
+
+var difference = abs(phy_speed - max(speed1, speed2))
+
+speedChange = difference;
+collisionDamage = power(speedChange, 2)
+
 // Smooth Rotation
 
 var theta = point_direction(phy_position_x, phy_position_y, mouse_x, mouse_y);
@@ -12,7 +28,7 @@ phy_rotation += sin(degtorad(-phy_rotation - theta)) * rotationSpeed;
 
 //
 
-// mp_grid_clear_cell(obj_grid.grid, phy_position_x div obj_grid.gridSize, phy_position_y div obj_grid.gridSize);
+mp_grid_clear_cell(obj_grid.grid, phy_position_x div global.gridSize, phy_position_y div global.gridSize);
 
 //
 
@@ -84,3 +100,8 @@ if dodgeCooldown > 0
 {
 	dodgeCooldown -= 1;	
 }
+
+//if currentHealth < maxHealth
+//{
+//	currentHealth += 0.5
+//}

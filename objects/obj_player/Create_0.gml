@@ -20,8 +20,9 @@ physics_fixture_delete(fix);
 
 //
 
-maxHealth = 6;
-health = maxHealth;
+maxHealth = 100;
+currentHealth = maxHealth;
+
 depth = 0;
 
 image_speed = 0;
@@ -60,5 +61,15 @@ flash = 0
 
 alarm_set(1, room_speed);
 
-phy_fixed_rotation = true;
+phy_fixed_rotation = true; // rotation will not be affected by physics
+
+//
+
+speed1 = 0;
+speed2 = 0;
+
+speedChange = 0;
+collisionDamage = power(speedChange, 2)
+
+odd = true;
 

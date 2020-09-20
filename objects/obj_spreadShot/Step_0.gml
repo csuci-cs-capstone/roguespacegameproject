@@ -20,7 +20,7 @@ switch state
 		{
 			state = behaviorStates.pursue;	
 		}
-		if distance_to_object(obj_player) <= 30
+		if distance_to_object(obj_player) <= 20
 		{
 			state = behaviorStates.avoid;	
 		}
@@ -33,7 +33,7 @@ switch state
 		break;
 	case behaviorStates.pursue:
 		behavior_pursue();
-		if !instance_exists(obj_player) || (distance_to_object(obj_player) <= 100 && canSee)
+		if !instance_exists(obj_player) || (distance_to_object(obj_player) <= 50 && canSee)
 		{
 			state = behaviorStates.idle;	
 		}
@@ -53,7 +53,7 @@ switch state
 		break;
 	case behaviorStates.avoid:
 		behavior_avoid();
-		if distance_to_object(obj_player) > 50
+		if distance_to_object(obj_player) > 45
 		{
 			state = behaviorStates.idle;	
 		}
