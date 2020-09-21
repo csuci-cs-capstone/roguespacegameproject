@@ -65,11 +65,9 @@ phy_fixed_rotation = true; // rotation will not be affected by physics
 
 //
 
-speed1 = 0;
-speed2 = 0;
+previousSpeed1 = 0;
+previousSpeed2 = 0;
+i = true;
 
 speedChange = 0;
-collisionDamage = power(speedChange, 2)
-
-odd = true;
 

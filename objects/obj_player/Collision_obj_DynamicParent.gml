@@ -1,8 +1,8 @@
-/// @description Insert description here
+/// @description Collision Damage
 // You can write your code in this editor
 
 // Inherit the parent event
 event_inherited();
 
-currentHealth -= collisionDamage;
 
+currentHealth -= phy_mass * power(speedChange, 2) * 0.5

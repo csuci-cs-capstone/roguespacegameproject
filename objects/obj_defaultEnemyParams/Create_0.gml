@@ -51,11 +51,14 @@ rCheck = 3				// Radius to look for valid coordinates if the random coordinates 
 maxHealth = 100;
 currentHealth = maxHealth;
 
-// Values required for collision damage calculation
-speed1 = 0;
-speed2 = 0;
+// Variables used for collision damage calculation
+previousSpeed1 = 0;
+previousSpeed2 = 0;
+i = true;
 
 speedChange = 0;
-collisionDamage = power(speedChange, 2)
 
-odd = true;
+// Enemy decisions are done every other step to improve performance
+
+step = 1;
+movementDirection = 0;

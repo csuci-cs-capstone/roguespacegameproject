@@ -20,6 +20,7 @@
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":4,"collisionObjectId":{"name":"obj_defaultEnemyParams","path":"objects/obj_defaultEnemyParams/obj_defaultEnemyParams.yy",},"parent":{"name":"obj_defaultWeaponParm","path":"objects/obj_defaultWeaponParm/obj_defaultWeaponParm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":4,"collisionObjectId":{"name":"obj_obstacleParent","path":"objects/obj_obstacleParent/obj_obstacleParent.yy",},"parent":{"name":"obj_defaultWeaponParm","path":"objects/obj_defaultWeaponParm/obj_defaultWeaponParm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"obj_defaultWeaponParm","path":"objects/obj_defaultWeaponParm/obj_defaultWeaponParm.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],

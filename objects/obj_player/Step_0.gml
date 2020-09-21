@@ -1,21 +1,27 @@
 /// @description Movement
 // You can write your code in this editor
 
-if odd
+// Collision Damage Calculation
+
+if i
 {
-	speed1 = phy_speed;
-	odd = false;
+	previousSpeed1 = phy_speed;
+	i = false;
 }
 else
 {
-	speed2 = phy_speed;
-	odd = true;
+	previousSpeed2 = phy_speed;
+	i = true;
 }
 
-var difference = abs(phy_speed - max(speed1, speed2))
+var difference = abs(phy_speed - max(previousSpeed1, previousSpeed2))
 
-speedChange = difference;
-collisionDamage = power(speedChange, 2)
+if difference != 0
+{
+	speedChange = difference;
+}
+
+//
 
 // Smooth Rotation
 
@@ -50,7 +56,7 @@ if !dodging
 	}
 	else
 	{
-		phy_linear_damping = 5
+		phy_linear_damping = 6
 	}
 }
 if !dodging && dodgeCooldown <= 0 && specialKey
@@ -88,12 +94,12 @@ if !dodging && dodgeCooldown <= 0 && specialKey
 	{
 		var dodgeDirection = point_direction(0, 0, leftRight, upDown);
 	
-		physics_apply_impulse(x, y, lengthdir_x(enginePower, dodgeDirection) , lengthdir_y(enginePower, dodgeDirection));
+		physics_apply_impulse(x, y, lengthdir_x(enginePower * 1.2, dodgeDirection) , lengthdir_y(enginePower * 1.2, dodgeDirection));
 	}
 	
-	image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 1.2;
+	image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 2;
 
-	alarm_set(0, room_speed * 0.4)
+	alarm_set(0, room_speed * 0.25)
 }
 
 if dodgeCooldown > 0

@@ -6,8 +6,9 @@
 // @param {real} yStart		Y coordinate of start
 // @param {real} xGoal		X coordinate of destination
 // @param {real} yGoal		Y coordinate of destination
+// @return {real} theta		direction to move towards to
 
-function physics_pathfind_towards(path, grid, force, xGoal, yGoal)
+function physics_pathfind_direction(path, grid, xGoal, yGoal)
 {
 	var coords = find_closest_valid_coordinates(grid, xGoal, yGoal, 3);
 	
@@ -15,7 +16,7 @@ function physics_pathfind_towards(path, grid, force, xGoal, yGoal)
 	
 	var theta = point_direction(phy_position_x, phy_position_y, path_get_point_x(path, 1), path_get_point_y(path, 1));	// Direction towards next path waypoint
 	
-	physics_apply_force(phy_position_x, phy_position_y, lengthdir_x(force, theta), lengthdir_y(force, theta));
+	return theta
 }
 
 // @function			find_closest_valid_coordinates(grid, x, y, r)

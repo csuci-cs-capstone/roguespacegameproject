@@ -17,7 +17,8 @@ else
 		{
 			charged = false;
 			alarm_set(0, room_speed * 0.125);
-			instance_create_layer(x, y, "Interactible", obj_simpleProjectile)
+			var proj = instance_create_layer(x, y, "Interactible", obj_simpleProjectile)
+			proj.damage = 5;
 			image_index = 1;
 			image_speed = 1;
 		}

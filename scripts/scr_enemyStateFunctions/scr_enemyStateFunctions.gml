@@ -42,15 +42,21 @@ function behavior_drift()
 // @function	behavior_move();
 function behavior_move()
 {
-	phy_linear_damping = 2;
-	physics_pathfind_towards(myPath, obj_grid.grid, enginePower, destination[0], destination[1]);
+	if path_exists(myPath)
+	{
+		phy_linear_damping = 2;
+		movementDirection = physics_pathfind_direction(myPath, obj_grid.grid, destination[0], destination[1]);
+	}
 }
 
 // @function	behavior_pursue();
 function behavior_pursue()
 {
-	phy_linear_damping = 2;
-	physics_pathfind_towards(myPath, obj_grid.grid, enginePower, obj_player.phy_position_x, obj_player.phy_position_y);
+	if path_exists(myPath)
+	{
+		phy_linear_damping = 2;
+		movementDirection = physics_pathfind_direction(myPath, obj_grid.grid, obj_player.phy_position_x, obj_player.phy_position_y);
+	}
 }
 
 // @function	behavior_attracted()
@@ -58,7 +64,8 @@ function behavior_attracted()
 {
 	phy_linear_damping = 2;
 	var theta = point_direction(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y);
-	physics_apply_force(phy_position_x, phy_position_y, lengthdir_x(enginePower, theta), lengthdir_y(enginePower, theta));
+	movementDirection = theta;
+	// physics_apply_force(phy_position_x, phy_position_y, lengthdir_x(enginePower, theta), lengthdir_y(enginePower, theta));
 }
 
 // @function	behavior_dash()
@@ -93,5 +100,6 @@ function behavior_avoid()
 {
 	phy_linear_damping = 2;
 	var theta = generate_opposite_direction_avoid_obstacles(obj_grid.grid, phy_position_x, phy_position_y, point_direction(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y));
-	physics_apply_force(phy_position_x, phy_position_y, lengthdir_x(enginePower, theta), lengthdir_y(enginePower, theta));
+	movementDirection = theta
+	//physics_apply_force(phy_position_x, phy_position_y, lengthdir_x(enginePower, theta), lengthdir_y(enginePower, theta));
 }
