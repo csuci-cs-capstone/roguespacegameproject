@@ -23,8 +23,9 @@ physics_fixture_delete(fix);
 maxHealth = 100;
 currentHealth = maxHealth;
 
-depth = 0;
+money = 0;
 
+depth = 0;
 image_speed = 0;
 
 rotationSpeed = 20;

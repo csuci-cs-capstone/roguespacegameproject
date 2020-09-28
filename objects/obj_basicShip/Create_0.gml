@@ -10,3 +10,5 @@ weapon = obj_basic;
 
 maxHealth = 100;
 currentHealth = maxHealth;
+
+value = 193

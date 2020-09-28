@@ -1,0 +1,42 @@
+{
+  "spriteId": {
+    "name": "spr_scrap",
+    "path": "sprites/spr_scrap/spr_scrap.yy",
+  },
+  "solid": false,
+  "visible": true,
+  "spriteMaskId": null,
+  "persistent": false,
+  "parentObjectId": {
+    "name": "obj_pickupableParent",
+    "path": "objects/obj_pickupableParent/obj_pickupableParent.yy",
+  },
+  "physicsObject": true,
+  "physicsSensor": false,
+  "physicsShape": 0,
+  "physicsGroup": 1,
+  "physicsDensity": 0.2,
+  "physicsRestitution": 0.1,
+  "physicsLinearDamping": 3.0,
+  "physicsAngularDamping": 0.1,
+  "physicsFriction": 0.2,
+  "physicsStartAwake": true,
+  "physicsKinematic": false,
+  "physicsShapePoints": [
+    {"x":6.0,"y":6.0,},
+    {"x":4.0,"y":6.0,},
+  ],
+  "eventList": [
+    {"isDnD":false,"eventNum":0,"eventType":1,"collisionObjectId":null,"parent":{"name":"obj_scrap","path":"objects/obj_scrap/obj_scrap.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+  ],
+  "properties": [],
+  "overriddenProperties": [],
+  "parent": {
+    "name": "Pickupables",
+    "path": "folders/Objects/Pickupables.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "obj_scrap",
+  "tags": [],
+  "resourceType": "GMObject",
+}

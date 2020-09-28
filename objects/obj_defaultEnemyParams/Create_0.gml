@@ -5,7 +5,7 @@ flash = 0;
 phy_fixed_rotation = true;
 
 rotationSpeed = 20;
-enginePower = 200;
+enginePower = 400;
 
 myPath = path_add();
 
@@ -62,3 +62,7 @@ speedChange = 0;
 
 step = 1;
 movementDirection = 0;
+
+// How much scrap the enemy can potentially drop
+
+value = 0;

@@ -7,3 +7,5 @@ event_inherited();
 
 accuracy = 5;
 weapon = obj_basic;
+
+value = 7

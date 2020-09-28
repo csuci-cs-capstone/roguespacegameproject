@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_staticAsteroid",
-    "path": "sprites/spr_staticAsteroid/spr_staticAsteroid.yy",
+    "name": "spr_asteroid1",
+    "path": "sprites/spr_asteroid1/spr_asteroid1.yy",
   },
   "solid": false,
   "visible": true,

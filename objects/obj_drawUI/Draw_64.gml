@@ -7,6 +7,8 @@ draw_sprite_ext(spr_staticUI, -1, 0, 0, view_wport[0]/640, view_hport[0]/360, 0,
 
 draw_sprite_ext(spr_health, ceil((obj_player.currentHealth * 25) / obj_player.maxHealth), 8 * view_wport[0]/640, 8 * view_hport[0]/360, view_wport[0]/640, view_hport[0]/360, 0, c_white, 1)
 
+draw_text_transformed(17 * view_wport[0]/640, 31 * view_hport[0]/360, string(obj_player.money), view_wport[0]/640, view_hport[0]/360, 0);
+
 draw_radar_blip(obj_defaultEnemyParams, spr_enemyBlip);		// Enemy Blips
 draw_radar_blip(obj_obstacleParent, spr_obstacleBlip);		// Obstacle Blips
 // draw_radar_blip(obj_simpleProjectile, spr_projectileBlip);	// Player Projectile Blips
