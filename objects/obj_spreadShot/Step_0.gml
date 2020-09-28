@@ -64,11 +64,6 @@ if step
 			behavior_idle();
 			break;
 	}
-	step = 0
-}
-else
-{
-	step = 1	
 }
 
 attack_spread();

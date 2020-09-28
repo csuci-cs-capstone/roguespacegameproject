@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_basicEnemy",
-    "path": "sprites/spr_basicEnemy/spr_basicEnemy.yy",
+    "name": "Sprite20",
+    "path": "sprites/Sprite20/Sprite20.yy",
   },
   "solid": false,
   "visible": true,
@@ -13,7 +13,7 @@
   },
   "physicsObject": true,
   "physicsSensor": false,
-  "physicsShape": 2,
+  "physicsShape": 0,
   "physicsGroup": -1,
   "physicsDensity": 0.5,
   "physicsRestitution": 0.1,
@@ -23,13 +23,8 @@
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [
-    {"x":29.0,"y":2.0,},
-    {"x":42.0,"y":21.0,},
-    {"x":30.0,"y":40.0,},
-    {"x":6.0,"y":42.0,},
-    {"x":3.0,"y":26.0,},
-    {"x":3.0,"y":17.0,},
-    {"x":6.0,"y":0.0,},
+    {"x":12.0,"y":12.0,},
+    {"x":12.0,"y":12.0,},
   ],
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"parent":{"name":"obj_basicShip","path":"objects/obj_basicShip/obj_basicShip.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},

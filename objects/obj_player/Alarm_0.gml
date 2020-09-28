@@ -11,10 +11,10 @@ physics_remove_fixture(id, myFix);
 
 var oldFix = physics_fixture_create();
 physics_fixture_set_polygon_shape(oldFix);
-physics_fixture_add_point(oldFix, 24, 0);
-physics_fixture_add_point(oldFix, -13, 20);
-physics_fixture_add_point(oldFix, -24, 0);
-physics_fixture_add_point(oldFix, -13, -20);
+physics_fixture_add_point(oldFix, 12, 0);
+physics_fixture_add_point(oldFix, -7, 10);
+physics_fixture_add_point(oldFix, -12, 0);
+physics_fixture_add_point(oldFix, -7, -10);
 physics_fixture_set_density(oldFix,0.5);
 physics_fixture_set_restitution(oldFix,0.1);
 physics_fixture_set_linear_damping(oldFix,2);

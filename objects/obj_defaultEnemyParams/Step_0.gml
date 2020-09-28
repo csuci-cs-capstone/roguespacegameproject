@@ -24,7 +24,15 @@ if difference != 0
 
 //
 
-canSee = can_see_player();	// boolean if the enemy has line of sight of player
+if !step
+{
+	canSee = can_see_player();	// boolean if the enemy has line of sight of player
+	step = 1
+}
+else
+{
+	step = 0	
+}
 
 clamp(accuracy, 0, 360);
 

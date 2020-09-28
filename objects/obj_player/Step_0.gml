@@ -50,7 +50,7 @@ if !dodging
 		if leftRight != 0 || upDown != 0
 		{
 			var theta = point_direction(0, 0, leftRight, upDown);
-	
+			
 			physics_apply_force(x, y, lengthdir_x(enginePower, theta) , lengthdir_y(enginePower, theta));
 		}
 	}
@@ -74,10 +74,10 @@ if !dodging && dodgeCooldown <= 0 && specialKey
 	// Creating a new fixture that would phase through certain objects
 	var newFix = physics_fixture_create();
 	physics_fixture_set_polygon_shape(newFix);
-	physics_fixture_add_point(newFix, 24, 0);
-	physics_fixture_add_point(newFix, -13, 20);
-	physics_fixture_add_point(newFix, -24, 0);
-	physics_fixture_add_point(newFix, -13, -20);
+	physics_fixture_add_point(newFix, 12, 0);
+	physics_fixture_add_point(newFix, -7, 10);
+	physics_fixture_add_point(newFix, -12, 0);
+	physics_fixture_add_point(newFix, -7, -10);
 	physics_fixture_set_density(newFix,0.5);
 	physics_fixture_set_restitution(newFix,0.1);
 	physics_fixture_set_linear_damping(newFix,2);

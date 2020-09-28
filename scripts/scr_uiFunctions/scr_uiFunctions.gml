@@ -4,12 +4,8 @@
 
 function draw_radar_blip(_object, _sprite)
 {
-	if (instance_exists(_object))
+	with (_object)
 	{
-		var i;
-		for (i = 0; i < instance_number(_object); i++)
-		{
-			draw_sprite(_sprite, -1, 1080 + (instance_find(_object, i).x / 16.66), 520 + (instance_find(_object, i).y / 16.66))
-		}
-	}	
+		draw_sprite(_sprite, -1, (575 + (x / 21.5517241379)) * (view_wport[0] / 640), (295  + (y / 21.5517241379)) * (view_hport[0] / 360))
+	}
 }

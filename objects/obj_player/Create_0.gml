@@ -5,10 +5,10 @@
 
 var fix = physics_fixture_create();
 physics_fixture_set_polygon_shape(fix);
-physics_fixture_add_point(fix, 24, 0);
-physics_fixture_add_point(fix, -13, 20);
-physics_fixture_add_point(fix, -24, 0);
-physics_fixture_add_point(fix, -13, -20);
+physics_fixture_add_point(fix, 12, 0);
+physics_fixture_add_point(fix, -7, 10);
+physics_fixture_add_point(fix, -12, 0);
+physics_fixture_add_point(fix, -7, -10);
 physics_fixture_set_density(fix,0.5);
 physics_fixture_set_restitution(fix,0.1)
 physics_fixture_set_linear_damping(fix,2);
@@ -38,8 +38,8 @@ dodging = false;
 
 // Placement of Weapons
 
-hardpointLeft = [-13, -12];
-hardpointRight = [13, -12];
+hardpointLeft = [-8, -3];
+hardpointRight = [8, -3];
 
 //
 
