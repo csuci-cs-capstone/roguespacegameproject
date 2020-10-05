@@ -15,6 +15,8 @@ draw_radar_blip(obj_obstacleParent, spr_obstacleBlip);		// Obstacle Blips
 // draw_radar_blip(obj_enemyWeapons, spr_projectileBlip);		// Enemy Weapon Blips
 draw_radar_blip(obj_player, spr_playerBlip);				// Player Blip
 
+// Menu
+draw_menu()
 
 if (obj_gameOver.dead)
 {
