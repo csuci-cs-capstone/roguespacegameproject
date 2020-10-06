@@ -21,17 +21,33 @@ physics_fixture_delete(fix);
 //
 
 maxHealth = 100;
-currentHealth = maxHealth;
-
 money = 0;
+
+// INV
+inventory = ds_list_create()
+//
+
+// Stats
+currentHealth = maxHealth;
+armor = 0;
+shields = 0;
+enginePower = 300;
+dodgeSpeedMult = 1.2;
+dodgeRecharge = 5;
+weaponDamageMult = 1;
+weaponFirerateMult = 1;
+//
+
+// Description
+description = "Your ship, it has seen a few battles."
+//
 
 depth = 0;
 image_speed = 0;
 
 rotationSpeed = 20;
-enginePower = 300;
 
-//
+// Dodge variable stuff
 
 dodgeCooldown = 0;
 dodge = false;
@@ -56,7 +72,7 @@ weapon.side = 1;
 
 side = 0;
 
-//
+// 
 
 flash = 0
 
@@ -64,7 +80,7 @@ alarm_set(1, room_speed);
 
 phy_fixed_rotation = true; // rotation will not be affected by physics
 
-//
+// Variables needed for collision damage calculation
 
 previousSpeed1 = 0;
 previousSpeed2 = 0;

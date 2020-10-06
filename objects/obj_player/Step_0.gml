@@ -94,7 +94,7 @@ if !dodging && dodgeCooldown <= 0 && specialKey
 	{
 		var dodgeDirection = point_direction(0, 0, leftRight, upDown);
 	
-		physics_apply_impulse(x, y, lengthdir_x(enginePower * 1.2, dodgeDirection) , lengthdir_y(enginePower * 1.2, dodgeDirection));
+		physics_apply_impulse(x, y, lengthdir_x(enginePower * dodgeSpeedMult, dodgeDirection) , lengthdir_y(enginePower * dodgeSpeedMult, dodgeDirection));
 	}
 	
 	image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 2;

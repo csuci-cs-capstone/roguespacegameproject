@@ -1,6 +1,4 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-draw_set_font(fnt_thin8Bit)
-menuMode = 0
-infoIndex = -1
+ds_list_destroy(inventory);

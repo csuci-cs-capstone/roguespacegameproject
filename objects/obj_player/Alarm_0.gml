@@ -3,7 +3,7 @@
 
 dodge = false;
 dodging = false;
-dodgeCooldown = room_speed / 5;
+dodgeCooldown = room_speed / dodgeRecharge;
 image_speed = 0;
 image_index = 0;
 
