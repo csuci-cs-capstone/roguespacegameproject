@@ -36,6 +36,8 @@ dodgeSpeedMult = 1.2;
 dodgeRecharge = 5;
 weaponDamageMult = 1;
 weaponFirerateMult = 1;
+
+
 //
 
 // Description

@@ -1,19 +1,37 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-function Item(_name, _spr, _rarity, _health, _armor, _shield, _movementSpeed, _dodgeSpeed, _dodgeRecharge, _weaponAttackMult, _weaponFirerate, _description) constructor
+enum itemTypes
+{
+	armorItem,
+	shieldItem,
+	engineItem,
+	weaponItem,
+	specialItem,
+	otherItem
+}
+
+enum effectTypes
+{
+	multiplier,
+	additive,
+	modify
+}
+
+function Effect(_stat, _type, _value) constructor
+{
+	stat = _stat
+	type = _type
+	value = _value
+}
+
+function Item(_name, _spr, _rarity, _description) constructor
 {
 	name = _name
 	itemSprite = _spr
-	healthEffect = _health;
-	armorEffect = _armor;
-	shieldEffect = _shield;
-	movementSpeedEffect = _movementSpeed;
-	dodgeSpeedEffect = _dodgeSpeed;
-	dodgechargeEffect = _dodgeRecharge;
-	weaponAttackMultEffect = _weaponAttackMult;
-	weaponFirerateEffect = _weaponFirerate;
-	description = _description;
+	rarity = _rarity
+	description = _description
+	effects = []
 }
 	
-test_item = new Item("test", spr_testItem, 100, 50, 50, 50, 50, 50, 50, 50, 50, "An item for testing, do not eat.");
+test_item = new Item("test", spr_testItem, 100, "An item for testing, do not eat.", [new Effect()]);
