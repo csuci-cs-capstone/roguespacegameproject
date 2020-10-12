@@ -71,7 +71,7 @@ if !dodging && dodgeCooldown <= 0 && specialKey
 	// Deleting the Old Fixture
 	physics_remove_fixture(id, myFix);
 	
-	// Creating a new fixture that would phase through certain objects
+	#region // Creating a new fixture that would phase through certain objects
 	var newFix = physics_fixture_create();
 	physics_fixture_set_polygon_shape(newFix);
 	physics_fixture_add_point(newFix, 12, 0);
@@ -86,6 +86,7 @@ if !dodging && dodgeCooldown <= 0 && specialKey
 	physics_fixture_set_collision_group(newFix,-1);
 	myFix = physics_fixture_bind(newFix,id);
 	physics_fixture_delete(newFix);
+	#endregion
 	
 	var leftRight = rightKey - leftKey;
 	var upDown = downKey - upKey;
@@ -94,7 +95,7 @@ if !dodging && dodgeCooldown <= 0 && specialKey
 	{
 		var dodgeDirection = point_direction(0, 0, leftRight, upDown);
 	
-		physics_apply_impulse(x, y, lengthdir_x(enginePower * dodgeSpeedMult, dodgeDirection) , lengthdir_y(enginePower * dodgeSpeedMult, dodgeDirection));
+		physics_apply_impulse(x, y, lengthdir_x(enginePower * ds_map_find_value(stats, "dodgeSpeedMultStat"), dodgeDirection) , lengthdir_y(enginePower * ds_map_find_value(stats, "dodgeSpeedMultStat"), dodgeDirection));
 	}
 	
 	image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 2;

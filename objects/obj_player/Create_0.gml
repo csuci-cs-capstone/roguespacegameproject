@@ -1,8 +1,7 @@
 /// @description Initial Variables
 // You can write your code in this editor
 
-// Custom Fixture
-
+#region // Custom Fixture
 var fix = physics_fixture_create();
 physics_fixture_set_polygon_shape(fix);
 physics_fixture_add_point(fix, 12, 0);
@@ -17,32 +16,29 @@ physics_fixture_set_friction(fix,0.2);
 physics_fixture_set_collision_group(fix,1);
 myFix = physics_fixture_bind(fix,id);
 physics_fixture_delete(fix);
+#endregion
 
-//
+#region // Stats
+stats = ds_map_create();
+ds_map_add(stats, "hullStat", 100);
+ds_map_add(stats, "armorStat", 100);
+ds_map_add(stats, "shieldStat", 100);
+ds_map_add(stats, "engineStat", 300);
+ds_map_add(stats, "dodgeSpeedMultStat", 1.2);
+ds_map_add(stats, "dodgeRechargeStat", 5);
+ds_map_add(stats, "damageStat", 1);
+ds_map_add(stats, "projectileSpeed", 1);
+ds_map_add(stats, "projectileWeight", 1);
+ds_map_add(stats, "firerateStat", 1);
+#endregion
 
-maxHealth = 100;
+equipped = ds_map_create();
+ds_map_add(stats, "")
+
+currentHealth = ds_map_find_value(stats, "hullStat");
 money = 0;
-
-// INV
 inventory = ds_list_create()
-//
-
-// Stats
-currentHealth = maxHealth;
-armor = 0;
-shields = 0;
-enginePower = 300;
-dodgeSpeedMult = 1.2;
-dodgeRecharge = 5;
-weaponDamageMult = 1;
-weaponFirerateMult = 1;
-
-
-//
-
-// Description
 description = "Your ship, it has seen a few battles."
-//
 
 depth = 0;
 image_speed = 0;
@@ -56,14 +52,11 @@ dodge = false;
 dodging = false;
 
 // Placement of Weapons
-
 hardpointLeft = [-8, -3];
 hardpointRight = [8, -3];
-
 //
 
 // Creating Weapon Objects
-
 playerWeapon = obj_playerWeapon;
 
 var weapon = instance_create_layer(0, 0, "Interactible", playerWeapon);
@@ -73,7 +66,6 @@ var weapon = instance_create_layer(0, 0, "Interactible", playerWeapon);
 weapon.side = 1;
 
 side = 0;
-
 // 
 
 flash = 0
