@@ -14,6 +14,18 @@ enum itemTypes
 	otherItem
 }
 
+enum weaponTypes
+{
+	notAWeapon,
+	basic,
+	spread,
+	laser,
+	rocket,
+	burst,
+	blast,
+	mine
+}
+
 enum effectTypes
 {
 	multiplier,
@@ -21,76 +33,114 @@ enum effectTypes
 	modify
 }
 
-function Effect(_stat, _type, _value) constructor
+Effect = function(_stat, _type, _value) constructor
 {
 	stat = _stat
-	type = _type
-	value = _value
+	effectType = _type
+	effectValue = _value
 }
 
-function Item(_name, _spr, _rarity, _itemType, _description, _effects) constructor
+Item = function(_name, _spr, _itemType, _weaponType, _description, _value, _effects, _sprite, _projectile) constructor
 {
 	name = _name
 	itemSprite = _spr
-	type = _itemType
+	itemType = _itemType
+	weaponType = _weaponType
 	description = _description
+	value = _value
 	effects = _effects
+	equipSprite = _sprite
+	projectile = _projectile
 }
 
+#region //items
 itemList = ds_list_create()
 	
 test_item = new Item("test", 
 					spr_testItem, 
-					itemTypes.otherItem, 
-					"An item for testing, do not eat.", 
-					[]);
+					itemTypes.otherItem,
+					weaponTypes.notAWeapon,
+					"An item for testing, do not eat.",
+					1000000,
+					[],
+					spr_testItem,
+					0);
 
 ds_list_add(itemList, test_item);
 
 basic_hull = new Item("Basic Hull", 
-					spr_testItem, 
+					spr_basicHull, 
 					itemTypes.otherItem, 
-					"Basic hull made out of average high-strength carbon material", 
-					[new Effect("hullStat", effectTypes.modify, 100)]);
+					weaponTypes.notAWeapon,
+					"Basic hull made out of average high-strength carbon material",
+					10,
+					[new Effect("hullStat", effectTypes.modify, 100)],
+					spr_testItem,
+					0);
 					
 ds_list_add(itemList, basic_hull);
 
 basic_armor = new Item("Titanium Armor", 
-					spr_testItem, 
+					spr_basicArmor, 
 					itemTypes.otherItem, 
+					weaponTypes.notAWeapon,
 					"Common armor comprised of ultra-dense titanium-carbide alloy", 
-					[new Effect("armorStat", effectTypes.modify, 5)]);
+					10,
+					[new Effect("armorStat", effectTypes.modify, 5)],
+					spr_testItem,
+					0);
 					
 ds_list_add(itemList, basic_armor);
 
 basic_shields = new Item("Standard Shields", 
-					spr_testItem, 
+					spr_basicShields, 
 					itemTypes.otherItem, 
+					weaponTypes.notAWeapon,
 					"Basic flash charge ion-particle sheilding", 
-					[new Effect("shieldStat", effectTypes.modify, 3)]);
+					10,
+					[new Effect("shieldStat", effectTypes.modify, 3)],
+					spr_testItem,
+					0);
 					
 ds_list_add(itemList, basic_shields);
 
 basic_engine = new Item("Ion Engine", 
-					spr_testItem, 
+					spr_basicEngine, 
 					itemTypes.otherItem, 
+					weaponTypes.notAWeapon,
 					"Ion propulsion common among civilian spaceships due to its low cost", 
-					[new Effect("engineStat", effectTypes.modify, 300)]);
+					10,
+					[new Effect("engineStat", effectTypes.modify, 300)],
+					spr_testItem,
+					0);
 					
 ds_list_add(itemList, basic_engine);
 
 basic_weapon = new Item("Plasma Blasters", 
-					spr_testItem, 
+					spr_basicWeaponIcon, 
 					itemTypes.otherItem, 
+					weaponTypes.basic,
 					"A popular choice for travellers who want some level of defence", 
-					[]);
+					25,
+					[new Effect("damageStat", effectTypes.modify, 5),
+					new Effect("projectileSpeedStat", effectTypes.modify, 40),
+					new Effect("projectileWeightStat", effectTypes.modify, 0.01),
+					new Effect("firerateStat", effectTypes.modify, 10)],
+					spr_basicWeapon,
+					obj_basicProjectile);
 					
 ds_list_add(itemList, basic_weapon);
 
 basic_special = new Item("Overdrive Boosters", 
-					spr_testItem, 
+					spr_basicSpecial, 
 					itemTypes.otherItem, 
+					weaponTypes.notAWeapon,
 					"Allows pilots and captains to dramatically maneuver around threats by instantly applying force in a specific direction. G-force dampeners recommended", 
-					[]);
+					50,
+					[new Effect("dodgeSpeedMultStat", effectTypes.modify, 1.2), 
+					new Effect("dodgeRechargeStat", effectTypes.modify, 5)],
+					spr_testItem,
+					0);
 					
 ds_list_add(itemList, basic_special);
+#endregion

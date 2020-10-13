@@ -1,8 +1,14 @@
 /// @description Movement
 // You can write your code in this editor
 
-// Collision Damage Calculation
+// Smooth Rotation
+var theta = point_direction(phy_position_x, phy_position_y, mouse_x, mouse_y);
+phy_rotation += sin(degtorad(-phy_rotation - theta)) * rotationSpeed;
 
+// Ensure that enemy pathfinding always has a valid destination
+mp_grid_clear_cell(obj_grid.grid, phy_position_x div global.gridSize, phy_position_y div global.gridSize);
+
+#region // Collision Damage Calculation
 if i
 {
 	previousSpeed1 = phy_speed;
@@ -20,24 +26,9 @@ if difference != 0
 {
 	speedChange = difference;
 }
+#endregion
 
-//
-
-// Smooth Rotation
-
-var theta = point_direction(phy_position_x, phy_position_y, mouse_x, mouse_y);
-
-//phy_rotation = -theta;
-//physics_apply_torque((sin(degtorad(-phy_rotation - theta)) * rotationSpeed));
-
-phy_rotation += sin(degtorad(-phy_rotation - theta)) * rotationSpeed;
-
-//
-
-mp_grid_clear_cell(obj_grid.grid, phy_position_x div global.gridSize, phy_position_y div global.gridSize);
-
-//
-
+#region //Movement
 if !dodging
 {
 	if upKey || downKey || leftKey || rightKey
@@ -51,7 +42,7 @@ if !dodging
 		{
 			var theta = point_direction(0, 0, leftRight, upDown);
 			
-			physics_apply_force(x, y, lengthdir_x(enginePower, theta) , lengthdir_y(enginePower, theta));
+			physics_apply_force(x, y, lengthdir_x(get_stat("engineStat"), theta) , lengthdir_y(get_stat("engineStat"), theta));
 		}
 	}
 	else
@@ -59,6 +50,9 @@ if !dodging
 		phy_linear_damping = 6
 	}
 }
+#endregion
+
+#region //Dodging
 if !dodging && dodgeCooldown <= 0 && specialKey
 {
 	dodging = true;
@@ -95,7 +89,9 @@ if !dodging && dodgeCooldown <= 0 && specialKey
 	{
 		var dodgeDirection = point_direction(0, 0, leftRight, upDown);
 	
-		physics_apply_impulse(x, y, lengthdir_x(enginePower * ds_map_find_value(stats, "dodgeSpeedMultStat"), dodgeDirection) , lengthdir_y(enginePower * ds_map_find_value(stats, "dodgeSpeedMultStat"), dodgeDirection));
+		physics_apply_impulse(x, y, 
+								lengthdir_x(get_stat("engineStat") * get_stat("dodgeSpeedMultStat"), dodgeDirection), 
+								lengthdir_y(get_stat("engineStat") * get_stat("dodgeSpeedMultStat"), dodgeDirection));
 	}
 	
 	image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 2;
@@ -107,8 +103,4 @@ if dodgeCooldown > 0
 {
 	dodgeCooldown -= 1;	
 }
-
-//if currentHealth < maxHealth
-//{
-//	currentHealth += 0.5
-//}
+#endregion

@@ -18,38 +18,87 @@ myFix = physics_fixture_bind(fix,id);
 physics_fixture_delete(fix);
 #endregion
 
+inventory = ds_list_create()
+
 #region // Stats
 stats = ds_map_create();
-ds_map_add(stats, "hullStat", 100);
-ds_map_add(stats, "armorStat", 100);
-ds_map_add(stats, "shieldStat", 100);
-ds_map_add(stats, "engineStat", 300);
-ds_map_add(stats, "dodgeSpeedMultStat", 1.2);
-ds_map_add(stats, "dodgeRechargeStat", 5);
-ds_map_add(stats, "damageStat", 1);
-ds_map_add(stats, "projectileSpeed", 1);
-ds_map_add(stats, "projectileWeight", 1);
+ds_map_add(stats, "hullStat", 0);
+ds_map_add(stats, "armorStat", 0);
+ds_map_add(stats, "shieldStat", 0);
+ds_map_add(stats, "engineStat", 0);
+ds_map_add(stats, "dodgeSpeedMultStat", 0);
+ds_map_add(stats, "dodgeRechargeStat", 0);
+ds_map_add(stats, "damageStat", 0);
+ds_map_add(stats, "projectileSpeedStat", 1);
+ds_map_add(stats, "projectileWeightStat", 1);
 ds_map_add(stats, "firerateStat", 1);
+ds_map_add(stats, "leftWeaponSprite", 1);
+ds_map_add(stats, "rightWeaponSprite", 1);
 #endregion
 
-equipped = ds_map_create();
-ds_map_add(stats, "")
+#region // Modifiers
+modifiers = ds_map_create();
+ds_map_add(modifiers, "hullStat", 1);
+ds_map_add(modifiers, "armorStat", 1);
+ds_map_add(modifiers, "shieldStat", 1);
+ds_map_add(modifiers, "engineStat", 1);
+ds_map_add(modifiers, "dodgeSpeedMultStat", 1);
+ds_map_add(modifiers, "dodgeRechargeStat", 1);
+ds_map_add(modifiers, "damageStat", 1);
+ds_map_add(modifiers, "projectileSpeedStat", 1);
+ds_map_add(modifiers, "projectileWeightStat", 1);
+ds_map_add(modifiers, "firerateStat", 1);
+#endregion
 
-currentHealth = ds_map_find_value(stats, "hullStat");
-money = 0;
-inventory = ds_list_create()
+#region // EquipSlots
+equipped = ds_map_create();
+ds_map_add(equipped, "hullSlot", 0)
+ds_map_add(equipped, "armorSlot", 0)
+ds_map_add(equipped, "shieldSlot", 0)
+ds_map_add(equipped, "engineSlot", 0)
+ds_map_add(equipped, "specialSlot", 0)
+ds_map_add(equipped, "leftWeaponSlot", 0)
+ds_map_add(equipped, "rightWeaponSlot", 0)
+ds_map_add(equipped, "altLeftWeaponSlot", 0)
+ds_map_add(equipped, "altRightWeaponSlot", 0)
+#endregion
+
+#region //equipping default weapons
+add_item(obj_itemData.basic_hull);
+equip_item(0, "hullSlot");
+
+add_item(obj_itemData.basic_armor);
+equip_item(0, "armorSlot");
+
+add_item(obj_itemData.basic_shields);
+equip_item(0, "shieldSlot");
+
+add_item(obj_itemData.basic_engine);
+equip_item(0, "engineSlot");
+
+add_item(obj_itemData.basic_special);
+equip_item(0, "specialSlot");
+
+add_item(obj_itemData.basic_weapon);
+equip_item(0, "leftWeaponSlot");
+
+add_item(obj_itemData.basic_weapon);
+equip_item(0, "rightWeaponSlot");
+#endregion
+
+currentHealth = get_stat("hullStat");
 description = "Your ship, it has seen a few battles."
+money = 0;
 
 depth = 0;
 image_speed = 0;
-
 rotationSpeed = 20;
 
-// Dodge variable stuff
-
+#region // Dodge variable stuff
 dodgeCooldown = 0;
 dodge = false;
 dodging = false;
+#endregion
 
 // Placement of Weapons
 hardpointLeft = [-8, -3];
@@ -57,12 +106,14 @@ hardpointRight = [8, -3];
 //
 
 // Creating Weapon Objects
-playerWeapon = obj_playerWeapon;
+playerWeapon = obj_weapon;
 
 var weapon = instance_create_layer(0, 0, "Interactible", playerWeapon);
+weapon.sprite_index = equipped[? "leftWeaponSlot"].equipSprite
 weapon.side = 0;
 
 var weapon = instance_create_layer(0, 0, "Interactible", playerWeapon);
+weapon.sprite_index = equipped[? "rightWeaponSlot"].equipSprite
 weapon.side = 1;
 
 side = 0;
