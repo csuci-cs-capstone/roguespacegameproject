@@ -48,6 +48,10 @@ function draw_menu()
 	{
 		draw_sprite(spr_invMenu, -1, 0, 0);
 		draw_inventory(98, 101, 4, 7, obj_player.inventory)
+		if invHeight + invScroll >= 203
+		{
+			draw_scrollbar(373, 101)
+		}
 		draw_equip_menu()
 		draw_info()
 		follow_mouse()
@@ -57,43 +61,80 @@ function draw_menu()
 
 function draw_inventory(originx, originy, spacing, columns, list)
 {
+	if !surface_exists(invSurface)
+	{
+		invSurface = surface_create(269, 203);	
+	}
+	surface_set_target(invSurface);
+	draw_clear_alpha(c_white, 0);
 	var i, sprite, curRow, curColumn, curX, curY;
+	curY = 0;
+	var surfaceMouseX = mousex - originx;
+	var surfaceMouseY = mousey - originy;
 	curRow = 0;
 	curColumn = 0;
 	var spriteSize = sprite_get_width(spr_invBox);
+	if point_in_rectangle(mousex, mousey, originx, originy, originx + 258, originy + 203)
+	{
+		if mouse_wheel_up()
+		{
+			if invScroll > 0
+			{
+				invScroll -= 4;	
+			}
+		}
+		else if mouse_wheel_down()
+		{
+			if invHeight > 203
+			{
+				if invHeight - 203 >= 4
+				{
+					invScroll += 4;
+				}
+				else
+				{
+					invScroll += invHeight - 203;
+				}
+			}
+		}
+	}
 	for (i = 0; i < ds_list_size(list); i++)
 	{		
 		if i != carriedItemIndex
 		{
-			curX = ((spriteSize + spacing) * curColumn) + originx;
-			curY = ((spriteSize + spacing) * curRow) + originy;
-		
-			if point_in_rectangle(mousex, mousey, curX, curY, curX + 35, curY + 35)
+			curX = (spriteSize + spacing) * curColumn;
+			curY = ((spriteSize + spacing) * curRow) - invScroll;
+			
+			if curY >= -35 && curY <= 238
 			{
-				draw_sprite(spr_invBox, 1, curX, curY);
-				if mouse_check_button_pressed(mb_left)
+				if point_in_rectangle(surfaceMouseX, surfaceMouseY, curX, curY, curX + 35, curY + 35)
 				{
-					pressedX = mousex
-					pressedY = mousey
-				}
-				if mouse_check_button(mb_left) && (carriedItemIndex == -1)
-				{
-					infoIndex = list[| i];
-					if point_distance(pressedX, pressedY, mousex, mousey) > 8
+					draw_sprite(spr_invBox, 1, curX, curY);
+					if mouse_check_button_pressed(mb_left)
 					{
-						carriedItemIndex = i;
-						carriedItem = list[| i]
+						pressedX = surfaceMouseX
+						pressedY = surfaceMouseY
+					}
+					if mouse_check_button(mb_left) && (carriedItemIndex == -1)
+					{
+						infoIndex = list[| i];
+						infoScroll = 0;
+						if point_distance(pressedX, pressedY, surfaceMouseX, surfaceMouseY) > 8
+						{
+							carriedItemIndex = i;
+							carriedItem = list[| i]
+						}
 					}
 				}
-			}
-			else
-			{
-				draw_sprite(spr_invBox, 0, curX, curY);
-			}
+				else
+				{
+					draw_sprite(spr_invBox, 0, curX, curY);
+				}
 		
-			sprite = list[| i].itemSprite
-			draw_sprite(sprite, 0, curX + 17, curY + 17);
-		
+				sprite = list[| i].itemSprite
+				draw_sprite(sprite, 0, curX + 17, curY + 17);
+			}
+			
 			curColumn++;
 			if curColumn >= columns
 			{
@@ -102,20 +143,183 @@ function draw_inventory(originx, originy, spacing, columns, list)
 			}
 		}
 	}
+	invHeight = curY + 35;
+	surface_reset_target();
+	if surface_exists(invSurface)
+	{
+		draw_surface_part(invSurface, 0, 0, 269, 203, originx, originy);
+	}
 }
 
 function draw_info()
 {
+	if point_in_rectangle(mousex, mousey, 443, 186, 443 + 96, 186 + 55)
+	{
+		if mouse_wheel_up()
+		{
+			if infoScroll > 0
+			{
+				infoScroll -= 4;	
+			}
+		}
+		else if mouse_wheel_down()
+		{
+			if infoHeight > 55
+			{
+				infoScroll += 4;
+			}
+		}
+	}
+	
 	if is_struct(infoIndex)
 	{
 		var sprite = infoIndex.itemSprite
 		draw_sprite_ext(sprite, 0, 492, 137, 2, 2, 0, c_white, 1);
+		
+		if !surface_exists(infoSurface)
+		{
+			infoSurface = surface_create(96, 55)	
+		}
+		
+		surface_set_target(infoSurface);
+		
+		draw_clear_alpha(c_white, 0);
+		
+		var stats = infoIndex.effects;
+		
+		var curY = 2;
+		
+		curY -= infoScroll;
+		
+		for (var i = 0; i < array_length(stats); i++)
+		{
+			switch(stats[i].stat)
+			{
+				case "hullStat":
+					draw_sprite(spr_icons, 0, 1, curY);
+					break;
+				case "armorStat":
+					draw_sprite(spr_icons, 1, 1, curY);
+					break;
+				case "shieldStat":
+					draw_sprite(spr_icons, 2, 1, curY);
+					break;
+				case "engineStat":
+					draw_sprite(spr_icons, 3, 1, curY);
+					break;
+				case "dodgeSpeedMultStat":
+					draw_sprite(spr_icons, 4, 1, curY);
+					break;
+				case "dodgeRechargeStat":
+					draw_sprite(spr_icons, 5, 1, curY);
+					break;
+				case "damageStat":
+					draw_sprite(spr_icons, 6, 1, curY);
+					break;
+				case "projectileSpeedStat":
+					draw_sprite(spr_icons, 6, 1, curY);
+					break;
+				case "projectileWeightStat":
+					draw_sprite(spr_icons, 6, 1, curY);
+					break;
+				case "firerateStat":
+					draw_sprite(spr_icons, 7, 1, curY);
+					break;
+				default:
+			}
+			
+			draw_text(17, curY + 2, string(stats[i].effectValue))
+			
+			curY += 13;
+		}
+		
+		infoHeight = curY;
+		
+		surface_reset_target();
+		
+		if surface_exists(infoSurface)
+		{
+			draw_surface_part(infoSurface, 0, 0, 96, 55, 443, 186);
+		}
 		
 		draw_text_ext_transformed(445, 245, string(infoIndex.description), 8, 184, 0.5, 0.5, 0);
 	}
 	else
 	{
 		draw_sprite_ext(spr_player, 0, 492, 137, 3, 3, 90, c_white, 1);
+		
+		if !surface_exists(infoSurface)
+		{
+			infoSurface = surface_create(96, 55)	
+		}
+		
+		surface_set_target(infoSurface);
+		
+		draw_clear_alpha(c_white, 0);
+		
+		var stats = obj_player.stats;
+		
+		var curY = 2;
+		
+		curY -= infoScroll;
+		
+		draw_sprite(spr_icons, 0, 1, curY);
+		
+		draw_text(17, curY + 2, string(stats[? "hullStat"]))
+		curY += 13;
+
+		draw_sprite(spr_icons, 1, 1, curY);
+		
+		draw_text(17, curY + 2, string(stats[? "armorStat"]))
+		curY += 13;
+
+		draw_sprite(spr_icons, 2, 1, curY);
+		
+		draw_text(17, curY + 2, string(stats[? "shieldStat"]))
+		curY += 13;
+
+		draw_sprite(spr_icons, 3, 1, curY);
+		
+		draw_text(17, curY + 2, string(stats[? "engineStat"]))
+		curY += 13;
+
+		draw_sprite(spr_icons, 4, 1, curY);
+
+		draw_text(17, curY + 2, string(stats[? "dodgeSpeedMultStat"]))
+		curY += 13;
+		
+		draw_sprite(spr_icons, 5, 1, curY);
+		
+		draw_text(17, curY + 2, string(stats[? "dodgeRechargeStat"]))
+		curY += 13;
+
+		draw_sprite(spr_icons, 6, 1, curY);
+		
+		draw_text(17, curY + 2, string(stats[? "damageStat"]))
+		curY += 13;
+
+		draw_sprite(spr_icons, 6, 1, curY);
+
+		draw_text(17, curY + 2, string(stats[? "projectileSpeedStat"]))
+		curY += 13;
+		
+		draw_sprite(spr_icons, 6, 1, curY);
+		
+		draw_text(17, curY + 2, string(stats[? "projectileWeightStat"]))
+		curY += 13;
+		
+		draw_sprite(spr_icons, 7, 1, curY);
+		
+		draw_text(17, curY + 2, string(stats[? "firerateStat"]))
+		
+		infoHeight = curY + 13;
+		
+		surface_reset_target();
+		
+		if surface_exists(infoSurface)
+		{
+			draw_surface_part(infoSurface, 0, 0, 96, 55, 443, 186);
+		}
 		
 		draw_text_ext_transformed(445, 245, string(obj_player.description), 8, 184, 0.5, 0.5, 0);
 	}
@@ -142,6 +346,7 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "leftWeaponSlot"]
+					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
@@ -157,6 +362,7 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "rightWeaponSlot"]
+					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
@@ -172,6 +378,7 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "altLeftWeaonSlot"]
+					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
@@ -187,6 +394,7 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "altRightWeaponSlot"]
+					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
@@ -206,6 +414,7 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "hullSlot"]
+					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
@@ -221,6 +430,7 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "armorSlot"]
+					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
@@ -236,6 +446,7 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "shieldSlot"]
+					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
@@ -251,6 +462,7 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "engineSlot"]
+					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
@@ -266,6 +478,7 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "specialSlot"]
+					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
@@ -275,6 +488,14 @@ function draw_equip_menu()
 		}
 		draw_sprite(spr_itemEquip, -1, 0, 0)	
 	}
+}
+
+function draw_scrollbar(originX, originY)
+{
+	draw_sprite(spr_scrollBar, 0, originX, originY);
+	draw_sprite(spr_scrollNub, 0, originX + 3, ((invScroll / ((invHeight + invScroll) - 203)) * 179) + 104)
+	draw_text(16, 32, string(invScroll))
+	draw_text(16, 48, string((invHeight + invScroll) - 203))
 }
 
 function follow_mouse()

@@ -20,7 +20,7 @@ function perlin_noise(_x, _y, vector_array)
 	var x0 = floor(_x);
 	var x1 = x0 + 1;
 	var y0 = floor(_y);
-	var y1 = y0 + 1;;
+	var y1 = y0 + 1;
 	
 	var sx = _x - x0;
 	var sy = _y - y0;
