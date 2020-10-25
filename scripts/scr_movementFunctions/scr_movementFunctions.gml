@@ -195,3 +195,9 @@ function can_see_player()
 {
 	return collision_line(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y, obj_obstacleParent, false, true) == noone	
 }
+
+function get_sideways_velocity()
+{
+	return (-obj_player.phy_speed_x * dsin(obj_player.phy_rotation)) + (obj_player.phy_speed_y * dcos(obj_player.phy_rotation));
+	 
+}

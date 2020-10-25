@@ -123,9 +123,9 @@ basic_weapon = new Item("Plasma Blasters",
 					"A popular choice for travellers who want some level of defence", 
 					25,
 					[new Effect("damageStat", effectTypes.modify, 5),
-					new Effect("projectileSpeedStat", effectTypes.modify, 40),
+					new Effect("projectileSpeedStat", effectTypes.modify, 1000),
 					new Effect("projectileWeightStat", effectTypes.modify, 0.01),
-					new Effect("firerateStat", effectTypes.modify, 10)],
+					new Effect("firerateStat", effectTypes.modify, 2)],
 					spr_basicWeapon,
 					obj_basicProjectile);
 					

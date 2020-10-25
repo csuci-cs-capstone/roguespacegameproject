@@ -18,4 +18,4 @@ else
 	y = rightHardpointY;
 }
 
-image_angle = point_direction(x, y, mouse_x, mouse_y);
+image_angle = point_direction(x, y, mouse_x, mouse_y) - get_sideways_velocity()*6;

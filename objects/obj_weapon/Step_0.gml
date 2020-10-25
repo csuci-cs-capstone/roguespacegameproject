@@ -16,9 +16,9 @@ else
 			if mouse_check_button(mb_right)
 			{
 				charged = false;
-				alarm_set(0, room_speed * 0.125);
+				alarm_set(0, room_speed * (1 / get_stat("firerateStat")));
 				var proj = instance_create_layer(x, y, "Interactible", obj_player.equipped[? "rightWeaponSlot"].projectile)
-				proj.damage = 5;
+				proj.damage = get_stat("damageStat");
 				image_index = 1;
 				image_speed = 1;
 			}
@@ -28,9 +28,9 @@ else
 			if mouse_check_button(mb_left)
 			{
 				charged = false;
-				alarm_set(0, room_speed * 0.125);
+				alarm_set(0, room_speed * (1 / get_stat("firerateStat")));
 				var proj = instance_create_layer(x, y, "Interactible", obj_player.equipped[? "leftWeaponSlot"].projectile)
-				proj.damage = 5;
+				proj.damage = get_stat("damageStat");
 				image_index = 1;
 				image_speed = 1;
 			}

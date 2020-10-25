@@ -16,3 +16,5 @@ equipMode = 0
 pressedX = 0
 pressedY = 0
 infoIndex = 0
+
+hideUI = false;
