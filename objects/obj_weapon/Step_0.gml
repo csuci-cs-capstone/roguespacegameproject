@@ -9,7 +9,7 @@ else
 {
 	visible = 1;
 	
-	if charged
+	if charged && canFire
 	{
 		if side == 0
 		{

@@ -15,13 +15,11 @@ if not hideUI
 
 	draw_text(17, 31, string(obj_player.money));
 
-	draw_radar_blip(obj_defaultEnemyParams, spr_enemyBlip);		// Enemy Blips
-	draw_radar_blip(obj_obstacleParent, spr_obstacleBlip);		// Obstacle Blips
+	draw_radar_blip(obj_defaultEnemyParams, spr_enemyBlip);			// Enemy Blips
+	draw_radar_blip(obj_obstacleParent, spr_obstacleBlip);			// Obstacle Blips
 	// draw_radar_blip(obj_simpleProjectile, spr_projectileBlip);	// Player Projectile Blips
 	// draw_radar_blip(obj_enemyWeapons, spr_projectileBlip);		// Enemy Weapon Blips
-	draw_radar_blip(obj_player, spr_playerBlip);				// Player Blip
-	
-	draw_text(16, 32, string(get_sideways_velocity()))
+	draw_radar_blip(obj_player, spr_playerBlip);					// Player Blip
 	
 	// Menu
 
@@ -32,12 +30,27 @@ if not hideUI
 	{
 		infoIndex = 0;
 	}
-
+	
+	if !obj_weapon.canFire
+	{
+		obj_weapon.canFire = true;
+	}
+	
 	if (keyboard_check(vk_tab))
 	{
+		obj_weapon.canFire = false;
 		draw_menu()
 	}
-
+	
+	if (keyboard_check(vk_shift))
+	{
+		obj_weapon.canFire = false;
+		draw_jump_menu()
+	}
+	
+	draw_text(16,64, string(obj_universe.playerSectorX))
+	draw_text(16,80, string(obj_universe.playerSectorY))
+	
 	//if (obj_gameOver.dead)
 	//{
 	//	draw_text(640, 360, "GAME OVER");	

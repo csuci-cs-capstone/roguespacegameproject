@@ -61,3 +61,35 @@ function perlin_noise(_x, _y, vector_array)
 	return lerp3;
 }
 
+function remove_all_objects()
+{
+	instance_destroy(obj_defaultEnemyParams);
+	instance_destroy(obj_obstacleParent);
+	instance_destroy(obj_projectileParent);
+	instance_destroy(obj_enemyWeapons);
+}
+
+function generate_sector_from_data(sectorData)
+{
+	
+	if sectorData.sectorDanger <= 0
+	{
+		// spawn shop
+	}
+	else
+	{
+		for (var i = 0; i < 10; i++)
+		{
+			instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_basicShip);	
+		}
+	}
+	// instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_asteroid);
+}
+
+function sector_jump(jumpDirection)
+{
+	obj_universe.playerSectorX += ceil(lengthdir_x(1, jumpDirection))
+	obj_universe.playerSectorY += ceil(lengthdir_y(1, -jumpDirection))
+	obj_jumpGraphics.jumpDirection = jumpDirection;
+	obj_jumpGraphics.jump = true;
+}

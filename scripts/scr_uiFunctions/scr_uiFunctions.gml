@@ -510,3 +510,60 @@ function follow_mouse()
 		}
 	}
 }
+
+function draw_jump_menu()
+{
+	var jumpDirection = point_direction(320, 180, mousex, mousey);
+	
+	if jumpDirection > 45 && jumpDirection < 135
+	{
+		draw_sprite_ext(spr_jumpbutton, 1, 320, 180 - 80, 1, 1, 0, c_white, 1);
+		if mouse_check_button_released(mb_left)
+		{
+			sector_jump(90)
+		}
+	}
+	else
+	{
+		draw_sprite_ext(spr_jumpbutton, 0, 320, 180 - 70, 1, 1, 0, c_white, 1);
+	}
+		
+	if jumpDirection > 315 || jumpDirection < 45
+	{
+		draw_sprite_ext(spr_jumpbutton, 1, 320 + 80, 180, 1, 1, 270, c_white, 1);
+		if mouse_check_button_released(mb_left)
+		{
+			sector_jump(0)
+		}
+	}
+	else
+	{
+		draw_sprite_ext(spr_jumpbutton, 0, 320 + 70, 180, 1, 1, 270, c_white, 1);
+	}
+		
+	if jumpDirection > 225 && jumpDirection < 315
+	{
+		draw_sprite_ext(spr_jumpbutton, 1, 320, 180 + 80, 1, 1, 180, c_white, 1);
+		if mouse_check_button_released(mb_left)
+		{
+			sector_jump(270)
+		}
+	}
+	else
+	{
+		draw_sprite_ext(spr_jumpbutton, 0, 320, 180 + 70, 1, 1, 180, c_white, 1);
+	}
+		
+	if jumpDirection > 135 && jumpDirection < 225
+	{
+		draw_sprite_ext(spr_jumpbutton, 1, 320 - 80, 180, 1, 1, 90, c_white, 1);
+		if mouse_check_button_released(mb_left)
+		{
+			sector_jump(180)
+		}
+	}
+	else
+	{
+		draw_sprite_ext(spr_jumpbutton, 0, 320 - 70, 180, 1, 1, 90, c_white, 1);
+	}	
+}
