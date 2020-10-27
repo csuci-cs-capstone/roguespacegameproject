@@ -570,13 +570,27 @@ function draw_jump_menu()
 
 function draw_sector_map()
 {
-	var boxX, boxY
+	if !surface_exists(invSurface)
+	{
+		invSurface = surface_create(458, 230);	
+	}
+	surface_set_target(invSurface);
+	draw_clear_alpha(c_black, 1);
+	
+	var boxX, boxY, colorVal
 	var sectors = obj_universe.visitedSectors;
 	for (var i = ds_map_find_first(sectors); !is_undefined(i); i = ds_map_find_next(sectors, i))
 	{
-		boxX = ((obj_universe.visitedSectors[? i].sectorX - obj_universe.playerSectorX) * 32) + 320
-		boxY = -((obj_universe.visitedSectors[? i].sectorY - obj_universe.playerSectorY) * 32) + 160
-		draw_sprite(spr_sectorSquare, 0, boxX, boxY)
+		boxX = ((obj_universe.visitedSectors[? i].sectorX - obj_universe.playerSectorX) * 32) + 229
+		boxY = -((obj_universe.visitedSectors[? i].sectorY - obj_universe.playerSectorY) * 32) + 115
+		colorVal = 255 - clamp((obj_universe.visitedSectors[? i].sectorDanger * 10), 0, 255)
+		draw_sprite_ext(spr_sectorSquare, 0, boxX, boxY, 1, 1, 0, make_color_rgb(255, colorVal, colorVal), 1)
 	}
-	draw_sprite(spr_sectorBorder, 0, 320, 160)
+	draw_sprite_ext(spr_sectorBorder, 0, 229, 115, 1, 1, 0, c_white, 1)
+	
+	surface_reset_target();
+	if surface_exists(invSurface)
+	{
+		draw_surface_part(invSurface, 0, 0, 458, 230, 92, 80);
+	}
 }
