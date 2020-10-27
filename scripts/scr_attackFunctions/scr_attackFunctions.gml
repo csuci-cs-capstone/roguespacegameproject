@@ -31,8 +31,8 @@ function attack_spread()
 		
 			var projectile = instance_create_layer(phy_position_x, phy_position_y, "Interactible", weapon);
 		
-			projectile.phy_speed_x = lengthdir_x(10, projectileDirection) + phy_speed_x;
-			projectile.phy_speed_y = lengthdir_y(10, projectileDirection) + phy_speed_y;
+			projectile.phy_speed_x = lengthdir_x(5, projectileDirection) + phy_speed_x;
+			projectile.phy_speed_y = lengthdir_y(5, projectileDirection) + phy_speed_y;
 		}
 		
 		alarm_set(0, room_speed);	

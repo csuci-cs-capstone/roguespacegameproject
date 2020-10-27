@@ -133,3 +133,5 @@ i = true;
 
 speedChange = 0;
 
+playerControlsEnabled = true
+

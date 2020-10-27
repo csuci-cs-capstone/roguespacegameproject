@@ -63,33 +63,86 @@ function perlin_noise(_x, _y, vector_array)
 
 function remove_all_objects()
 {
+	if instance_exists(obj_defaultEnemyParams)
+	{
+		obj_defaultEnemyParams.dropMoney = false;
+	}
 	instance_destroy(obj_defaultEnemyParams);
 	instance_destroy(obj_obstacleParent);
 	instance_destroy(obj_projectileParent);
 	instance_destroy(obj_enemyWeapons);
+	if instance_exists(obj_defaultEnemyParams)
+	{
+		obj_defaultEnemyParams.dropMoney = true;
+	}
 }
 
 function generate_sector_from_data(sectorData)
 {
 	
-	if sectorData.sectorDanger <= 0
+	#region //Danger value
+	if sectorData.sectorDanger < 0
 	{
 		// spawn shop
 	}
-	else
+	else if sectorData.sectorDanger > 0
 	{
-		for (var i = 0; i < 10; i++)
+		if ds_map_empty(sectorData.sectorEnemyList) // If there are no enemies in the enemy list, and the danger is not 0, then new enemies will be generated
 		{
-			instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_basicShip);	
+			var dangerCount = sectorData.sectorDanger;
+			while dangerCount > 0
+			{
+				switch (irandom_range(0, ((dangerCount >= 1) + (dangerCount >= 2) + (dangerCount >= 4) + (dangerCount >= 7) + (dangerCount >= 10))))
+				{
+					case 5:
+						break;
+					case 4:
+						break;
+					case 3:
+						break;
+					case 2:
+						break;
+					case 1:
+						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_spreadShot);
+						sectorData.add_enemy(obj_spreadShot)
+						dangerCount -= obj_spreadShot.danger;
+						break;
+					case 0:
+						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_basicShip);
+						sectorData.add_enemy(obj_basicShip)
+						dangerCount -= obj_basicShip.danger;
+						break;
+				}
+			}
+		}
+		else
+		{
+			for (var i = ds_map_find_first(sectorData.sectorEnemyList); !is_undefined(i); i = ds_map_find_next(sectorData.sectorEnemyList, i))
+			{
+				for (var j = 0; j < sectorData.sectorEnemyList[? i]; j++)
+				{
+					instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", i);
+				}
+			}
 		}
 	}
-	// instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_asteroid);
+	#endregion
+	
+	#region //Mass value
+	// instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_asteroid
+	#endregion
 }
 
 function sector_jump(jumpDirection)
 {
 	obj_universe.playerSectorX += ceil(lengthdir_x(1, jumpDirection))
 	obj_universe.playerSectorY += ceil(lengthdir_y(1, -jumpDirection))
+	obj_universe.generateSector = true;
 	obj_jumpGraphics.jumpDirection = jumpDirection;
 	obj_jumpGraphics.jump = true;
+}
+
+function get_coordinates_string()
+{
+	return string(obj_universe.playerSectorX) + " " + string(obj_universe.playerSectorY)	
 }

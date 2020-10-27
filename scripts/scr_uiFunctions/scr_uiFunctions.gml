@@ -42,7 +42,7 @@ function draw_menu()
 	}
 	if menuMode == 0
 	{
-		
+		draw_sector_map()
 	}
 	else
 	{
@@ -566,4 +566,17 @@ function draw_jump_menu()
 	{
 		draw_sprite_ext(spr_jumpbutton, 0, 320 - 70, 180, 1, 1, 90, c_white, 1);
 	}	
+}
+
+function draw_sector_map()
+{
+	var boxX, boxY
+	var sectors = obj_universe.visitedSectors;
+	for (var i = ds_map_find_first(sectors); !is_undefined(i); i = ds_map_find_next(sectors, i))
+	{
+		boxX = ((obj_universe.visitedSectors[? i].sectorX - obj_universe.playerSectorX) * 32) + 320
+		boxY = -((obj_universe.visitedSectors[? i].sectorY - obj_universe.playerSectorY) * 32) + 160
+		draw_sprite(spr_sectorSquare, 0, boxX, boxY)
+	}
+	draw_sprite(spr_sectorBorder, 0, 320, 160)
 }

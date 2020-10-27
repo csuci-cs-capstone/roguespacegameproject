@@ -4,4 +4,5 @@
 jump = false;
 jumpDirection = 0;
 timerSet = false;
-offset = 0;
+offsetx = 0;
+offsety = 0;

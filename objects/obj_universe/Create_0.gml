@@ -33,18 +33,42 @@ enum sectorTypes
 	black_hole,
 }
 
-Sector = function(_mass, _danger, _type, _shopInv) constructor
+Sector = function(_x, _y, _mass, _danger) constructor
 {
-	sectorMass = _mass
-	sectorDanger = _danger
-	sectorType = _type
-	sectorShopInv = _shopInv
+	sectorX = _x
+	sectorY = _y
+	sectorMass = _mass;
+	sectorDanger = _danger;
+	sectorType = sectorTypes.empty;
+	sectorShopInv = [];
+	sectorEnemyList = ds_map_create();
+	
+	static add_enemy = function(enemy)
+	{
+		if not ds_map_add(sectorEnemyList, enemy, 1)
+		{
+			sectorEnemyList[? enemy] += 1	
+		}
+	}
+	
+	static remove_enemy = function(enemy)
+	{
+		if sectorEnemyList[? enemy] == 1
+		{
+			ds_map_delete(sectorEnemyList, enemy)	
+		}
+		else
+		{
+			sectorEnemyList[? enemy] -= 1;
+		}
+	}
 }
 
 visitedSectors = ds_map_create();
 
-ds_map_add(visitedSectors, (string(playerSectorX) + " " + string(playerSectorY)), new Sector(0, 0, sectorTypes.empty, []))
+ds_map_add(visitedSectors, (string(playerSectorX) + " " + string(playerSectorY)), new Sector(0, 0, 0, 0))
 
 #endregion
 
 generateSector = false;
+activate = true;

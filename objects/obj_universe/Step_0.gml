@@ -4,8 +4,6 @@
 if generateSector
 {
 	remove_all_objects();
-	instance_deactivate_object(obj_defaultEnemyParams);
-	instance_deactivate_object(obj_obstacleParent);
 	
 	var sectorData;
 	var coordinatesString = string(playerSectorX) + " " + string(playerSectorY)
@@ -17,10 +15,23 @@ if generateSector
 	}
 	else
 	{
-		sectorData = new Sector(0, 0, sectorTypes.empty, [])
+		sectorData = new Sector(playerSectorX, playerSectorY, 0, 10)
 		ds_map_add(visitedSectors, (string(playerSectorX) + " " + string(playerSectorY)), sectorData)
 		generate_sector_from_data(sectorData)
 	}
 	
+	instance_deactivate_object(obj_defaultEnemyParams);
+	instance_deactivate_object(obj_obstacleParent);
+	
+	// ds_map_destroy(sectorData.sectorEnemyList);
+	
 	generateSector = false;
+}
+
+if activate
+{
+	instance_activate_object(obj_defaultEnemyParams);
+	instance_activate_object(obj_obstacleParent);
+	
+	activate = false;
 }

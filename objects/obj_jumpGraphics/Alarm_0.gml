@@ -4,4 +4,5 @@
 obj_drawUI.hideUI = false;
 timerSet = false;
 jump = false;
-instance_activate_all();
+
+obj_universe.activate = true;

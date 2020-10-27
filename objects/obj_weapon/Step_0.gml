@@ -9,7 +9,7 @@ else
 {
 	visible = 1;
 	
-	if charged && canFire
+	if charged && canFire && not obj_jumpGraphics.jump
 	{
 		if side == 0
 		{

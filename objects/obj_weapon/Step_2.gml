@@ -18,4 +18,7 @@ else
 	y = rightHardpointY;
 }
 
-image_angle = point_direction(x, y, mouse_x, mouse_y) - get_sideways_velocity()*6;
+if not obj_jumpGraphics.jump
+{
+	image_angle = point_direction(x, y, mouse_x, mouse_y) - get_sideways_velocity()*6;
+}

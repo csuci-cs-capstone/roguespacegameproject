@@ -49,7 +49,11 @@ if not hideUI
 	}
 	
 	draw_text(16,64, string(obj_universe.playerSectorX))
-	draw_text(16,80, string(obj_universe.playerSectorY))
+	draw_text(16,72, string(obj_universe.playerSectorY))
+	if not is_undefined(obj_universe.visitedSectors[? get_coordinates_string()])
+	{
+		draw_text(16,80, string(obj_universe.visitedSectors[? get_coordinates_string()].sectorDanger))
+	}
 	
 	//if (obj_gameOver.dead)
 	//{

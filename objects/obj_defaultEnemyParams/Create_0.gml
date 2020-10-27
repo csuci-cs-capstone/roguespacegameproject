@@ -46,6 +46,7 @@ radius = 0;				// Radius surrounding a coordinates where a destination is genera
 accuracy = 90;			// Accuracy, divided by 180 to calculate spread
 weapon = obj_basic		// Weapon that the enemy will use
 rCheck = 3				// Radius to look for valid coordinates if the random coordinates generated is invalid
+danger = 0				// danger value of an enemy, used to determine how many of each enemy to spawn
 
 // Default health variables
 maxHealth = 100;
@@ -66,3 +67,4 @@ movementDirection = 0;
 // How much scrap the enemy can potentially drop
 
 value = 0;
+dropMoney = true;
