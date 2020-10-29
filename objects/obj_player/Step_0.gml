@@ -61,8 +61,6 @@ if not obj_jumpGraphics.jump
 	
 		// Removes all momentum to make the dodge distance more consistent
 		// And give the player the ability to instantly react to some things
-		phy_speed_x = 0;
-		phy_speed_y = 0;
 	
 		// Deleting the Old Fixture
 		physics_remove_fixture(id, myFix);
@@ -89,6 +87,9 @@ if not obj_jumpGraphics.jump
 	
 		if leftRight != 0 || upDown != 0
 		{
+			phy_speed_x = 0;
+			phy_speed_y = 0;
+			
 			var dodgeDirection = point_direction(0, 0, leftRight, upDown);
 	
 			physics_apply_impulse(x, y, 
@@ -96,7 +97,7 @@ if not obj_jumpGraphics.jump
 									lengthdir_y(get_stat("engineStat") * get_stat("dodgeSpeedMultStat"), dodgeDirection));
 		}
 	
-		image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 2;
+		image_speed = (phy_speed_x != 0 ? sign(get_sideways_velocity()) : 1) * 1.5;
 
 		alarm_set(0, room_speed * 0.25)
 	}

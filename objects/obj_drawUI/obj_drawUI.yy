@@ -24,8 +24,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Other",
-    "path": "folders/Objects/Other.yy",
+    "name": "UI",
+    "path": "folders/Objects/Other/UI.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_drawUI",
