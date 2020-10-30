@@ -135,3 +135,5 @@ playerControlsEnabled = true
 canRecharge = true;
 
 shieldAlpha = 0;
+
+playHitSound = true;

@@ -7,6 +7,7 @@ global.exhaustParticleEmitter = part_emitter_create(global.particleSystem);
 global.gunFlashParticleEmitter = part_emitter_create(global.particleSystem);
 global.projectileTrailEmitter = part_emitter_create(global.particleSystem);
 global.jumpChargeEmitter = part_emitter_create(global.particleSystem);
+global.destroyEmitter = part_emitter_create(global.particleSystem);
 
 global.exhaustParticle = part_type_create();
 part_type_shape(global.exhaustParticle, pt_shape_spark);
@@ -38,6 +39,20 @@ part_type_shape(global.jumpParticle, pt_shape_smoke);
 part_type_color2(global.jumpParticle, c_blue, c_white);
 part_type_speed(global.jumpParticle, 1, 2, 0.5, 0);
 part_type_alpha3(global.jumpParticle, 0, 1, 0)
-part_type_life(global.jumpParticle, room_speed/4, room_speed/5);
+part_type_life(global.jumpParticle, room_speed/5, room_speed/4);
 part_type_scale(global.jumpParticle, 0.1, 0.1);
 part_type_size(global.jumpParticle, 1, 1, 0.05, 0);
+
+global.fragmentParticle = part_type_create();
+part_type_shape(global.fragmentParticle, pt_shape_explosion);
+part_type_color2(global.fragmentParticle, c_red, c_gray);
+part_type_speed(global.fragmentParticle, 1, 5, -0.01, 0);
+part_type_life(global.fragmentParticle, room_speed * 2, room_speed * 3);
+part_type_scale(global.fragmentParticle, 0.2, 0.2);
+
+global.smallerFragmentParticle = part_type_create();
+part_type_shape(global.smallerFragmentParticle, pt_shape_explosion);
+part_type_color2(global.smallerFragmentParticle, c_red, c_gray);
+part_type_speed(global.smallerFragmentParticle, 1, 4, -0.05, 0);
+part_type_life(global.smallerFragmentParticle, room_speed/2, room_speed);
+part_type_scale(global.smallerFragmentParticle, 0.15, 0.15);

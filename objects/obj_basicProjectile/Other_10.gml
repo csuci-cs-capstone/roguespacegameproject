@@ -7,6 +7,8 @@ physics_apply_impulse(x, y, obj_player.phy_speed_x + lengthdir_x(get_stat("proje
 //phy_speed_x = 
 //phy_speed_y = 
 
+audio_play_sound(snd_basicCannon, 1, false);
+
 alarm_set(0, 2 * room_speed);
 
 part_emitter_region(global.particleSystem, global.gunFlashParticleEmitter, 

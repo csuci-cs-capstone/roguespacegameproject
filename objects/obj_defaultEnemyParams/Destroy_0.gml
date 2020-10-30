@@ -41,6 +41,17 @@ if dropMoney
 		newScrap.image_index = 0;
 	}
 	
+	part_emitter_region(global.particleSystem, global.destroyEmitter, 
+							x + 10,
+							x - 10,
+							y + 10,
+							y - 10,
+							ps_shape_ellipse, ps_distr_gaussian);
+			
+	part_type_direction(global.smallerFragmentParticle, 0, 359, 0, 0);
+			
+	part_emitter_burst(global.particleSystem, global.destroyEmitter, global.smallerFragmentParticle, random_range(20, 30));
+	
 	obj_universe.visitedSectors[? get_coordinates_string()].remove_enemy(object_index);
 	obj_universe.visitedSectors[? get_coordinates_string()].sectorDanger -= danger;
 }

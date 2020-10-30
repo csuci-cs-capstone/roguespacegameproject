@@ -22,6 +22,14 @@ if instance_exists(obj_player)
 	{
 		x = obj_player.phy_position_x
 		y = obj_player.phy_position_y
+		x += choose(-2, -1, 1, 2);
+		y += choose(-2, -1, 1, 2);
 		window_mouse_set(window_get_width()/2, window_get_height()/2);
 	}
+}
+
+if shake
+{
+	x += choose(-1, 1);
+	y += choose(-1, 1);
 }

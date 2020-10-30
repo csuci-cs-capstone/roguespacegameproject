@@ -4,7 +4,8 @@ function attack_basic()
 	if !dodging && canShoot && canSee
 	{
 		canShoot = false;
-		
+		audio_stop_sound(snd_enemyFire)
+		audio_play_sound(snd_enemyFire, 0, false);
 		var projectileDirection = -phy_rotation + random_range(-accuracy, accuracy);
 		
 		var projectile = instance_create_layer(phy_position_x, phy_position_y, "Interactible", weapon);
@@ -22,7 +23,8 @@ function attack_spread()
 	if !dodging && canShoot && canSee
 	{
 		canShoot = false;
-		
+		audio_stop_sound(snd_enemyFire)
+		audio_play_sound(snd_enemyFire, 0, false);
 		var i, projectileDirection;
 		
 		for (i = 0; i < 5; i++)

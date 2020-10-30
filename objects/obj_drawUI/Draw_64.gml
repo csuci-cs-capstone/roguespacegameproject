@@ -52,10 +52,12 @@ if not hideUI && instance_exists(obj_player)
 		draw_jump_menu()
 		if mouse_check_button_pressed(mb_left)
 		{
+			audio_play_sound(snd_jumpCharge, 0, false);
 			alarm_set(0, room_speed)
 		}
 		if mouse_check_button_released(mb_left)
 		{
+			audio_stop_sound(snd_jumpCharge);
 			alarm_set(0, -1)
 		}
 		
@@ -70,7 +72,7 @@ if not hideUI && instance_exists(obj_player)
 			
 			part_type_direction(global.jumpParticle, (-obj_player.phy_rotation + 180) - 10, (-obj_player.phy_rotation + 180) + 10, 0, 0);
 			
-			part_emitter_burst(global.particleSystem, global.jumpChargeEmitter, global.jumpParticle, (1 - (5 / (alarm_get(0) + 5))) * 8);
+			part_emitter_burst(global.particleSystem, global.jumpChargeEmitter, global.jumpParticle, clamp((5 / (alarm_get(0) - 8)) - 0.1, 0, 1) * 20);
 		}
 	}
 	
@@ -82,9 +84,15 @@ if not hideUI && instance_exists(obj_player)
 	//{
 	//	draw_text(16,80, string(obj_universe.visitedSectors[? get_coordinates_string()].sectorDanger))
 	//}
+}
+
+if obj_gameOver.dead
+{
+	draw_set_halign(fa_center);
+	draw_text_transformed(320, 100, "GAME OVER", 4, 4, 0);
 	
-	//if (obj_gameOver.dead)
-	//{
-	//	draw_text(640, 360, "GAME OVER");	
-	//}
+	draw_text_transformed(320, 180, "Furthest Gone: " + string(obj_scoreKeeper.furthestDistance), 2, 2, 0);
+	
+	draw_text_transformed(320, 210, "Press Space to Restart", 1, 1, 0);
+	draw_set_halign(fa_left);
 }

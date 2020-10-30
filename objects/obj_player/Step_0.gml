@@ -46,9 +46,14 @@ if !obj_jumpGraphics.jump
 			
 				physics_apply_force(x, y, lengthdir_x(get_stat("engineStat"), theta) , lengthdir_y(get_stat("engineStat"), theta));
 			}
+			if !audio_is_playing(snd_engine)
+			{
+				audio_play_sound(snd_engine, 0, true);
+			}
 		}
 		else
 		{
+			audio_stop_sound(snd_engine)
 			phy_linear_damping = 6
 		}
 	}
@@ -91,14 +96,15 @@ if !obj_jumpGraphics.jump
 			phy_speed_y = 0;
 			
 			var dodgeDirection = point_direction(0, 0, leftRight, upDown);
-	
+			
 			physics_apply_impulse(x, y, 
 									lengthdir_x(get_stat("engineStat") * get_stat("dodgeSpeedMultStat"), dodgeDirection), 
 									lengthdir_y(get_stat("engineStat") * get_stat("dodgeSpeedMultStat"), dodgeDirection));
 		}
 	
 		image_speed = (phy_speed_x != 0 ? sign(get_sideways_velocity()) : 1) * 1.5;
-
+		
+		audio_play_sound(snd_dodge, 0, false);
 		alarm_set(0, room_speed * 0.25)
 	}
 }
@@ -137,11 +143,4 @@ if canRecharge
 if shieldAlpha > 0
 {
 	shieldAlpha -= 0.05
-}
-
-if currentHealth <= 0
-{
-	instance_destroy(obj_leftWeapon);
-	instance_destroy(obj_rightWeapon);
-	instance_destroy();	
 }

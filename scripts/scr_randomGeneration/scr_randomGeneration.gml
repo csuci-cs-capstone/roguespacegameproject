@@ -143,6 +143,9 @@ function generate_sector_from_data(sectorData)
 
 function sector_jump(jumpDirection)
 {
+	audio_pause_all();
+	audio_play_sound(snd_jump, 0, true);
+	
 	obj_universe.playerSectorX += ceil(lengthdir_x(1, jumpDirection))
 	obj_universe.playerSectorY += ceil(lengthdir_y(1, -jumpDirection))
 	obj_universe.generateSector = true;

@@ -6,3 +6,4 @@ jumpDirection = 0;
 timerSet = false;
 offsetx = 0;
 offsety = 0;
+immune = false;

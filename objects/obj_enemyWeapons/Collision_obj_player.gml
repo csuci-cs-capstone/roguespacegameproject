@@ -1,14 +1,19 @@
 /// @description Player Damage
 // You can write your code in this editor
 
-if other.currentShields >= 0
+if !obj_jumpGraphics.immune
 {
-	other.currentShields -= damage;
-	other.shieldAlpha = 1;
-}
-else
-{
-	other.currentHealth -= damage;
-}
+	audio_play_sound(snd_hit, 0, false);
 
-instance_destroy();
+	if other.currentShields >= 0
+	{
+		other.currentShields -= damage;
+		other.shieldAlpha = 1;
+	}
+	else
+	{
+		other.currentHealth -= damage;
+	}
+
+	instance_destroy();
+}

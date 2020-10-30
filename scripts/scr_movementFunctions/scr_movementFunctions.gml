@@ -33,7 +33,7 @@ function find_closest_valid_coordinates(grid, x, y, r)
 	
 	if mp_grid_get_cell(grid, gridX, gridY) == -1
 	{
-		var tempGrid = ds_grid_create(global.gridSize, global.gridSize);
+		var tempGrid = ds_grid_create(room_width/global.gridSize, room_height/global.gridSize);
 		mp_grid_to_ds_grid(grid, tempGrid);
 		for (i = 1; i <= r; i++)
 		{
