@@ -3,7 +3,7 @@
 
 var distanceToPlayer = distance_to_object(obj_player)
 
-if (distanceToPlayer < 200)
+if (distanceToPlayer < 200 || instance_number(obj_defaultEnemyParams) == 0)
 {
 	var theta = point_direction(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y);
 	movementDirection = theta;
