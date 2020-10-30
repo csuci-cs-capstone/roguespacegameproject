@@ -20,6 +20,7 @@ infoIndex = 0
 jumpDirection = 0;
 
 hideUI = false;
+alarm_value = -1;
 
 window_set_cursor(cr_none);
 

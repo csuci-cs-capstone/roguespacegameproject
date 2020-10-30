@@ -15,7 +15,7 @@ if generateSector
 	}
 	else
 	{
-		sectorData = new Sector(playerSectorX, playerSectorY, 0, 10)
+		sectorData = new Sector(playerSectorX, playerSectorY, random_range(0, 20), random_range(10, 50))
 		ds_map_add(visitedSectors, (string(playerSectorX) + " " + string(playerSectorY)), sectorData)
 		generate_sector_from_data(sectorData)
 	}

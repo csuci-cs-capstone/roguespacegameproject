@@ -79,6 +79,18 @@ function remove_all_objects()
 
 function generate_sector_from_data(sectorData)
 {
+	#region //Mass value
+	// instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_asteroid
+	
+	if sectorData.sectorMass >= 0
+	{
+		for (var i = 0; i < sectorData.sectorMass; i++)
+		{
+			instance_create_layer(random_range(100, room_width - 100), random_range(100, room_height - 100), "Interactible", obj_asteroid);
+		}
+	}
+	
+	#endregion
 	
 	#region //Danger value
 	if sectorData.sectorDanger < 0
@@ -126,10 +138,6 @@ function generate_sector_from_data(sectorData)
 			}
 		}
 	}
-	#endregion
-	
-	#region //Mass value
-	// instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_asteroid
 	#endregion
 }
 

@@ -26,7 +26,9 @@
     {"x":30.0,"y":25.0,},
     {"x":24.0,"y":25.0,},
   ],
-  "eventList": [],
+  "eventList": [
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"obj_asteroid","path":"objects/obj_asteroid/obj_asteroid.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+  ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {

@@ -193,7 +193,14 @@ function generate_towards_direction_avoid_obstacles(grid, x, y, theta)
 
 function can_see_player()
 {
-	return collision_line(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y, obj_obstacleParent, false, true) == noone	
+	if instance_exists(obj_player)
+	{
+		return collision_line(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y, obj_obstacleParent, false, true) == noone
+	}
+	else
+	{
+		return false	
+	}
 }
 
 function get_sideways_velocity()

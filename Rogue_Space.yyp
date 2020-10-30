@@ -57,6 +57,7 @@
     {"id":{"name":"obj_obstacleSpawner","path":"objects/obj_obstacleSpawner/obj_obstacleSpawner.yy",},"order":2,},
     {"id":{"name":"obj_obstacleParent","path":"objects/obj_obstacleParent/obj_obstacleParent.yy",},"order":1,},
     {"id":{"name":"spr_basicHull","path":"sprites/spr_basicHull/spr_basicHull.yy",},"order":1,},
+    {"id":{"name":"spr_shieldBar","path":"sprites/spr_shieldBar/spr_shieldBar.yy",},"order":24,},
     {"id":{"name":"spr_basicArmor","path":"sprites/spr_basicArmor/spr_basicArmor.yy",},"order":2,},
     {"id":{"name":"spr_scrap","path":"sprites/spr_scrap/spr_scrap.yy",},"order":0,},
     {"id":{"name":"scr_enemyStateFunctions","path":"scripts/scr_enemyStateFunctions/scr_enemyStateFunctions.yy",},"order":2,},

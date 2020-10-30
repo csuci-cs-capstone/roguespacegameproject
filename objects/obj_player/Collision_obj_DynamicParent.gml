@@ -4,5 +4,11 @@
 // Inherit the parent event
 event_inherited();
 
-
-currentHealth -= phy_mass * power(speedChange, 2) * 0.5
+if currentShields >= 0
+{
+	currentShields -= phy_mass * power(speedChange, 2) * 0.5
+}
+else
+{
+	currentHealth -= phy_mass * power(speedChange, 2) * 0.5
+}

@@ -24,7 +24,7 @@ if difference != 0
 }
 #endregion
 
-if not obj_jumpGraphics.jump
+if !obj_jumpGraphics.jump
 {
 	// Smooth Rotation
 	var theta = point_direction(phy_position_x, phy_position_y, mouse_x, mouse_y);
@@ -46,15 +46,6 @@ if not obj_jumpGraphics.jump
 			
 				physics_apply_force(x, y, lengthdir_x(get_stat("engineStat"), theta) , lengthdir_y(get_stat("engineStat"), theta));
 			}
-			
-			part_emitter_region(global.particleSystem, global.exhaustParticleEmitter, 
-								player_coordintes_respect_to_world_x(),
-								player_coordintes_respect_to_world_x(),
-								player_coordintes_respect_to_world_y(),
-								player_coordintes_respect_to_world_y(),
-								ps_shape_ellipse, ps_distr_gaussian);
-								
-			part_emitter_burst(global.particleSystem, global.exhaustParticleEmitter, global.exhaustParticle, 10);
 		}
 		else
 		{
@@ -125,3 +116,27 @@ if dodgeCooldown > 0
 	dodgeCooldown -= 1;	
 }
 #endregion
+
+if canRecharge
+{
+	if currentShields < 0
+	{
+		canRecharge = false
+		alarm_set(1, room_speed * 3);
+	}
+	else if currentShields < get_stat("shieldStat")
+	{
+		currentShields += get_stat("shieldRechargeStat");
+		if currentShields > get_stat("shieldStat")
+		{
+			currentShields = get_stat("shieldStat")
+		}
+	}
+}
+
+if currentHealth <= 0
+{
+	instance_destroy(obj_leftWeapon);
+	instance_destroy(obj_rightWeapon);
+	instance_destroy();	
+}

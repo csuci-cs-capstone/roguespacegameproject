@@ -3,7 +3,7 @@
 
 //draw_text(32, 64, "Entity Count = " + string(instance_number(obj_player) + instance_number(obj_defaultEnemyParams) + instance_number(obj_simpleProjectile) + instance_number(obj_obstacleParent) + instance_number(obj_enemyWeapons)));
 
-if not hideUI
+if not hideUI && instance_exists(obj_player)
 {
 	draw_sprite(spr_staticUI, -1, 0, 0);
 	var subImage = ceil((obj_player.currentHealth * 25) / get_stat("hullStat"))
@@ -12,6 +12,8 @@ if not hideUI
 		subImage = 0	
 	}
 	draw_sprite(spr_health, subImage, 8, 8)
+	
+	draw_sprite_part(spr_shieldBar, 0, 0, 0, (obj_player.currentShields / get_stat("shieldStat")) * 149, 10, 8, 8)
 
 	draw_text(17, 31, string(obj_player.money));
 
@@ -57,16 +59,19 @@ if not hideUI
 			alarm_set(0, -1)
 		}
 		
-		draw_set_alpha(0.1)
-		draw_set_color(c_aqua)
-		
 		if alarm_get(0) != -1
 		{
-			draw_circle(319, 179, (1 - (alarm_get(0)/room_speed)) * 45, false)
-		}
+			part_emitter_region(global.particleSystem, global.jumpChargeEmitter, 
+						obj_player.x + 80,
+						obj_player.x - 80,
+						obj_player.y + 80,
+						obj_player.y - 80,
+						ps_shape_ellipse, ps_distr_invgaussian);
 			
-		draw_set_alpha(1)
-		draw_set_color(c_white)
+			part_type_direction(global.jumpParticle, (-obj_player.phy_rotation + 180) - 10, (-obj_player.phy_rotation + 180) + 10, 0, 0);
+			
+			part_emitter_burst(global.particleSystem, global.jumpChargeEmitter, global.jumpParticle, (1 - (5 / (alarm_get(0) + 5))) * 8);
+		}
 	}
 	
 	draw_sprite(spr_crosshairCursor, 0, mousex, mousey);

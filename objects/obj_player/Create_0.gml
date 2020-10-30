@@ -25,6 +25,7 @@ stats = ds_map_create();
 ds_map_add(stats, "hullStat", 0);
 ds_map_add(stats, "armorStat", 0);
 ds_map_add(stats, "shieldStat", 0);
+ds_map_add(stats, "shieldRechargeStat", 0)
 ds_map_add(stats, "engineStat", 0);
 ds_map_add(stats, "dodgeSpeedMultStat", 0);
 ds_map_add(stats, "dodgeRechargeStat", 0);
@@ -41,6 +42,7 @@ modifiers = ds_map_create();
 ds_map_add(modifiers, "hullStat", 1);
 ds_map_add(modifiers, "armorStat", 1);
 ds_map_add(modifiers, "shieldStat", 1);
+ds_map_add(modifiers, "shieldRechargeStat", 1)
 ds_map_add(modifiers, "engineStat", 1);
 ds_map_add(modifiers, "dodgeSpeedMultStat", 1);
 ds_map_add(modifiers, "dodgeRechargeStat", 1);
@@ -86,6 +88,7 @@ add_item(obj_itemData.basic_weapon);
 equip_item(0, "rightWeaponSlot");
 #endregion
 
+currentShields = get_stat("shieldStat");
 currentHealth = get_stat("hullStat");
 description = "Your ship, it has seen a few battles."
 money = 0;
@@ -129,3 +132,4 @@ speedChange = 0;
 
 playerControlsEnabled = true
 
+canRecharge = true;

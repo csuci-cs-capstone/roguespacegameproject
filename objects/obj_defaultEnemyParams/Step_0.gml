@@ -47,8 +47,11 @@ if state == behaviorStates.drift
 else
 {
 	phy_fixed_rotation = true;
-	var playerTheta = point_direction(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y);
-	phy_rotation += sin(degtorad(-phy_rotation - playerTheta)) * rotationSpeed;
+	if instance_exists(obj_player)
+	{
+		var playerTheta = point_direction(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y);
+		phy_rotation += sin(degtorad(-phy_rotation - playerTheta)) * rotationSpeed;
+	}
 }
 
 // Destroy enemy if the enemy drops below 0

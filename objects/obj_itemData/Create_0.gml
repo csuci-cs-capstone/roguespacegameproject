@@ -98,7 +98,8 @@ basic_shields = new Item("Standard Shields",
 					weaponTypes.notAWeapon,
 					"Basic flash charge ion-particle sheilding", 
 					10,
-					[new Effect("shieldStat", effectTypes.modify, 3)],
+					[new Effect("shieldStat", effectTypes.modify, 100),
+					new Effect("shieldRechargeStat", effectTypes.modify, 0.075)],
 					spr_testItem,
 					0);
 					

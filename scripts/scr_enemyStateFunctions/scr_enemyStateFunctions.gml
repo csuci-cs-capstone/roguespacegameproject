@@ -52,7 +52,7 @@ function behavior_move()
 // @function	behavior_pursue();
 function behavior_pursue()
 {
-	if path_exists(myPath)
+	if path_exists(myPath) && instance_exists(obj_player)
 	{
 		phy_linear_damping = 2;
 		movementDirection = physics_pathfind_direction(myPath, obj_grid.grid, obj_player.phy_position_x, obj_player.phy_position_y);
@@ -98,8 +98,11 @@ function behavior_teleport()
 // @function	behavior_avoid()
 function behavior_avoid()
 {
-	phy_linear_damping = 2;
-	var theta = generate_opposite_direction_avoid_obstacles(obj_grid.grid, phy_position_x, phy_position_y, point_direction(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y));
-	movementDirection = theta
+	if instance_exists(obj_player)
+	{
+		phy_linear_damping = 2;
+		var theta = generate_opposite_direction_avoid_obstacles(obj_grid.grid, phy_position_x, phy_position_y, point_direction(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y));
+		movementDirection = theta
+	}
 	//physics_apply_force(phy_position_x, phy_position_y, lengthdir_x(enginePower, theta), lengthdir_y(enginePower, theta));
 }
