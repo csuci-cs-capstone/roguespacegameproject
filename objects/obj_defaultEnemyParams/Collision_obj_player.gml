@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if !obj_jumpGraphics.immune
+if !obj_jumpMechanics.immune
 {
 	var totalKineticEnergy = phy_mass * power(speedChange, 2) * 0.5 + other.phy_mass * power(other.speedChange, 2) * 0.5;
 

@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if !obj_jumpGraphics.jump && !dodging && (upKey || downKey || leftKey || rightKey)
+if !obj_jumpMechanics.jump && !dodging && (upKey || downKey || leftKey || rightKey)
 {
 	part_emitter_region(global.particleSystem, global.exhaustParticleEmitter, 
 						player_coordintes_respect_to_world_x(-3, -5),

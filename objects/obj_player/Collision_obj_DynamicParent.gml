@@ -4,7 +4,7 @@
 // Inherit the parent event
 event_inherited();
 
-if !obj_jumpGraphics.immune
+if !obj_jumpMechanics.immune
 {
 	if playHitSound
 	{

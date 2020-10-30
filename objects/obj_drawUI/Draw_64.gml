@@ -76,6 +76,12 @@ if not hideUI && instance_exists(obj_player)
 		}
 	}
 	
+	if (keyboard_check_released(vk_shift))
+	{
+		audio_stop_sound(snd_jumpCharge);
+		alarm_set(0, -1)
+	}
+	
 	draw_sprite(spr_crosshairCursor, 0, mousex, mousey);
 	
 	//draw_text(16,64, string(obj_universe.playerSectorX))

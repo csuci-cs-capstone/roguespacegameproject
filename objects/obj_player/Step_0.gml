@@ -24,7 +24,7 @@ if difference != 0
 }
 #endregion
 
-if !obj_jumpGraphics.jump
+if !obj_jumpMechanics.jump
 {
 	// Smooth Rotation
 	var theta = point_direction(phy_position_x, phy_position_y, mouse_x, mouse_y);
@@ -110,7 +110,7 @@ if !obj_jumpGraphics.jump
 }
 else
 {
-	phy_rotation += sin(degtorad(-phy_rotation - obj_jumpGraphics.jumpDirection)) * rotationSpeed;
+	phy_rotation += sin(degtorad(-phy_rotation - obj_jumpMechanics.jumpDirection)) * rotationSpeed;
 	phy_speed_x = 0;
 	phy_speed_y = 0;
 	obj_player.phy_position_x = room_width/2

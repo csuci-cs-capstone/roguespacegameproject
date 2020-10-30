@@ -3,6 +3,7 @@
 
 if jump && instance_exists(obj_player)
 {
+	immune = true;
 	if not timerSet
 	{
 		alarm_set(0, room_speed)

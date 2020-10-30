@@ -9,7 +9,7 @@ else
 {
 	visible = 1;
 	
-	if mouse_check_button(mb_left) && charged && canFire && not obj_jumpGraphics.jump
+	if mouse_check_button(mb_left) && charged && canFire && not obj_jumpMechanics.jump
 	{
 		charged = false;
 		alarm_set(0, room_speed * (1 / get_stat("firerateStat")));

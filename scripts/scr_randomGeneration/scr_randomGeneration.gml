@@ -149,8 +149,8 @@ function sector_jump(jumpDirection)
 	obj_universe.playerSectorX += ceil(lengthdir_x(1, jumpDirection))
 	obj_universe.playerSectorY += ceil(lengthdir_y(1, -jumpDirection))
 	obj_universe.generateSector = true;
-	obj_jumpGraphics.jumpDirection = jumpDirection;
-	obj_jumpGraphics.jump = true;
+	obj_jumpMechanics.jumpDirection = jumpDirection;
+	obj_jumpMechanics.jump = true;
 }
 
 function get_coordinates_string()

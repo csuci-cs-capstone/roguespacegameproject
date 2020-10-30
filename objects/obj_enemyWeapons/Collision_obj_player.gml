@@ -1,7 +1,7 @@
 /// @description Player Damage
 // You can write your code in this editor
 
-if !obj_jumpGraphics.immune
+if !obj_jumpMechanics.immune
 {
 	audio_play_sound(snd_hit, 0, false);
 

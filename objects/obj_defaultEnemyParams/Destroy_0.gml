@@ -41,6 +41,8 @@ if dropMoney
 		newScrap.image_index = 0;
 	}
 	
+	audio_play_sound(snd_enemyDefeat, 5, false);
+	
 	part_emitter_region(global.particleSystem, global.destroyEmitter, 
 							x + 10,
 							x - 10,

@@ -9,7 +9,7 @@ if instance_exists(obj_player)
 		x = lerp(obj_player.phy_position_x, mouse_x, distanceToPlayer)
 		y = lerp(obj_player.phy_position_y, mouse_y, distanceToPlayer)
 	}
-	else if !obj_jumpGraphics.jump
+	else if !obj_jumpMechanics.jump
 	{
 		if distanceToPlayer != 0.2
 		{

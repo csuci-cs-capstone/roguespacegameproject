@@ -4,11 +4,11 @@
 x = player_coordintes_respect_to_world_x(obj_player.hardpointRight[@ 0], obj_player.hardpointRight[@ 1]);
 y = player_coordintes_respect_to_world_y(obj_player.hardpointRight[@ 0], obj_player.hardpointRight[@ 1]);
 
-if not obj_jumpGraphics.jump
+if not obj_jumpMechanics.jump
 {
 	image_angle = point_direction(x, y, mouse_x, mouse_y) - get_sideways_velocity()*6;
 }
 else
 {
-	image_angle = obj_jumpGraphics.jumpDirection;
+	image_angle = obj_jumpMechanics.jumpDirection;
 }

@@ -22,7 +22,6 @@ if instance_exists(obj_player)
 	part_emitter_burst(global.particleSystem, global.jumpChargeEmitter, global.jumpParticle, random_range(40, 50));
 }
 
-immune = true;
-alarm_set(1, room_speed/2)
+alarm_set(1, room_speed * 1.5)
 
 obj_universe.activate = true;
