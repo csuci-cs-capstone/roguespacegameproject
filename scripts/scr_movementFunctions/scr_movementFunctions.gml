@@ -199,5 +199,14 @@ function can_see_player()
 function get_sideways_velocity()
 {
 	return (-obj_player.phy_speed_x * dsin(obj_player.phy_rotation)) + (obj_player.phy_speed_y * dcos(obj_player.phy_rotation));
-	 
+}
+
+function player_coordintes_respect_to_world_x(_x, _y)
+{
+	return ((_x * sin(degtorad(-obj_player.phy_rotation))) + (_y * cos(degtorad(-obj_player.phy_rotation)))) + obj_player.phy_position_x;
+}
+
+function player_coordintes_respect_to_world_y(_x, _y)
+{
+	return ((_x * cos(degtorad(-obj_player.phy_rotation))) + (_y * -sin(degtorad(-obj_player.phy_rotation)))) + obj_player.phy_position_y;	
 }

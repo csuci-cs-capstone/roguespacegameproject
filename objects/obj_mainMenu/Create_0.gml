@@ -14,3 +14,5 @@ alphaValue = 0;
 previousAlphaValue = 0;
 
 fadeToBlackAlpha = 0;
+
+draw_set_halign(fa_center);

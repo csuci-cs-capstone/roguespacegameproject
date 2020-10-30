@@ -3,6 +3,7 @@
 
 display_set_gui_size(640,360)
 draw_set_font(fnt_thin8Bit)
+draw_set_halign(fa_left);
 invSurface = 0;
 invScroll = 0;
 invHeight = 0;
@@ -16,7 +17,12 @@ equipMode = 0
 pressedX = 0
 pressedY = 0
 infoIndex = 0
+jumpDirection = 0;
 
 hideUI = false;
+
+window_set_cursor(cr_none);
+
+// cursor_sprite = spr_crosshairCursor;
 
 //show_debug_overlay(true);

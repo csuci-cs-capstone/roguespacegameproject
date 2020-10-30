@@ -105,18 +105,12 @@ hardpointLeft = [-8, -3];
 hardpointRight = [8, -3];
 //
 
-// Creating Weapon Objects
-playerWeapon = obj_weapon;
-
-var weapon = instance_create_layer(0, 0, "Interactible", playerWeapon);
+var weapon = instance_create_layer(0, 0, "Interactible", obj_leftWeapon);
 weapon.sprite_index = equipped[? "leftWeaponSlot"].equipSprite
-weapon.side = 0;
 
-var weapon = instance_create_layer(0, 0, "Interactible", playerWeapon);
+weapon = instance_create_layer(0, 0, "Interactible", obj_rightWeapon);
 weapon.sprite_index = equipped[? "rightWeaponSlot"].equipSprite
-weapon.side = 1;
 
-side = 0;
 // 
 
 flash = 0

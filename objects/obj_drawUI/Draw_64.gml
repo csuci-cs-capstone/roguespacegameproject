@@ -31,29 +31,52 @@ if not hideUI
 		infoIndex = 0;
 	}
 	
-	if !obj_weapon.canFire
+	if !obj_leftWeapon.canFire || !obj_rightWeapon.canFire
 	{
-		obj_weapon.canFire = true;
+		obj_leftWeapon.canFire = true;
+		obj_rightWeapon.canFire = true;
 	}
 	
 	if (keyboard_check(vk_tab))
 	{
-		obj_weapon.canFire = false;
+		obj_leftWeapon.canFire = false;
+		obj_rightWeapon.canFire = false;
 		draw_menu()
 	}
-	
-	if (keyboard_check(vk_shift))
+	else if (keyboard_check(vk_shift))
 	{
-		obj_weapon.canFire = false;
+		obj_leftWeapon.canFire = false;
+		obj_rightWeapon.canFire = false;
 		draw_jump_menu()
+		if mouse_check_button_pressed(mb_left)
+		{
+			alarm_set(0, room_speed)
+		}
+		if mouse_check_button_released(mb_left)
+		{
+			alarm_set(0, -1)
+		}
+		
+		draw_set_alpha(0.1)
+		draw_set_color(c_aqua)
+		
+		if alarm_get(0) != -1
+		{
+			draw_circle(319, 179, (1 - (alarm_get(0)/room_speed)) * 45, false)
+		}
+			
+		draw_set_alpha(1)
+		draw_set_color(c_white)
 	}
 	
-	draw_text(16,64, string(obj_universe.playerSectorX))
-	draw_text(16,72, string(obj_universe.playerSectorY))
-	if not is_undefined(obj_universe.visitedSectors[? get_coordinates_string()])
-	{
-		draw_text(16,80, string(obj_universe.visitedSectors[? get_coordinates_string()].sectorDanger))
-	}
+	draw_sprite(spr_crosshairCursor, 0, mousex, mousey);
+	
+	//draw_text(16,64, string(obj_universe.playerSectorX))
+	//draw_text(16,72, string(obj_universe.playerSectorY))
+	//if not is_undefined(obj_universe.visitedSectors[? get_coordinates_string()])
+	//{
+	//	draw_text(16,80, string(obj_universe.visitedSectors[? get_coordinates_string()].sectorDanger))
+	//}
 	
 	//if (obj_gameOver.dead)
 	//{

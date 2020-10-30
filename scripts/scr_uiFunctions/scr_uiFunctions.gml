@@ -148,6 +148,7 @@ function draw_inventory(originx, originy, spacing, columns, list)
 	if surface_exists(invSurface)
 	{
 		draw_surface_part(invSurface, 0, 0, 269, 203, originx, originy);
+		surface_free(invSurface)
 	}
 }
 
@@ -240,6 +241,7 @@ function draw_info()
 		if surface_exists(infoSurface)
 		{
 			draw_surface_part(infoSurface, 0, 0, 96, 55, 443, 186);
+			surface_free(infoSurface)
 		}
 		
 		draw_text_ext_transformed(445, 245, string(infoIndex.description), 8, 184, 0.5, 0.5, 0);
@@ -319,6 +321,7 @@ function draw_info()
 		if surface_exists(infoSurface)
 		{
 			draw_surface_part(infoSurface, 0, 0, 96, 55, 443, 186);
+			surface_free(infoSurface)
 		}
 		
 		draw_text_ext_transformed(445, 245, string(obj_player.description), 8, 184, 0.5, 0.5, 0);
@@ -513,54 +516,42 @@ function follow_mouse()
 
 function draw_jump_menu()
 {
-	var jumpDirection = point_direction(320, 180, mousex, mousey);
+	var mouseDirection = point_direction(320, 180, mousex, mousey);
 	
-	if jumpDirection > 45 && jumpDirection < 135
+	if mouseDirection > 45 && mouseDirection < 135
 	{
 		draw_sprite_ext(spr_jumpbutton, 1, 320, 180 - 80, 1, 1, 0, c_white, 1);
-		if mouse_check_button_released(mb_left)
-		{
-			sector_jump(90)
-		}
+		jumpDirection = 90
 	}
 	else
 	{
 		draw_sprite_ext(spr_jumpbutton, 0, 320, 180 - 70, 1, 1, 0, c_white, 1);
 	}
 		
-	if jumpDirection > 315 || jumpDirection < 45
+	if mouseDirection > 315 || mouseDirection < 45
 	{
 		draw_sprite_ext(spr_jumpbutton, 1, 320 + 80, 180, 1, 1, 270, c_white, 1);
-		if mouse_check_button_released(mb_left)
-		{
-			sector_jump(0)
-		}
+		jumpDirection = 0
 	}
 	else
 	{
 		draw_sprite_ext(spr_jumpbutton, 0, 320 + 70, 180, 1, 1, 270, c_white, 1);
 	}
 		
-	if jumpDirection > 225 && jumpDirection < 315
+	if mouseDirection > 225 && mouseDirection < 315
 	{
 		draw_sprite_ext(spr_jumpbutton, 1, 320, 180 + 80, 1, 1, 180, c_white, 1);
-		if mouse_check_button_released(mb_left)
-		{
-			sector_jump(270)
-		}
+		jumpDirection = 270
 	}
 	else
 	{
 		draw_sprite_ext(spr_jumpbutton, 0, 320, 180 + 70, 1, 1, 180, c_white, 1);
 	}
 		
-	if jumpDirection > 135 && jumpDirection < 225
+	if mouseDirection > 135 && mouseDirection < 225
 	{
 		draw_sprite_ext(spr_jumpbutton, 1, 320 - 80, 180, 1, 1, 90, c_white, 1);
-		if mouse_check_button_released(mb_left)
-		{
-			sector_jump(180)
-		}
+		jumpDirection = 180
 	}
 	else
 	{
@@ -592,5 +583,6 @@ function draw_sector_map()
 	if surface_exists(invSurface)
 	{
 		draw_surface_part(invSurface, 0, 0, 458, 230, 92, 80);
+		surface_free(invSurface)
 	}
 }

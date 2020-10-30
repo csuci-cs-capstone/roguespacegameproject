@@ -46,6 +46,15 @@ if not obj_jumpGraphics.jump
 			
 				physics_apply_force(x, y, lengthdir_x(get_stat("engineStat"), theta) , lengthdir_y(get_stat("engineStat"), theta));
 			}
+			
+			part_emitter_region(global.particleSystem, global.exhaustParticleEmitter, 
+								player_coordintes_respect_to_world_x(),
+								player_coordintes_respect_to_world_x(),
+								player_coordintes_respect_to_world_y(),
+								player_coordintes_respect_to_world_y(),
+								ps_shape_ellipse, ps_distr_gaussian);
+								
+			part_emitter_burst(global.particleSystem, global.exhaustParticleEmitter, global.exhaustParticle, 10);
 		}
 		else
 		{
