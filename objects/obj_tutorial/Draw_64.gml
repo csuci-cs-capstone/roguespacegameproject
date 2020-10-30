@@ -38,7 +38,7 @@ if global.doTutorial
 		case 3:
 			if keyboard_check(vk_shift)
 			{
-				draw_sprite(spr_mouseTut, (count/room_speed)%2, 0, 0)
+				draw_sprite(spr_mouseTut, (count/(room_speed * 3))%2, 0, 0)
 				if mouse_check_button(mb_left)
 				{
 					step = 4;
