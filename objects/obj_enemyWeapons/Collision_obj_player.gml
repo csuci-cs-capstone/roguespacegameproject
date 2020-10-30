@@ -4,6 +4,7 @@
 if other.currentShields >= 0
 {
 	other.currentShields -= damage;
+	other.shieldAlpha = 1;
 }
 else
 {

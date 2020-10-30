@@ -133,3 +133,5 @@ speedChange = 0;
 playerControlsEnabled = true
 
 canRecharge = true;
+
+shieldAlpha = 0;

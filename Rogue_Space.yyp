@@ -42,6 +42,7 @@
     {"id":{"name":"scr_statFunctions","path":"scripts/scr_statFunctions/scr_statFunctions.yy",},"order":4,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":0,},
     {"id":{"name":"obj_defaultEnemyParams","path":"objects/obj_defaultEnemyParams/obj_defaultEnemyParams.yy",},"order":1,},
+    {"id":{"name":"spr_shields","path":"sprites/spr_shields/spr_shields.yy",},"order":15,},
     {"id":{"name":"spr_testItem","path":"sprites/spr_testItem/spr_testItem.yy",},"order":0,},
     {"id":{"name":"obj_items","path":"objects/obj_items/obj_items.yy",},"order":2,},
     {"id":{"name":"obj_KinematicParent","path":"objects/obj_KinematicParent/obj_KinematicParent.yy",},"order":2,},

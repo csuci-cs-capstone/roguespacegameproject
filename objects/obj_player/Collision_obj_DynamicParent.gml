@@ -6,6 +6,7 @@ event_inherited();
 
 if currentShields >= 0
 {
+	shieldAlpha = 1;
 	currentShields -= phy_mass * power(speedChange, 2) * 0.5
 }
 else

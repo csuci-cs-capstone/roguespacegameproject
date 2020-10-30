@@ -134,6 +134,11 @@ if canRecharge
 	}
 }
 
+if shieldAlpha > 0
+{
+	shieldAlpha -= 0.05
+}
+
 if currentHealth <= 0
 {
 	instance_destroy(obj_leftWeapon);

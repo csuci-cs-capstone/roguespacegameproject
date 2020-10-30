@@ -8,6 +8,7 @@ currentHealth -= totalKineticEnergy/2
 if other.currentShields >= 0
 {
 	other.currentShields -= totalKineticEnergy/2;
+	other.shieldAlpha = 1;
 }
 else
 {
