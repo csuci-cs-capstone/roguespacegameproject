@@ -41,6 +41,7 @@ if not hideUI && instance_exists(obj_player)
 	
 	if (keyboard_check(vk_tab))
 	{
+		menuOpen = true;
 		obj_leftWeapon.canFire = false;
 		obj_rightWeapon.canFire = false;
 		draw_menu()
@@ -76,13 +77,25 @@ if not hideUI && instance_exists(obj_player)
 		}
 	}
 	
+	if (keyboard_check_released(vk_tab))
+	{
+		menuOpen = false;
+	}
+	
 	if (keyboard_check_released(vk_shift))
 	{
 		audio_stop_sound(snd_jumpCharge);
 		alarm_set(0, -1)
 	}
 	
-	draw_sprite(spr_crosshairCursor, 0, mousex, mousey);
+	if menuOpen
+	{
+		draw_sprite(spr_cursor, 0, mousex, mousey);
+	}
+	else
+	{
+		draw_sprite(spr_crosshairCursor, 0, mousex, mousey);
+	}
 	
 	//draw_text(16,64, string(obj_universe.playerSectorX))
 	//draw_text(16,72, string(obj_universe.playerSectorY))

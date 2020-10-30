@@ -18,6 +18,7 @@
     {"id":{"name":"scr_movementFunctions","path":"scripts/scr_movementFunctions/scr_movementFunctions.yy",},"order":0,},
     {"id":{"name":"snd_hit2","path":"sounds/snd_hit2/snd_hit2.yy",},"order":4,},
     {"id":{"name":"spr_basicWeapon","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},"order":2,},
+    {"id":{"name":"spr_cursor","path":"sprites/spr_cursor/spr_cursor.yy",},"order":25,},
     {"id":{"name":"obj_cursor","path":"objects/obj_cursor/obj_cursor.yy",},"order":5,},
     {"id":{"name":"spr_scrollNub","path":"sprites/spr_scrollNub/spr_scrollNub.yy",},"order":19,},
     {"id":{"name":"spr_basicWeaponIcon","path":"sprites/spr_basicWeaponIcon/spr_basicWeaponIcon.yy",},"order":6,},

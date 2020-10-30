@@ -19,11 +19,12 @@ pressedY = 0
 infoIndex = 0
 jumpDirection = 0;
 
+menuOpen = false;
 hideUI = false;
 alarm_value = -1;
 
 window_set_cursor(cr_none);
 
-// cursor_sprite = spr_crosshairCursor;
+//cursor_sprite = spr_crosshairCursor;
 
 //show_debug_overlay(true);
