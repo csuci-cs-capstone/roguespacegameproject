@@ -1,6 +1,6 @@
 {
-  "option_windows_display_name": "Rogue Space: GOTY Edition: Ultimate Expansion",
-  "option_windows_executable_name": "${Rogue Space}",
+  "option_windows_display_name": "Rogue Space: GOTY Edition: Ultimate - Expansion Pack 3 Remastered",
+  "option_windows_executable_name": "Rogue Space",
   "option_windows_version": "0.0.1.0",
   "option_windows_company_info": "10/10 Games",
   "option_windows_product_info": "Videogames",
