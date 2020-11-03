@@ -14,6 +14,7 @@
   ],
   "layers": [
     {"instances":[
+        {"properties":[],"isDnd":false,"objectId":{"name":"obj_pause","path":"objects/obj_pause/obj_pause.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":64.0,"y":1152.0,"resourceVersion":"1.0","name":"inst_7EEFEEC1","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_drawUI","path":"objects/obj_drawUI/obj_drawUI.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":1152.0,"resourceVersion":"1.0","name":"inst_3F5F053A","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_cameraTarget","path":"objects/obj_cameraTarget/obj_cameraTarget.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":576.0,"y":640.0,"resourceVersion":"1.0","name":"inst_6559EE06","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_tutorial","path":"objects/obj_tutorial/obj_tutorial.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":256.0,"y":1152.0,"resourceVersion":"1.0","name":"inst_30215E68","tags":[],"resourceType":"GMRInstance",},
@@ -57,6 +58,7 @@
     {"name":"inst_4A9D6A78","path":"rooms/rm_sandbox/rm_sandbox.yy",},
     {"name":"inst_36446C","path":"rooms/rm_sandbox/rm_sandbox.yy",},
     {"name":"inst_30215E68","path":"rooms/rm_sandbox/rm_sandbox.yy",},
+    {"name":"inst_7EEFEEC1","path":"rooms/rm_sandbox/rm_sandbox.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,

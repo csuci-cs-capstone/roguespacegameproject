@@ -1,7 +1,7 @@
 /// @description Player Damage
 // You can write your code in this editor
 
-if !obj_jumpMechanics.immune
+if instance_exists(obj_jumpMechanics) && !obj_jumpMechanics.immune
 {
 	audio_play_sound(snd_hit, 0, false);
 
@@ -14,6 +14,6 @@ if !obj_jumpMechanics.immune
 	{
 		other.currentHealth -= damage;
 	}
-
-	instance_destroy();
 }
+
+instance_destroy();
