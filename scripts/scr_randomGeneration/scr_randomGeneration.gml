@@ -115,9 +115,9 @@ function generate_sector_from_data(sectorData)
 					case 2:
 						break;
 					case 1:
-						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_spreadShot);
-						sectorData.add_enemy(obj_spreadShot)
-						dangerCount -= obj_spreadShot.danger;
+						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_dodger);
+						sectorData.add_enemy(obj_dodger)
+						dangerCount -= obj_dodger.danger;
 						break;
 					case 0:
 						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_basicShip);

@@ -10,8 +10,8 @@ function attack_basic()
 		
 		var projectile = instance_create_layer(phy_position_x, phy_position_y, "Interactible", weapon);
 		
-		projectile.phy_speed_x = lengthdir_x(20, projectileDirection) + phy_speed_x;
-		projectile.phy_speed_y = lengthdir_y(20, projectileDirection) + phy_speed_y;
+		projectile.phy_speed_x = lengthdir_x(10, projectileDirection) + phy_speed_x;
+		projectile.phy_speed_y = lengthdir_y(10, projectileDirection) + phy_speed_y;
 		
 		alarm_set(0, room_speed);	
 	}
@@ -33,8 +33,8 @@ function attack_spread()
 		
 			var projectile = instance_create_layer(phy_position_x, phy_position_y, "Interactible", weapon);
 		
-			projectile.phy_speed_x = lengthdir_x(5, projectileDirection) + phy_speed_x;
-			projectile.phy_speed_y = lengthdir_y(5, projectileDirection) + phy_speed_y;
+			projectile.phy_speed_x = lengthdir_x(6, projectileDirection) + phy_speed_x;
+			projectile.phy_speed_y = lengthdir_y(6, projectileDirection) + phy_speed_y;
 		}
 		
 		alarm_set(0, room_speed);	
@@ -50,13 +50,80 @@ function attack_rapid()
 // @function	attack_burst3()
 function attack_burst3()
 {
-	
+	if !dodging && canShoot && canSee
+	{
+		if count < 3
+		{
+			canShoot = false;
+			audio_stop_sound(snd_enemyFire)
+			audio_play_sound(snd_enemyFire, 0, false);
+			
+			var projectileDirection = -phy_rotation + random_range(-accuracy, accuracy);
+		
+			var projectile = instance_create_layer(phy_position_x, phy_position_y, "Interactible", weapon);
+		
+			projectile.phy_speed_x = lengthdir_x(12, projectileDirection) + phy_speed_x;
+			projectile.phy_speed_y = lengthdir_y(12, projectileDirection) + phy_speed_y;
+			projectile.phy_rotation = phy_rotation
+			
+			count++;
+			if count < 3
+			{
+				alarm_set(0, room_speed / 7)
+			}
+		}
+		alarm_set(4, room_speed);	
+	}
 }
 
 // @function	attack_burst5()
 function attack_burst5()
 {
-	
+	if !dodging && canShoot && canSee
+	{
+		if count < 5
+		{
+			canShoot = false;
+			audio_stop_sound(snd_enemyFire)
+			audio_play_sound(snd_enemyFire, 0, false);
+			
+			var projectileDirection = -phy_rotation + random_range(-accuracy, accuracy);
+		
+			var projectile = instance_create_layer(phy_position_x, phy_position_y, "Interactible", weapon);
+		
+			projectile.phy_speed_x = lengthdir_x(12, projectileDirection) + phy_speed_x;
+			projectile.phy_speed_y = lengthdir_y(12, projectileDirection) + phy_speed_y;
+			projectile.phy_rotation = phy_rotation
+			
+			count++;
+			if count < 5
+			{
+				alarm_set(0, room_speed / 7)
+			}
+		}
+		alarm_set(4, room_speed);	
+	}
+}
+
+// @function	attack_sniper()
+function attack_beam()
+{
+	if !dodging && canShoot && canSee
+	{
+		canShoot = false;
+		audio_stop_sound(snd_enemyFire)
+		audio_play_sound(snd_enemyFire, 0, false);
+		
+		physics_apply_impulse(phy_position_x, phy_position_y, lengthdir_x(150, -phy_rotation + 180) , lengthdir_y(150, -phy_rotation + 180));
+		
+		var projectileDirection = -phy_rotation;
+		var projectile = instance_create_layer(phy_position_x, phy_position_y, "Interactible", weapon);
+		projectile.phy_speed_x = lengthdir_x(20, projectileDirection) + phy_speed_x;
+		projectile.phy_speed_y = lengthdir_y(20, projectileDirection) + phy_speed_y;
+		projectile.phy_rotation = phy_rotation
+		projectile.initialX = phy_position_x;
+		projectile.initialY = phy_position_y;
+	}
 }
 
 // @function	attack_360()

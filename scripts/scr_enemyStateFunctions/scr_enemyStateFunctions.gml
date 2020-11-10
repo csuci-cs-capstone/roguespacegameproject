@@ -71,18 +71,23 @@ function behavior_attracted()
 // @function	behavior_dash()
 function behavior_dash()
 {
-	if (canDodge)
+	
+	var projectile = instance_nearest(phy_position_x, phy_position_y, obj_projectileParent)
+	if projectile == noone
 	{
-		canDodge = false;
-		dodging = true;
-		phy_speed_x = 0;
-		phy_speed_y = 0;
-		phy_linear_damping = 0;
-		physics_apply_impulse(phy_position_x, phy_position_y, lengthdir_x(enginePower, dodgeDirection) , lengthdir_y(enginePower, dodgeDirection));
-		image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 1.2;
-		alarm_set(1, room_speed * 0.6)
-		alarm_set(2, room_speed * 0.4)
+		projectile = instance_find(obj_player, 0)
 	}
+	var theta = generate_opposite_direction_avoid_obstacles(obj_grid.grid, phy_position_x, phy_position_y, point_direction(phy_position_x, phy_position_y, projectile.phy_position_x, projectile.phy_position_y));
+	
+	canDodge = false;
+	dodging = true;
+	phy_speed_x = 0;
+	phy_speed_y = 0;
+	phy_linear_damping = 0;
+	physics_apply_impulse(phy_position_x, phy_position_y, lengthdir_x(enginePower * 0.9, theta) , lengthdir_y(enginePower * 0.9, theta));
+	//image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 1.2;
+	alarm_set(1, room_speed * 0.8)
+	alarm_set(2, room_speed * 0.4)
 }
 
 // @function	behavior_teleport()

@@ -8,11 +8,11 @@ physics_fixture_add_point(fix, 12, 0);
 physics_fixture_add_point(fix, -7, 10);
 physics_fixture_add_point(fix, -12, 0);
 physics_fixture_add_point(fix, -7, -10);
-physics_fixture_set_density(fix,0.5);
-physics_fixture_set_restitution(fix,0.1)
-physics_fixture_set_linear_damping(fix,2);
-physics_fixture_set_angular_damping(fix,4);
-physics_fixture_set_friction(fix,0.2);
+physics_fixture_set_density(fix,1);
+physics_fixture_set_restitution(fix,0.2)
+physics_fixture_set_linear_damping(fix,4);
+physics_fixture_set_angular_damping(fix,8);
+physics_fixture_set_friction(fix,0.4);
 physics_fixture_set_collision_group(fix,1);
 myFix = physics_fixture_bind(fix,id);
 physics_fixture_delete(fix);

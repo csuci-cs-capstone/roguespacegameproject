@@ -55,5 +55,8 @@ if dropMoney
 	part_emitter_burst(global.particleSystem, global.destroyEmitter, global.smallerFragmentParticle, random_range(20, 30));
 	
 	obj_universe.visitedSectors[? get_coordinates_string()].remove_enemy(object_index);
-	obj_universe.visitedSectors[? get_coordinates_string()].sectorDanger -= danger;
+	if obj_universe.visitedSectors[? get_coordinates_string()].sectorDanger > 0
+	{
+		obj_universe.visitedSectors[? get_coordinates_string()].sectorDanger -= danger;
+	}
 }

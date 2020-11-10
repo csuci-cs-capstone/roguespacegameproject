@@ -65,7 +65,7 @@ function generate_random_valid_coordinates(grid, rCheck)
 	
 	while validXY[0] == -1 && validXY[1] == -1
 	{
-		validXY = find_closest_valid_coordinates(grid, random_range(0, room_width), random_range(0, room_height), rCheck);
+		validXY = find_closest_valid_coordinates(grid, random_range(30, room_width - 30), random_range(30, room_height - 30), rCheck);
 	}
 	
 	return validXY;
@@ -83,7 +83,7 @@ function generate_random_valid_coordinates_in_radius(grid, x, y, r, rCheck)
 	
 	while validXY[0] == -1 && validXY[1] == -1
 	{
-		validXY = find_closest_valid_coordinates(grid, clamp(random_range(x - r, x + r), 0, room_width), clamp(random_range(y - r, y + r), 0, room_height), rCheck);
+		validXY = find_closest_valid_coordinates(grid, clamp(random_range(x - r, x + r), 30, room_width - 30), clamp(random_range(y - r, y + r), 30, room_height - 30), rCheck);
 	}
 	
 	return validXY;
@@ -103,7 +103,7 @@ function generate_random_valid_coordinates_in_specific_radius(grid, x, y, distan
 	while validXY[0] == -1 && validXY[1] == -1
 	{
 		randDirection = random_range(0, 360);
-		validXY = find_closest_valid_coordinates(grid, clamp(lengthdir_x(distance, randDirection), 0, room_width), clamp(lengthdir_y(distance, randDirection), 0, room_height), rCheck);
+		validXY = find_closest_valid_coordinates(grid, clamp(x + lengthdir_x(distance, randDirection), 30, room_width - 30), clamp(y + lengthdir_y(distance, randDirection), 30, room_height - 30), rCheck);
 	}
 	
 	return validXY;
@@ -191,17 +191,11 @@ function generate_towards_direction_avoid_obstacles(grid, x, y, theta)
 	return theta;
 }
 
-function can_see_player()
+function get_distance_to_dest()
 {
-	if instance_exists(obj_player)
-	{
-		return collision_line(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y, obj_obstacleParent, false, true) == noone
-	}
-	else
-	{
-		return false	
-	}
+	return point_distance(phy_position_x, phy_position_y, destination[0], destination[1])	
 }
+
 
 function get_sideways_velocity()
 {

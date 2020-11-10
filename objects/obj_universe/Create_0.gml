@@ -53,13 +53,16 @@ Sector = function(_x, _y, _mass, _danger) constructor
 	
 	static remove_enemy = function(enemy)
 	{
-		if sectorEnemyList[? enemy] == 1
+		if !is_undefined(ds_map_find_value(sectorEnemyList, enemy))
 		{
-			ds_map_delete(sectorEnemyList, enemy)	
-		}
-		else
-		{
-			sectorEnemyList[? enemy] -= 1;
+			if sectorEnemyList[? enemy] == 1
+			{
+				ds_map_delete(sectorEnemyList, enemy)	
+			}
+			else
+			{
+				sectorEnemyList[? enemy] -= 1;
+			}
 		}
 	}
 }

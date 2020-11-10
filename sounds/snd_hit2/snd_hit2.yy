@@ -13,8 +13,8 @@
   "soundFile": "snd_hit2.wav",
   "duration": 0.701599,
   "parent": {
-    "name": "Sounds",
-    "path": "folders/Sounds.yy",
+    "name": "Sound Effects",
+    "path": "folders/Sounds/Sound Effects.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_hit2",

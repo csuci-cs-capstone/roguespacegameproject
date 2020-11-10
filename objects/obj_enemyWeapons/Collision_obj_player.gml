@@ -9,11 +9,11 @@ if instance_exists(obj_jumpMechanics) && !obj_jumpMechanics.immune
 	{
 		other.currentShields -= damage;
 		other.shieldAlpha = 1;
+		instance_destroy();
 	}
 	else
 	{
 		other.currentHealth -= damage;
+		instance_destroy();
 	}
 }
-
-instance_destroy();

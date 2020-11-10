@@ -12,4 +12,5 @@ danger = 1;
 maxHealth = 25;
 currentHealth = maxHealth;
 
+alarm_set(0, room_speed);
 value = 3

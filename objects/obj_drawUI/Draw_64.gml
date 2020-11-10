@@ -97,7 +97,7 @@ if not hideUI && instance_exists(obj_player)
 		draw_sprite(spr_crosshairCursor, 0, mousex, mousey);
 	}
 	
-	//draw_text(16,64, string(obj_universe.playerSectorX))
+	draw_text(16,64, string(get_stat("projectileSpeedStat")))
 	//draw_text(16,72, string(obj_universe.playerSectorY))
 	//if not is_undefined(obj_universe.visitedSectors[? get_coordinates_string()])
 	//{

@@ -13,8 +13,8 @@
   "soundFile": "snd_dodge.wav",
   "duration": 1.351757,
   "parent": {
-    "name": "Sounds",
-    "path": "folders/Sounds.yy",
+    "name": "Sound Effects",
+    "path": "folders/Sounds/Sound Effects.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_dodge",

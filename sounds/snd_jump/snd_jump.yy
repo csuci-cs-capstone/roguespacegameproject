@@ -13,8 +13,8 @@
   "soundFile": "snd_jump.wav",
   "duration": 2.419875,
   "parent": {
-    "name": "Sounds",
-    "path": "folders/Sounds.yy",
+    "name": "Sound Effects",
+    "path": "folders/Sounds/Sound Effects.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_jump",

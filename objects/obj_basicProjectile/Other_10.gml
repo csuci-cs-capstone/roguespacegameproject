@@ -3,9 +3,9 @@
 
 //phy_rotation = -point_direction(x, y, mouse_x, mouse_y);
 phy_rotation = -aimTowards;
-physics_apply_impulse(x, y, obj_player.phy_speed_x + lengthdir_x(get_stat("projectileSpeedStat"), -phy_rotation), obj_player.phy_speed_y + lengthdir_y(get_stat("projectileSpeedStat"), -phy_rotation))
-//phy_speed_x = 
-//phy_speed_y = 
+//physics_apply_impulse(x, y, obj_player.phy_speed_x + lengthdir_x(get_stat("projectileSpeedStat"), -phy_rotation), obj_player.phy_speed_y + lengthdir_y(get_stat("projectileSpeedStat"), -phy_rotation))
+phy_speed_x = obj_player.phy_speed_x + lengthdir_x(get_stat("projectileSpeedStat"), -phy_rotation)
+phy_speed_y = obj_player.phy_speed_y + lengthdir_y(get_stat("projectileSpeedStat"), -phy_rotation)
 
 audio_play_sound(snd_basicCannon, 1, false);
 

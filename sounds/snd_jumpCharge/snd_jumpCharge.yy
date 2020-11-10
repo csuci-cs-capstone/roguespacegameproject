@@ -13,8 +13,8 @@
   "soundFile": "snd_jumpCharge.wav",
   "duration": 1.978696,
   "parent": {
-    "name": "Sounds",
-    "path": "folders/Sounds.yy",
+    "name": "Sound Effects",
+    "path": "folders/Sounds/Sound Effects.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_jumpCharge",

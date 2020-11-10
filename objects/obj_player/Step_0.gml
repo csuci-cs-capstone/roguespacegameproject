@@ -77,11 +77,11 @@ if !obj_jumpMechanics.jump
 		physics_fixture_add_point(newFix, -7, 10);
 		physics_fixture_add_point(newFix, -12, 0);
 		physics_fixture_add_point(newFix, -7, -10);
-		physics_fixture_set_density(newFix,0.5);
-		physics_fixture_set_restitution(newFix,0.1);
-		physics_fixture_set_linear_damping(newFix,2);
-		physics_fixture_set_angular_damping(newFix,4);
-		physics_fixture_set_friction(newFix,0.2);
+		physics_fixture_set_density(newFix,1);
+		physics_fixture_set_restitution(newFix,0.2);
+		physics_fixture_set_linear_damping(newFix,4);
+		physics_fixture_set_angular_damping(newFix,8);
+		physics_fixture_set_friction(newFix,0.4);
 		physics_fixture_set_collision_group(newFix,-1);
 		myFix = physics_fixture_bind(newFix,id);
 		physics_fixture_delete(newFix);

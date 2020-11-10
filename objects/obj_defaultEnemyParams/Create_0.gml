@@ -5,9 +5,10 @@ flash = 0;
 phy_fixed_rotation = true;
 
 rotationSpeed = 20;
-enginePower = 400;
+enginePower = 200;
 
 myPath = path_add();
+collisionList = ds_list_create();
 
 enum behaviorStates
 {
@@ -23,7 +24,8 @@ enum behaviorStates
 	startTele,	// Enemy will begin Start Teleport Animation
 	teleport,	// Enemy will teleport to a location
 	endTele,	// Enemy will begin End Teleport Animation
-	avoid		// Enemy will move away from the player
+	avoid,		// Enemy will move away from the player
+	attack		// Enemy will charge their weapon
 }
 
 canDodge = true;	// Boolean if enemy dash is charged
@@ -32,8 +34,8 @@ dodging = false;	// Enemy cannot attack when dashing
 state = behaviorStates.pursue
 previousState = behaviorStates.idle
 
-canSee = false;		// Boolean if there is no obstacle between the enemy and player
-canShoot = true;	// Boolean if the enemy has its weapon charged
+canSee = true;		// Boolean if there is no obstacle between the enemy and player
+canShoot = false;	// Boolean if the enemy has its weapon charged
 
 // These values can potentially change within the finite state machine
 destination = [-1, -1];		// Modified in the calcDestG or calcDestR state

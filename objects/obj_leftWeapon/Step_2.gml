@@ -6,7 +6,8 @@ y = player_coordintes_respect_to_world_y(obj_player.hardpointLeft[@ 0], obj_play
 
 if not obj_jumpMechanics.jump
 {
-	image_angle = point_direction(x, y, mouse_x, mouse_y) - get_sideways_velocity()*6;
+	//image_angle = point_direction(x, y, mouse_x, mouse_y) - get_sideways_velocity()*6;
+	image_angle = point_direction(x, y, mouse_x, mouse_y)
 }
 else
 {

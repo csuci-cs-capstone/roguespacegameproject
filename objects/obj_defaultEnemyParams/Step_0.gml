@@ -26,7 +26,11 @@ if difference != 0
 
 if !step
 {
-	canSee = can_see_player();	// boolean if the enemy has line of sight of player
+	if instance_exists(obj_player)
+	{
+		collision_line_list(phy_position_x, phy_position_y, obj_player.phy_position_x, obj_player.phy_position_y, obj_obstacleParent, false, true, collisionList, true)
+		canSee = ds_list_empty(collisionList)
+	}
 	step = 1
 }
 else

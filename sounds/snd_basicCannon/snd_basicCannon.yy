@@ -13,8 +13,8 @@
   "soundFile": "snd_basicCannon.wav",
   "duration": 0.515839,
   "parent": {
-    "name": "Sounds",
-    "path": "folders/Sounds.yy",
+    "name": "Sound Effects",
+    "path": "folders/Sounds/Sound Effects.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_basicCannon",
