@@ -30,6 +30,6 @@ if instance_exists(obj_player)
 
 if shake
 {
-	x += choose(-1, 1);
-	y += choose(-1, 1);
+	x += choose(-shakeRange, shakeRange);
+	y += choose(-shakeRange, shakeRange);
 }

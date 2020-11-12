@@ -9,7 +9,7 @@ accuracy = 5;
 weapon = obj_basic;
 danger = 1;
 
-maxHealth = 25;
+maxHealth = 35;
 currentHealth = maxHealth;
 
 alarm_set(0, room_speed);

@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-distanceToPlayer = 0.2
-shake = false;
-shakeRange = 1;
+drawLine = !drawLine
+
+alarm_set(3, alarm_get(0)/5)

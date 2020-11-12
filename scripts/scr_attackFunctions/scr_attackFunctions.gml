@@ -108,6 +108,32 @@ function attack_burst5()
 // @function	attack_sniper()
 function attack_beam()
 {
+	
+}
+
+// @function	attack_360()
+function attack_360()
+{
+	
+}
+
+function lay_mine()
+{
+	if !dodging && canShoot
+	{
+		canShoot = false;
+		audio_stop_sound(snd_enemyFire)
+		audio_play_sound(snd_enemyFire, 0, false);
+		
+		instance_create_layer(phy_position_x, phy_position_y, "Interactible", weapon);
+		
+		alarm_set(0, room_speed*2);	
+	}
+}
+
+// @function	attack_sniper()
+function attack_sniper()
+{
 	if !dodging && canShoot && canSee
 	{
 		canShoot = false;
@@ -118,22 +144,10 @@ function attack_beam()
 		
 		var projectileDirection = -phy_rotation;
 		var projectile = instance_create_layer(phy_position_x, phy_position_y, "Interactible", weapon);
-		projectile.phy_speed_x = lengthdir_x(20, projectileDirection) + phy_speed_x;
-		projectile.phy_speed_y = lengthdir_y(20, projectileDirection) + phy_speed_y;
+		projectile.phy_speed_x = lengthdir_x(35, projectileDirection) + phy_speed_x;
+		projectile.phy_speed_y = lengthdir_y(35, projectileDirection) + phy_speed_y;
 		projectile.phy_rotation = phy_rotation
 		projectile.initialX = phy_position_x;
 		projectile.initialY = phy_position_y;
 	}
-}
-
-// @function	attack_360()
-function attack_360()
-{
-	
-}
-
-// @function	attack_sniper()
-function attack_sniper()
-{
-	
 }

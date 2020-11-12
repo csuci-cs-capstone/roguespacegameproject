@@ -79,7 +79,7 @@
     "PhysicsWorld": true,
     "PhysicsWorldGravityX": 0.0,
     "PhysicsWorldGravityY": 0.0,
-    "PhysicsWorldPixToMetres": 0.1,
+    "PhysicsWorldPixToMetres": 0.09,
   },
   "parent": {
     "name": "Rooms",

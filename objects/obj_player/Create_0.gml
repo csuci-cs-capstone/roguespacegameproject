@@ -108,11 +108,11 @@ hardpointLeft = [-8, -3];
 hardpointRight = [8, -3];
 //
 
-var weapon = instance_create_layer(0, 0, "Interactible", obj_leftWeapon);
-weapon.sprite_index = equipped[? "leftWeaponSlot"].equipSprite
+leftWeapon = instance_create_layer(0, 0, "Interactible", obj_leftWeapon);
+leftWeapon.sprite_index = equipped[? "leftWeaponSlot"].equipSprite
 
-weapon = instance_create_layer(0, 0, "Interactible", obj_rightWeapon);
-weapon.sprite_index = equipped[? "rightWeaponSlot"].equipSprite
+rightWeapon = instance_create_layer(0, 0, "Interactible", obj_rightWeapon);
+rightWeapon.sprite_index = equipped[? "rightWeaponSlot"].equipSprite
 
 // 
 
@@ -137,3 +137,8 @@ canRecharge = true;
 shieldAlpha = 0;
 
 playHitSound = true;
+
+// weapon stuff
+side = false
+
+alarm_set(3, room_speed * (1 / (get_stat("firerateStat") * 2)));

@@ -111,7 +111,7 @@ basic_engine = new Item("Ion Engine",
 					weaponTypes.notAWeapon,
 					"Ion propulsion common among civilian spaceships due to its low cost", 
 					10,
-					[new Effect("engineStat", effectTypes.modify, 100)],
+					[new Effect("engineStat", effectTypes.modify, 80)],
 					spr_testItem,
 					0);
 					

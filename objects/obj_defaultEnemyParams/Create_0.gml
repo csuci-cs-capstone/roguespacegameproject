@@ -5,7 +5,7 @@ flash = 0;
 phy_fixed_rotation = true;
 
 rotationSpeed = 20;
-enginePower = 200;
+enginePower = 160;
 
 myPath = path_add();
 collisionList = ds_list_create();

@@ -35,12 +35,12 @@ part_type_scale(global.bulletTrail, 0.1, 0.1);
 part_type_size(global.bulletTrail, 1, 1, -0.2, 0);
 
 global.jumpParticle = part_type_create();
-part_type_shape(global.jumpParticle, pt_shape_smoke);
+part_type_shape(global.jumpParticle, pt_shape_pixel);
 part_type_color2(global.jumpParticle, c_blue, c_white);
 part_type_speed(global.jumpParticle, 1, 2, 0.5, 0);
 part_type_alpha3(global.jumpParticle, 0, 1, 0)
 part_type_life(global.jumpParticle, room_speed/5, room_speed/4);
-part_type_scale(global.jumpParticle, 0.1, 0.1);
+part_type_scale(global.jumpParticle, 2, 2);
 part_type_size(global.jumpParticle, 1, 1, 0.05, 0);
 
 global.fragmentParticle = part_type_create();
