@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"b900db7a-dc43-49b4-be53-ac245cb43468","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "Minimap Blips",
+    "path": "folders/Sprites/UI/Minimap Blips.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_enemyBlip",

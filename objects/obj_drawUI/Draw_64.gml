@@ -22,6 +22,7 @@ if not hideUI && instance_exists(obj_player)
 	// draw_radar_blip(obj_simpleProjectile, spr_projectileBlip);	// Player Projectile Blips
 	// draw_radar_blip(obj_enemyWeapons, spr_projectileBlip);		// Enemy Weapon Blips
 	draw_radar_blip(obj_player, spr_playerBlip);					// Player Blip
+	draw_radar_blip(obj_mine, spr_mineBlip);
 	
 	// Menu
 

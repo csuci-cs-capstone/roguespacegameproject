@@ -7,7 +7,7 @@ accuracy = 20;
 weapon = obj_beam;
 danger = 5;
 
-maxHealth = 100;
+maxHealth = 75;
 currentHealth = maxHealth;
 
 state = behaviorStates.calcDestSR

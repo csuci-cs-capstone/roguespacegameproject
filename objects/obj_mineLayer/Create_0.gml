@@ -10,7 +10,7 @@ accuracy = 20;
 weapon = obj_mine;
 danger = 2;
 
-maxHealth = 20;
+maxHealth = 100;
 currentHealth = maxHealth;
 
 destGenX = room_width/2

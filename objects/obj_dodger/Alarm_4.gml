@@ -2,4 +2,4 @@
 // You can write your code in this editor
 
 count = 0;
-alarm_set(0, room_speed/10)
+alarm_set(0, room_speed/7)

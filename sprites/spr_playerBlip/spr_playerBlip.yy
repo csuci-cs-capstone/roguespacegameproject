@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"9bb0236d-4efc-408b-8dcd-4ac4ad74767b","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "Minimap Blips",
+    "path": "folders/Sprites/UI/Minimap Blips.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_playerBlip",

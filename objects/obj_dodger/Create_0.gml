@@ -7,7 +7,7 @@ accuracy = 20;
 weapon = obj_fast;
 danger = 2;
 
-maxHealth = 20;
+maxHealth = 50;
 currentHealth = maxHealth;
 
 value = 3

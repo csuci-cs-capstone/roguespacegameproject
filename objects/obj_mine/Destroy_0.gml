@@ -12,7 +12,7 @@ for (var i = 0; i < ds_list_size(damageRadius); i++)
 {
 	var currentObject = damageRadius[| i]
 	with (currentObject)
-	{s
+	{
 		audio_stop_sound(snd_hit2)
 		audio_play_sound(snd_hit2, 0, false);
 		flash = 2
@@ -20,7 +20,7 @@ for (var i = 0; i < ds_list_size(damageRadius); i++)
 	}
 }
 
-if distance_to_object(obj_player) <= 55
+if !obj_player.dodging && distance_to_object(obj_player) <= 55
 {
 	audio_play_sound(snd_hit, 0, false);
 

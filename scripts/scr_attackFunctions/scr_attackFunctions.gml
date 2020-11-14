@@ -117,6 +117,34 @@ function attack_360()
 	
 }
 
+function swarm_missile()
+{
+	if !dodging && canShoot && canSee
+	{
+		if count < 10
+		{
+			canShoot = false;
+			audio_stop_sound(snd_enemyFire)
+			audio_play_sound(snd_enemyFire, 0, false);
+			
+			var projectileDirection = -phy_rotation + random_range(-accuracy, accuracy);
+		
+			var projectile = instance_create_layer(phy_position_x, phy_position_y, "Interactible", weapon);
+		
+			projectile.phy_speed_x = lengthdir_x(2, projectileDirection) + phy_speed_x;
+			projectile.phy_speed_y = lengthdir_y(2, projectileDirection) + phy_speed_y;
+			projectile.phy_rotation = phy_rotation
+			
+			count++;
+			if count < 10
+			{
+				alarm_set(0, room_speed / 12)
+			}
+		}
+		alarm_set(4, room_speed * 5);	
+	}
+}
+
 function lay_mine()
 {
 	if !dodging && canShoot

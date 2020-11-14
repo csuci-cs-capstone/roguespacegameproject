@@ -111,3 +111,17 @@ function behavior_avoid()
 	}
 	//physics_apply_force(phy_position_x, phy_position_y, lengthdir_x(enginePower, theta), lengthdir_y(enginePower, theta));
 }
+
+function behavior_avoid_projectile()
+{
+	var projectile = instance_nearest(phy_position_x, phy_position_y, obj_projectileParent)
+	if projectile == noone
+	{
+		projectile = instance_find(obj_player, 0)
+	}
+	phy_linear_damping = 2;
+	var theta = generate_opposite_direction_avoid_obstacles(obj_grid.grid, phy_position_x, phy_position_y, point_direction(phy_position_x, phy_position_y, projectile.phy_position_x, projectile.phy_position_y));
+	movementDirection = theta
+	
+	//physics_apply_force(phy_position_x, phy_position_y, lengthdir_x(enginePower, theta), lengthdir_y(enginePower, theta));
+}

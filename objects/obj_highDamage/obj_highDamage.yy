@@ -1,5 +1,8 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_highDamage",
+    "path": "sprites/spr_highDamage/spr_highDamage.yy",
+  },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,

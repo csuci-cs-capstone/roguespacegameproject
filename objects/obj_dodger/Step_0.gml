@@ -55,7 +55,7 @@ if step
 			break;
 		case behaviorStates.dash:
 			behavior_dash();
-			state = previousState
+			state = previousState;
 			break;
 		case behaviorStates.startTele:
 			break;

@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"c485a7f7-f046-4994-b502-783c95f9b2a8","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "Minimap Blips",
+    "path": "folders/Sprites/UI/Minimap Blips.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_obstacleBlip",

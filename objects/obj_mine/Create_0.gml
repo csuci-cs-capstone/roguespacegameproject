@@ -5,7 +5,7 @@ flash = 0;
 
 lifeTime = 2 * room_speed;
 damage = 100;
-currentHealth = 75;
+currentHealth = 50;
 
 initialX = 0;
 initialY = 0;
