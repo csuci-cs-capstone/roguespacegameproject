@@ -4,13 +4,13 @@
 if !obj_jumpMechanics.jump && !dodging && (upKey || downKey || leftKey || rightKey)
 {
 	part_emitter_region(global.particleSystem, global.exhaustParticleEmitter, 
-						player_coordintes_respect_to_world_x(-3, -5),
-						player_coordintes_respect_to_world_x(3, -6),
-						player_coordintes_respect_to_world_y(-3, -5),
-						player_coordintes_respect_to_world_y(3, -6),
+						coordintes_respect_to_world_x(-3, -5, phy_position_x, phy_rotation),
+						coordintes_respect_to_world_x(3, -6, phy_position_x, phy_rotation),
+						coordintes_respect_to_world_y(-3, -5, phy_position_y, phy_rotation),
+						coordintes_respect_to_world_y(3, -6, phy_position_y, phy_rotation),
 						ps_shape_ellipse, ps_distr_gaussian);
 			
-	part_type_direction(global.exhaustParticle, (-obj_player.phy_rotation + 180) - 10, (-obj_player.phy_rotation + 180) + 10, 0, 0);
+	part_type_direction(global.exhaustParticle, (-phy_rotation + 180) - 10, (-phy_rotation + 180) + 10, 0, 0);
 			
 	part_emitter_burst(global.particleSystem, global.exhaustParticleEmitter, global.exhaustParticle, 5);
 }

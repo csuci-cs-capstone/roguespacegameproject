@@ -202,12 +202,12 @@ function get_sideways_velocity()
 	return (-obj_player.phy_speed_x * dsin(obj_player.phy_rotation)) + (obj_player.phy_speed_y * dcos(obj_player.phy_rotation));
 }
 
-function player_coordintes_respect_to_world_x(_x, _y)
+function coordintes_respect_to_world_x(_x, _y, _ox, _rotation)
 {
-	return ((_x * sin(degtorad(-obj_player.phy_rotation))) + (_y * cos(degtorad(-obj_player.phy_rotation)))) + obj_player.phy_position_x;
+	return ((_x * sin(degtorad(-_rotation))) + (_y * cos(degtorad(-_rotation)))) + _ox;
 }
 
-function player_coordintes_respect_to_world_y(_x, _y)
+function coordintes_respect_to_world_y(_x, _y, _oy, _rotation)
 {
-	return ((_x * cos(degtorad(-obj_player.phy_rotation))) + (_y * -sin(degtorad(-obj_player.phy_rotation)))) + obj_player.phy_position_y;	
+	return ((_x * cos(degtorad(-_rotation))) + (_y * -sin(degtorad(-_rotation)))) + _oy;
 }

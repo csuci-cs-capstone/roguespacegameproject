@@ -1,8 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-x = player_coordintes_respect_to_world_x(obj_player.hardpointRight[@ 0], obj_player.hardpointRight[@ 1]);
-y = player_coordintes_respect_to_world_y(obj_player.hardpointRight[@ 0], obj_player.hardpointRight[@ 1]);
+x = coordintes_respect_to_world_x(obj_player.hardpointRight[@ 0], obj_player.hardpointRight[@ 1], obj_player.phy_position_x, obj_player.phy_rotation);
+y = coordintes_respect_to_world_y(obj_player.hardpointRight[@ 0], obj_player.hardpointRight[@ 1], obj_player.phy_position_y, obj_player.phy_rotation);
 
 if not obj_jumpMechanics.jump
 {
