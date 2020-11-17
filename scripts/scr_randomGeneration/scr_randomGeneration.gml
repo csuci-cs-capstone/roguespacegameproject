@@ -27,16 +27,16 @@ function perlin_noise(_x, _y, vector_array)
 	
 	var g0, g1, g2, g3, randDirection
 	
-	randDirection = vector_array[| (vector_array[| (x0 % 359)] + y0) % 359];
+	randDirection = vector_array[| (vector_array[| (x0 % 360)] + y0) % 360];
 	g0 = new Vector2(lengthdir_x(1, randDirection), lengthdir_y(1, randDirection));
 	
-	randDirection = vector_array[| (vector_array[| (x1 % 359)] + y0) % 359];
+	randDirection = vector_array[| (vector_array[| (x1 % 360)] + y0) % 360];
 	g1 = new Vector2(lengthdir_x(1, randDirection), lengthdir_y(1, randDirection));
 	
-	randDirection = vector_array[| (vector_array[| (x0 % 359)] + y1) % 359];
+	randDirection = vector_array[| (vector_array[| (x0 % 360)] + y1) % 360];
 	g2 = new Vector2(lengthdir_x(1, randDirection), lengthdir_y(1, randDirection));
 	
-	randDirection = vector_array[| (vector_array[| (x1 % 359)] + y1) % 359];
+	randDirection = vector_array[| (vector_array[| (x1 % 360)] + y1) % 360];
 	g3 = new Vector2(lengthdir_x(1, randDirection), lengthdir_y(1, randDirection));
 	
 	var d0, d1, d2, d3
@@ -59,6 +59,26 @@ function perlin_noise(_x, _y, vector_array)
 	lerp3 = lerp(lerp1, lerp2, sy);
 	
 	return lerp3;
+}
+
+function perlin_octaves(_x, _y, octaves, persistence, vector_array)
+{
+	var total = 0
+	var frequency = 1
+	var amplitude = 1
+	var maxValue = 0
+	for (var i = 0; i < octaves; i++)
+	{
+		total += perlin_noise(_x * frequency, _y * frequency, vector_array) * amplitude;
+		
+		maxValue += amplitude;
+		
+		amplitude *= persistence;
+		
+		frequency *= 2;
+	}
+	
+	return total/maxValue
 }
 
 function remove_all_objects()
@@ -89,6 +109,34 @@ function remove_all_objects()
 	}
 }
 
+function generate_sector_data(_x, _y)
+{
+	var dangerValue = (perlin_octaves(_x/8, _y/8, 6, 0.5, vector_array) * 20) + 20
+	dangerValue += get_distance_from_center() * 2	
+		
+	var massValue = (perlin_octaves(_x/8, _y/8, 6, 0.5, vector_array) * 10) + 10
+		
+	var hasShop = (((power(perlin_octaves(_x/2, _y/2, 1, 0.5, vector_array), 7) + 1) / 2) * 255) >= 128
+		
+	return new Sector(_x, _y, hasShop, massValue, dangerValue)	
+}
+
+function generate_sector_data_in_radius(_x, _y, radius)
+{
+	for (var i = (_x - radius); i < (_x + radius); i++)
+	{
+		for (var j = (_y - radius); j < (_y + radius); j++)
+		{
+			var coordinatesString = string(i) + " " + string(j)
+	
+			if !ds_map_exists(generatedSectors, coordinatesString)
+			{	
+				ds_map_add(generatedSectors, coordinatesString, generate_sector_data(i, j))
+			}
+		}
+	}
+}
+
 function generate_sector_from_data(sectorData)
 {
 	#region //Mass value
@@ -105,7 +153,7 @@ function generate_sector_from_data(sectorData)
 	#endregion
 	
 	#region //Danger value
-	if sectorData.sectorDanger < 0
+	if sectorData.sectorHasShop
 	{
 		if sectorData.sectorShopRotation == -1
 		{
@@ -114,7 +162,7 @@ function generate_sector_from_data(sectorData)
 		var station = instance_create_layer(room_width/2, room_height/2, "Interactible", obj_spaceStation)
 		station.image_angle = sectorData.sectorShopRotation;
 	}
-	else if sectorData.sectorDanger > 0
+	else
 	{
 		if ds_map_empty(sectorData.sectorEnemyList) // If there are no enemies in the enemy list, and the danger is not 0, then new enemies will be generated
 		{

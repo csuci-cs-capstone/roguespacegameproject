@@ -568,15 +568,29 @@ function draw_sector_map()
 	surface_set_target(invSurface);
 	draw_clear_alpha(c_black, 1);
 	
-	var boxX, boxY, colorVal
-	var sectors = obj_universe.visitedSectors;
-	for (var i = ds_map_find_first(sectors); !is_undefined(i); i = ds_map_find_next(sectors, i))
+	var boxX, boxY, colorVal, currentSector
+	var sectors = obj_universe.generatedSectors;
+	var visitedSectors = obj_universe.visitedSectors;
+	for (var i = 0; i < ds_list_size(visitedSectors); i++)
 	{
-		boxX = ((obj_universe.visitedSectors[? i].sectorX - obj_universe.playerSectorX) * 32) + 229
-		boxY = -((obj_universe.visitedSectors[? i].sectorY - obj_universe.playerSectorY) * 32) + 115
-		colorVal = clamp((obj_universe.visitedSectors[? i].sectorDanger / 50) * 255, 0, 255)
+		currentSector = sectors[? visitedSectors[| i]]
+		boxX = ((currentSector.sectorX - obj_universe.playerSectorX) * 32) + 229
+		boxY = -((currentSector.sectorY - obj_universe.playerSectorY) * 32) + 115
+		colorVal = clamp((currentSector.sectorDanger / 50) * 255, 0, 255)
 		draw_sprite_ext(spr_sectorSquare, 0, boxX, boxY, 1, 1, 0, make_color_rgb(colorVal, 255 - colorVal, 0), 1)
 	}
+	
+	for (var i = ds_map_find_first(sectors); !is_undefined(i); i = ds_map_find_next(sectors, i))
+	{
+		if sectors[? i].sectorHasShop
+		{
+			boxX = ((sectors[? i].sectorX - obj_universe.playerSectorX) * 32) + 229
+			boxY = -((sectors[? i].sectorY - obj_universe.playerSectorY) * 32) + 115
+			
+			draw_sprite_ext(spr_sectorSquare, 0, boxX, boxY, 1, 1, 0, make_color_rgb(255, 255, 0), 1)
+		}
+	}
+	
 	draw_sprite_ext(spr_sectorBorder, 0, 229, 115, 1, 1, 0, c_white, 1)
 	
 	surface_reset_target();

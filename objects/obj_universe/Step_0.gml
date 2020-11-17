@@ -8,25 +8,15 @@ if generateSector
 	var sectorData;
 	var coordinatesString = string(playerSectorX) + " " + string(playerSectorY)
 	
-	if ds_map_exists(visitedSectors, coordinatesString)
+	generate_sector_data_in_radius(playerSectorX, playerSectorY, 4)
+	
+	if ds_list_find_index(visitedSectors, coordinatesString) == -1
 	{
-		sectorData = visitedSectors[? coordinatesString];
-		generate_sector_from_data(sectorData)
+		ds_list_add(visitedSectors, coordinatesString)
 	}
-	else
-	{
-		var dangerValue = (perlin_noise(playerSectorX/2, playerSectorX/2, vector_array) * 20) + 5
-		
-		if dangerValue > 0
-		{
-			dangerValue += get_distance_from_center() * 2	
-		}
-		
-		var massValue = (perlin_noise(playerSectorX/2, playerSectorX/2, vector_array) * 10) + 10
-		sectorData = new Sector(playerSectorX, playerSectorY, massValue, dangerValue)
-		ds_map_add(visitedSectors, (string(playerSectorX) + " " + string(playerSectorY)), sectorData)
-		generate_sector_from_data(sectorData)
-	}
+	
+	sectorData = generatedSectors[? coordinatesString];
+	generate_sector_from_data(sectorData)
 	
 	instance_deactivate_object(obj_defaultEnemyParams);
 	instance_deactivate_object(obj_spaceStation);
