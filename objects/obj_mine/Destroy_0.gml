@@ -22,7 +22,7 @@ if explode
 		}
 	}
 
-	if !obj_player.dodging && distance_to_object(obj_player) <= 55
+	if instance_exists(obj_player) && !obj_player.dodging && distance_to_object(obj_player) <= 55
 	{
 		audio_play_sound(snd_hit, 0, false);
 
