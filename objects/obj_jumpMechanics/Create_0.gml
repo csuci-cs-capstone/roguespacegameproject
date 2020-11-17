@@ -7,3 +7,4 @@ timerSet = false;
 offsetx = 0;
 offsety = 0;
 immune = false;
+drawSectorName = false;

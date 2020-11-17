@@ -17,3 +17,7 @@ if instance_exists(obj_jumpMechanics) && !obj_jumpMechanics.immune
 		instance_destroy();
 	}
 }
+else
+{
+	instance_destroy()
+}

@@ -574,8 +574,8 @@ function draw_sector_map()
 	{
 		boxX = ((obj_universe.visitedSectors[? i].sectorX - obj_universe.playerSectorX) * 32) + 229
 		boxY = -((obj_universe.visitedSectors[? i].sectorY - obj_universe.playerSectorY) * 32) + 115
-		colorVal = 255 - clamp((obj_universe.visitedSectors[? i].sectorDanger * 10), 0, 255)
-		draw_sprite_ext(spr_sectorSquare, 0, boxX, boxY, 1, 1, 0, make_color_rgb(255, colorVal, colorVal), 1)
+		colorVal = clamp((obj_universe.visitedSectors[? i].sectorDanger / 50) * 255, 0, 255)
+		draw_sprite_ext(spr_sectorSquare, 0, boxX, boxY, 1, 1, 0, make_color_rgb(colorVal, 255 - colorVal, 0), 1)
 	}
 	draw_sprite_ext(spr_sectorBorder, 0, 229, 115, 1, 1, 0, c_white, 1)
 	

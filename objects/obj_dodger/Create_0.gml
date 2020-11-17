@@ -5,11 +5,11 @@ event_inherited();
 
 accuracy = 20;
 weapon = obj_fast;
-danger = 2;
+danger = 4;
 
-maxHealth = 50;
+maxHealth = 30;
 currentHealth = maxHealth;
 
-value = 3
+value = 10
 count = 0;
 alarm_set(4, room_speed);

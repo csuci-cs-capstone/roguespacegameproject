@@ -5,7 +5,7 @@ event_inherited();
 
 accuracy = 20;
 weapon = obj_beam;
-danger = 5;
+danger = 10;
 
 maxHealth = 75;
 currentHealth = maxHealth;
@@ -14,6 +14,6 @@ state = behaviorStates.calcDestSR
 radius = 500
 destination = [-1, -1];
 
-value = 3
+value = 20
 
 drawLine = false;

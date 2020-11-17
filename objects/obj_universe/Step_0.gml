@@ -15,12 +15,21 @@ if generateSector
 	}
 	else
 	{
-		sectorData = new Sector(playerSectorX, playerSectorY, random_range(0, 20), random_range(10, 50))
+		var dangerValue = (perlin_noise(playerSectorX/2, playerSectorX/2, vector_array) * 20) + 5
+		
+		if dangerValue > 0
+		{
+			dangerValue += get_distance_from_center() * 2	
+		}
+		
+		var massValue = (perlin_noise(playerSectorX/2, playerSectorX/2, vector_array) * 10) + 10
+		sectorData = new Sector(playerSectorX, playerSectorY, massValue, dangerValue)
 		ds_map_add(visitedSectors, (string(playerSectorX) + " " + string(playerSectorY)), sectorData)
 		generate_sector_from_data(sectorData)
 	}
 	
 	instance_deactivate_object(obj_defaultEnemyParams);
+	instance_deactivate_object(obj_spaceStation);
 	instance_deactivate_object(obj_obstacleParent);
 	
 	// ds_map_destroy(sectorData.sectorEnemyList);
@@ -31,6 +40,7 @@ if generateSector
 if activate
 {
 	instance_activate_object(obj_defaultEnemyParams);
+	instance_activate_object(obj_spaceStation);
 	instance_activate_object(obj_obstacleParent);
 	
 	activate = false;

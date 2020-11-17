@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_old_basicEnemy",
-    "path": "sprites/spr_old_basicEnemy/spr_old_basicEnemy.yy",
+    "name": "spr_spreadshotEnemy",
+    "path": "sprites/spr_spreadshotEnemy/spr_spreadshotEnemy.yy",
   },
   "solid": false,
   "visible": true,

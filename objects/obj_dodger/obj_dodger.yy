@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_basicEnemy",
-    "path": "sprites/spr_basicEnemy/spr_basicEnemy.yy",
+    "name": "spr_dodgingEnemy",
+    "path": "sprites/spr_dodgingEnemy/spr_dodgingEnemy.yy",
   },
   "solid": false,
   "visible": true,

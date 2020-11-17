@@ -1,6 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+event_inherited()
+
 lifeTime = 10 * room_speed;
 alarm_set(0, lifeTime)
 

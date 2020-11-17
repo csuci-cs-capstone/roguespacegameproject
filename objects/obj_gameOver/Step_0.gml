@@ -8,9 +8,14 @@ if !dead && (obj_player.currentHealth <= 0)
 	instance_destroy(obj_rightWeapon);
 	instance_destroy(obj_player);
 	dead = true;
+	if !alarmSet
+	{
+		alarm_set(0, room_speed*2);
+		alarmSet = true;
+	}
 }
 
-if dead
+if dead && showReset
 {
 	if (keyboard_check_pressed(vk_space))
 	{

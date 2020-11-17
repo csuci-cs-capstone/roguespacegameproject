@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_basicEnemy",
-    "path": "sprites/spr_basicEnemy/spr_basicEnemy.yy",
+    "name": "spr_mineLayerEnemy",
+    "path": "sprites/spr_mineLayerEnemy/spr_mineLayerEnemy.yy",
   },
   "solid": false,
   "visible": true,

@@ -40,6 +40,7 @@ Sector = function(_x, _y, _mass, _danger) constructor
 	sectorMass = _mass;
 	sectorDanger = _danger;
 	sectorType = sectorTypes.empty;
+	sectorShopRotation = -1;
 	sectorShopInv = [];
 	sectorEnemyList = ds_map_create();
 	

@@ -17,34 +17,34 @@ function fade(t)
 
 function perlin_noise(_x, _y, vector_array)
 {
-	var x0 = floor(_x);
+	var x0 = floor(abs(_x));
 	var x1 = x0 + 1;
-	var y0 = floor(_y);
+	var y0 = floor(abs(_y));
 	var y1 = y0 + 1;
 	
-	var sx = _x - x0;
-	var sy = _y - y0;
+	var sx = abs(_x) - x0;
+	var sy = abs(_y) - y0;
 	
 	var g0, g1, g2, g3, randDirection
 	
-	randDirection = vector_array[| (vector_array[| (x0 % 360)] + y0) % 360];
+	randDirection = vector_array[| (vector_array[| (x0 % 359)] + y0) % 359];
 	g0 = new Vector2(lengthdir_x(1, randDirection), lengthdir_y(1, randDirection));
 	
-	randDirection = vector_array[| (vector_array[| (x1 % 360)] + y0) % 360];
+	randDirection = vector_array[| (vector_array[| (x1 % 359)] + y0) % 359];
 	g1 = new Vector2(lengthdir_x(1, randDirection), lengthdir_y(1, randDirection));
 	
-	randDirection = vector_array[| (vector_array[| (x0 % 360)] + y1) % 360];
+	randDirection = vector_array[| (vector_array[| (x0 % 359)] + y1) % 359];
 	g2 = new Vector2(lengthdir_x(1, randDirection), lengthdir_y(1, randDirection));
 	
-	randDirection = vector_array[| (vector_array[| (x1 % 360)] + y1) % 360];
+	randDirection = vector_array[| (vector_array[| (x1 % 359)] + y1) % 359];
 	g3 = new Vector2(lengthdir_x(1, randDirection), lengthdir_y(1, randDirection));
 	
 	var d0, d1, d2, d3
 	
-	d0 = new Vector2(_x - x0, _y - y0);
-	d1 = new Vector2(_x - x1, _y - y0);
-	d2 = new Vector2(_x - x0, _y - y1);
-	d3 = new Vector2(_x - x1, _y - y1);
+	d0 = new Vector2(abs(_x) - x0, abs(_y) - y0);
+	d1 = new Vector2(abs(_x) - x1, abs(_y) - y0);
+	d2 = new Vector2(abs(_x) - x0, abs(_y) - y1);
+	d3 = new Vector2(abs(_x) - x1, abs(_y) - y1);
 	
 	var lerp1, lerp2, lerp3
 	
@@ -67,10 +67,22 @@ function remove_all_objects()
 	{
 		obj_defaultEnemyParams.dropMoney = false;
 	}
+	if instance_exists(obj_destroyableWeapon)
+	{
+		obj_destroyableWeapon.explode = false;
+	}
+	
 	instance_destroy(obj_defaultEnemyParams);
 	instance_destroy(obj_obstacleParent);
 	instance_destroy(obj_projectileParent);
 	instance_destroy(obj_enemyWeapons);
+	instance_destroy(obj_destroyableWeapon);
+	instance_destroy(obj_spaceStation);
+	
+	if instance_exists(obj_destroyableWeapon)
+	{
+		obj_destroyableWeapon.explode = true;
+	}
 	if instance_exists(obj_defaultEnemyParams)
 	{
 		obj_defaultEnemyParams.dropMoney = true;
@@ -95,7 +107,12 @@ function generate_sector_from_data(sectorData)
 	#region //Danger value
 	if sectorData.sectorDanger < 0
 	{
-		// spawn shop
+		if sectorData.sectorShopRotation == -1
+		{
+			sectorData.sectorShopRotation = random_range(0, 360)
+		}
+		var station = instance_create_layer(room_width/2, room_height/2, "Interactible", obj_spaceStation)
+		station.image_angle = sectorData.sectorShopRotation;
 	}
 	else if sectorData.sectorDanger > 0
 	{
@@ -104,22 +121,30 @@ function generate_sector_from_data(sectorData)
 			var dangerCount = sectorData.sectorDanger;
 			while dangerCount > 0
 			{
-				switch (irandom_range(0, ((dangerCount >= 1) + (dangerCount >= 2) + (dangerCount >= 4) + (dangerCount >= 7) + (dangerCount >= 10))))
+				switch (irandom_range(1, ((dangerCount >= 1) + (dangerCount >= 2) + (dangerCount >= 4) + (dangerCount >= 7) + (dangerCount >= 10))))
 				{
 					case 5:
+						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_sniper);
+						sectorData.add_enemy(obj_sniper)
+						dangerCount -= obj_sniper.danger;
 						break;
 					case 4:
+						var enemy = choose(obj_mineLayer, obj_launcher)
+						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", enemy);
+						sectorData.add_enemy(enemy)
+						dangerCount -= enemy.danger;
 						break;
 					case 3:
-						break;
-					case 2:
-						break;
-					case 1:
 						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_dodger);
 						sectorData.add_enemy(obj_dodger)
 						dangerCount -= obj_dodger.danger;
 						break;
-					case 0:
+					case 2:
+						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_spreadShot);
+						sectorData.add_enemy(obj_spreadShot)
+						dangerCount -= obj_spreadShot.danger;
+						break;
+					case 1:
 						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_basicShip);
 						sectorData.add_enemy(obj_basicShip)
 						dangerCount -= obj_basicShip.danger;
@@ -156,4 +181,9 @@ function sector_jump(jumpDirection)
 function get_coordinates_string()
 {
 	return string(obj_universe.playerSectorX) + " " + string(obj_universe.playerSectorY)	
+}
+
+function get_distance_from_center()
+{
+	return abs(obj_universe.playerSectorX) + abs(obj_universe.playerSectorY)
 }

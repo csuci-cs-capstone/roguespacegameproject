@@ -114,6 +114,9 @@ if obj_gameOver.dead
 	
 	draw_text_transformed(320, 180, "Furthest Gone: " + string(obj_scoreKeeper.furthestDistance), 2, 2, 0);
 	
-	draw_text_transformed(320, 210, "Press Space to Restart", 1, 1, 0);
+	if obj_gameOver.showReset
+	{
+		draw_text_transformed(320, 210, "Press Space to Restart", 1, 1, 0);
+	}
 	draw_set_halign(fa_left);
 }

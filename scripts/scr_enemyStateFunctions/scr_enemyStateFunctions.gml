@@ -86,7 +86,7 @@ function behavior_dash()
 	phy_linear_damping = 0;
 	physics_apply_impulse(phy_position_x, phy_position_y, lengthdir_x(enginePower * 0.9, theta) , lengthdir_y(enginePower * 0.9, theta));
 	//image_speed = (phy_speed_x != 0 ? sign(-phy_speed_x) : 1) * 1.2;
-	alarm_set(1, room_speed * 0.8)
+	alarm_set(1, room_speed * 1.05)
 	alarm_set(2, room_speed * 0.4)
 }
 

@@ -8,7 +8,7 @@ enginePower = 100;
 
 accuracy = 20;
 weapon = obj_mine;
-danger = 2;
+danger = 7;
 
 maxHealth = 100;
 currentHealth = maxHealth;
@@ -19,5 +19,5 @@ state = behaviorStates.calcDestR
 radius = 500
 destination = [-1, -1];
 
-value = 3
+value = 10
 alarm_set(0, room_speed*2);

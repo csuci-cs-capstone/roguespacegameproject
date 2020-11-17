@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_old_basicEnemy",
-    "path": "sprites/spr_old_basicEnemy/spr_old_basicEnemy.yy",
+    "name": "spr_sniperEnemy",
+    "path": "sprites/spr_sniperEnemy/spr_sniperEnemy.yy",
   },
   "solid": false,
   "visible": true,

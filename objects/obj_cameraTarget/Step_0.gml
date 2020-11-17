@@ -3,7 +3,7 @@
 
 if instance_exists(obj_player)
 {
-	if keyboard_check(vk_shift)
+	if keyboard_check(vk_shift) && !obj_jumpMechanics.jump
 	{
 		distanceToPlayer /= 1.2
 		x = lerp(obj_player.phy_position_x, mouse_x, distanceToPlayer)

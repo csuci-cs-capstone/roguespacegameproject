@@ -24,4 +24,7 @@ if instance_exists(obj_player)
 
 alarm_set(1, room_speed * 1.5)
 
+drawSectorName = true;
+alarm_set(2, room_speed * 2)
+
 obj_universe.activate = true;
