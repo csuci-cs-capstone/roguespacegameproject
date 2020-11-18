@@ -12,9 +12,9 @@ function apply_effect(item)
 			case effectTypes.multiplier:
 				obj_player.modifiers[? currentEffect.stat] += currentEffect.effectValue;
 			case effectTypes.additive:
-				obj_player.stats[? currentEffect.stat] += currentEffect.effectValue;
+				obj_player.additives[? currentEffect.stat] += currentEffect.effectValue;
 			case effectTypes.modify:
-				obj_player.stats[? currentEffect.stat] += currentEffect.effectValue;
+				obj_player.stats[? currentEffect.stat] = currentEffect.effectValue;
 		}
 	}
 }
@@ -30,9 +30,9 @@ function remove_effect(item)
 			case effectTypes.multiplier:
 				obj_player.modifiers[? currentEffect.stat] -= currentEffect.effectValue;
 			case effectTypes.additive:
-				obj_player.stats[? currentEffect.stat] -= currentEffect.effectValue;
+				obj_player.additives[? currentEffect.stat] -= currentEffect.effectValue;
 			case effectTypes.modify:
-				obj_player.stats[? currentEffect.stat] -= currentEffect.effectValue;
+				obj_player.stats[? currentEffect.stat] = 0;
 		}
 	}
 }
@@ -80,5 +80,5 @@ function remove_item(index)
 
 function get_stat(statName)
 {
-	return obj_player.stats[? statName] * obj_player.modifiers[? statName]
+	return (obj_player.stats[? statName] + obj_player.additives[? statName]) * obj_player.modifiers[? statName]
 }

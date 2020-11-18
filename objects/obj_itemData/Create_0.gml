@@ -18,12 +18,9 @@ enum weaponTypes
 {
 	notAWeapon,
 	basic,
-	spread,
-	laser,
 	rocket,
-	burst,
-	blast,
-	mine
+	area,
+	tractor
 }
 
 enum effectTypes
@@ -124,9 +121,10 @@ basic_weapon = new Item("Plasma Blasters",
 					"A popular choice for travellers who want some level of defence", 
 					25,
 					[new Effect("damageStat", effectTypes.modify, 5),
-					new Effect("projectileSpeedStat", effectTypes.modify, 6),
+					new Effect("projectileSpeedStat", effectTypes.modify, 12),
 					new Effect("projectileWeightStat", effectTypes.modify, 0.01),
-					new Effect("firerateStat", effectTypes.modify, 2)],
+					new Effect("firerateStat", effectTypes.modify, 4),
+					new Effect("accuracyStat", effectTypes.modify, 2)],
 					spr_basicWeapon,
 					obj_basicProjectile);
 					

@@ -7,5 +7,6 @@ if closeEnough
 	{
 		obj_player.money -= 20;
 		obj_player.currentHealth += 10;
+		obj_player.currentHealth = clamp(obj_player.currentHealth, 0, get_stat("hullStat"))
 	}
 }

@@ -341,71 +341,71 @@ function draw_equip_menu()
 	}
 	if equipMode
 	{
-		if is_struct(obj_player.equipped[? "leftWeaponSlot"])
+		if is_struct(obj_player.equipped[? "basicWeaponSlot"])
 		{
-			draw_sprite(obj_player.equipped[? "leftWeaponSlot"].itemSprite, -1, 413, 121)
+			draw_sprite(obj_player.equipped[? "basicWeaponSlot"].itemSprite, -1, 413, 121)
 			if point_in_rectangle(mousex, mousey, 396, 105, 429, 138)
 			{
 				if mouse_check_button(mb_left)
 				{
-					infoIndex = obj_player.equipped[? "leftWeaponSlot"]
+					infoIndex = obj_player.equipped[? "basicWeaponSlot"]
 					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
-					equip_item(carriedItemIndex, "leftWeaponSlot")
+					equip_item(carriedItemIndex, "basicWeaponSlot")
 				}
 			}
 		}
-		if is_struct(obj_player.equipped[? "rightWeaponSlot"])
+		if is_struct(obj_player.equipped[? "missileWeaponSlot"])
 		{
-			draw_sprite(obj_player.equipped[? "rightWeaponSlot"].itemSprite, -1, 413, 163)
+			draw_sprite(obj_player.equipped[? "missileWeaponSlot"].itemSprite, -1, 413, 163)
 			if point_in_rectangle(mousex, mousey, 396, 147, 429, 180)
 			{
 				if mouse_check_button(mb_left)
 				{
-					infoIndex = obj_player.equipped[? "rightWeaponSlot"]
+					infoIndex = obj_player.equipped[? "missileWeaponSlot"]
 					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
-					equip_item(carriedItemIndex, "rightWeaponSlot")
+					equip_item(carriedItemIndex, "missileWeaponSlot")
 				}
 			}
 		}
-		if is_struct(obj_player.equipped[? "altLeftWeaonSlot"])
+		if is_struct(obj_player.equipped[? "areaWeaponSlot"])
 		{
-			draw_sprite(obj_player.equipped[? "altLeftWeaonSlot"].itemSprite, -1, 413, 226)
+			draw_sprite(obj_player.equipped[? "areaWeaponSlot"].itemSprite, -1, 413, 226)
 			if point_in_rectangle(mousex, mousey, 396, 209, 429, 242)
 			{
 				if mouse_check_button(mb_left)
 				{
-					infoIndex = obj_player.equipped[? "altLeftWeaonSlot"]
+					infoIndex = obj_player.equipped[? "areaWeaponSlot"]
 					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
-					equip_item(carriedItemIndex, "altLeftWeaonSlot")
+					equip_item(carriedItemIndex, "areaWeaponSlot")
 				}
 			}
 		}
-		if is_struct(obj_player.equipped[? "altRightWeaponSlot"])
+		if is_struct(obj_player.equipped[? "tractorWeaponSlot"])
 		{
-			draw_sprite(obj_player.equipped[? "altRightWeaponSlot"].itemSprite, -1, 413, 268)
+			draw_sprite(obj_player.equipped[? "tractorWeaponSlot"].itemSprite, -1, 413, 268)
 			if point_in_rectangle(mousex, mousey, 396, 251, 429, 284)
 			{
 				if mouse_check_button(mb_left)
 				{
-					infoIndex = obj_player.equipped[? "altRightWeaponSlot"]
+					infoIndex = obj_player.equipped[? "tractorWeaponSlot"]
 					infoScroll = 0;
 				}
 				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
 				{
-					equip_item(carriedItemIndex, "altRightWeaponSlot")
+					equip_item(carriedItemIndex, "tractorWeaponSlot")
 				}
 			}
 		}
-		draw_sprite(spr_weaponEquip, -1, 0, 0)
+		draw_sprite(spr_weaponEquip2, -1, 0, 0)
 	}
 	else
 	{
@@ -576,8 +576,15 @@ function draw_sector_map()
 		currentSector = sectors[? visitedSectors[| i]]
 		boxX = ((currentSector.sectorX - obj_universe.playerSectorX) * 32) + 229
 		boxY = -((currentSector.sectorY - obj_universe.playerSectorY) * 32) + 115
-		colorVal = clamp((currentSector.sectorDanger / 50) * 255, 0, 255)
-		draw_sprite_ext(spr_sectorSquare, 0, boxX, boxY, 1, 1, 0, make_color_rgb(colorVal, 255 - colorVal, 0), 1)
+		colorVal = 255 - clamp((currentSector.sectorDanger / 50) * 255, 0, 255)
+		if currentSector.sectorHasShop
+		{
+			draw_sprite_ext(spr_sectorSquare, 0, boxX, boxY, 1, 1, 0, make_color_rgb(255, 255, 255), 1)
+		}
+		else
+		{
+			draw_sprite_ext(spr_sectorSquare, 0, boxX, boxY, 1, 1, 0, make_color_rgb(255, colorVal, colorVal), 1)
+		}
 	}
 	
 	for (var i = ds_map_find_first(sectors); !is_undefined(i); i = ds_map_find_next(sectors, i))
@@ -587,7 +594,7 @@ function draw_sector_map()
 			boxX = ((sectors[? i].sectorX - obj_universe.playerSectorX) * 32) + 229
 			boxY = -((sectors[? i].sectorY - obj_universe.playerSectorY) * 32) + 115
 			
-			draw_sprite_ext(spr_sectorSquare, 0, boxX, boxY, 1, 1, 0, make_color_rgb(255, 255, 0), 1)
+			draw_sprite_ext(spr_sectorShopSquare, 0, boxX, boxY, 1, 1, 0, make_color_rgb(255, 255, 0), 1)
 		}
 	}
 	

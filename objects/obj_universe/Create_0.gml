@@ -69,12 +69,12 @@ Sector = function(_x, _y, _hasShop, _mass, _danger) constructor
 	}
 }
 
-generatedSectors = ds_map_create();
 visitedSectors = ds_list_create();
+generatedSectors = ds_map_create();
 
 ds_list_add(visitedSectors, (string(playerSectorX) + " " + string(playerSectorY)))
 ds_map_add(generatedSectors, (string(playerSectorX) + " " + string(playerSectorY)), new Sector(0, 0, false, 0, 0))
-generate_sector_data_in_radius(playerSectorX, playerSectorY, 4)
+generate_sector_data_in_radius(playerSectorX, playerSectorY, 5)
 
 #endregion
 

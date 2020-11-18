@@ -30,11 +30,26 @@ ds_map_add(stats, "engineStat", 0);
 ds_map_add(stats, "dodgeSpeedMultStat", 0);
 ds_map_add(stats, "dodgeRechargeStat", 0);
 ds_map_add(stats, "damageStat", 0);
-ds_map_add(stats, "projectileSpeedStat", 1);
-ds_map_add(stats, "projectileWeightStat", 1);
-ds_map_add(stats, "firerateStat", 1);
-ds_map_add(stats, "leftWeaponSprite", 1);
-ds_map_add(stats, "rightWeaponSprite", 1);
+ds_map_add(stats, "projectileSpeedStat", 0);
+ds_map_add(stats, "projectileWeightStat", 0);
+ds_map_add(stats, "firerateStat", 0);
+ds_map_add(stats, "accuracyStat", 0);
+#endregion
+
+#region // Additive Modifiers
+additives = ds_map_create();
+ds_map_add(additives, "hullStat", 0);
+ds_map_add(additives, "armorStat", 0);
+ds_map_add(additives, "shieldStat", 0);
+ds_map_add(additives, "shieldRechargeStat", 0)
+ds_map_add(additives, "engineStat", 0);
+ds_map_add(additives, "dodgeSpeedMultStat", 0);
+ds_map_add(additives, "dodgeRechargeStat", 0);
+ds_map_add(additives, "damageStat", 0);
+ds_map_add(additives, "projectileSpeedStat", 0);
+ds_map_add(additives, "projectileWeightStat", 0);
+ds_map_add(additives, "firerateStat", 0);
+ds_map_add(additives, "accuracyStat", 0);
 #endregion
 
 #region // Modifiers
@@ -50,6 +65,7 @@ ds_map_add(modifiers, "damageStat", 1);
 ds_map_add(modifiers, "projectileSpeedStat", 1);
 ds_map_add(modifiers, "projectileWeightStat", 1);
 ds_map_add(modifiers, "firerateStat", 1);
+ds_map_add(modifiers, "accuracyStat", 1);
 #endregion
 
 #region // EquipSlots
@@ -59,10 +75,10 @@ ds_map_add(equipped, "armorSlot", 0)
 ds_map_add(equipped, "shieldSlot", 0)
 ds_map_add(equipped, "engineSlot", 0)
 ds_map_add(equipped, "specialSlot", 0)
-ds_map_add(equipped, "leftWeaponSlot", 0)
-ds_map_add(equipped, "rightWeaponSlot", 0)
-ds_map_add(equipped, "altLeftWeaponSlot", 0)
-ds_map_add(equipped, "altRightWeaponSlot", 0)
+ds_map_add(equipped, "basicWeaponSlot", 0)
+ds_map_add(equipped, "missileWeaponSlot", 0)
+ds_map_add(equipped, "areaWeaponSlot", 0)
+ds_map_add(equipped, "tractorWeaponSlot", 0)
 #endregion
 
 #region //equipping default weapons
@@ -82,10 +98,8 @@ add_item(obj_itemData.basic_special);
 equip_item(0, "specialSlot");
 
 add_item(obj_itemData.basic_weapon);
-equip_item(0, "leftWeaponSlot");
+equip_item(0, "basicWeaponSlot");
 
-add_item(obj_itemData.basic_weapon);
-equip_item(0, "rightWeaponSlot");
 #endregion
 
 currentShields = get_stat("shieldStat");
@@ -109,10 +123,10 @@ hardpointRight = [8, -3];
 //
 
 leftWeapon = instance_create_layer(0, 0, "Interactible", obj_leftWeapon);
-leftWeapon.sprite_index = equipped[? "leftWeaponSlot"].equipSprite
+leftWeapon.sprite_index = equipped[? "basicWeaponSlot"].equipSprite
 
 rightWeapon = instance_create_layer(0, 0, "Interactible", obj_rightWeapon);
-rightWeapon.sprite_index = equipped[? "rightWeaponSlot"].equipSprite
+rightWeapon.sprite_index = equipped[? "basicWeaponSlot"].equipSprite
 
 // 
 
@@ -142,3 +156,5 @@ playHitSound = true;
 side = false
 
 alarm_set(3, room_speed * (1 / (get_stat("firerateStat") * 2)));
+
+move_wrap(true, true, 0)

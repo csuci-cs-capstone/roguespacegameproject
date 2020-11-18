@@ -8,7 +8,7 @@ if generateSector
 	var sectorData;
 	var coordinatesString = string(playerSectorX) + " " + string(playerSectorY)
 	
-	generate_sector_data_in_radius(playerSectorX, playerSectorY, 4)
+	generate_sector_data_in_radius(playerSectorX, playerSectorY, 5)
 	
 	if ds_list_find_index(visitedSectors, coordinatesString) == -1
 	{
