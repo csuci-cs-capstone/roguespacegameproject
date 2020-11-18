@@ -16,7 +16,7 @@ if explode
 		}
 		else
 		{
-			obj_player.currentHealth -= damage;
+			obj_player.currentHealth -= (damage - (damage * (get_stat("armorStat") / 100)));
 		}
 	}
 }

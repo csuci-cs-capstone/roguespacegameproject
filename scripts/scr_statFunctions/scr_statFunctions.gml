@@ -11,10 +11,8 @@ function apply_effect(item)
 		{
 			case effectTypes.multiplier:
 				obj_player.modifiers[? currentEffect.stat] += currentEffect.effectValue;
-			case effectTypes.additive:
-				obj_player.additives[? currentEffect.stat] += currentEffect.effectValue;
 			case effectTypes.modify:
-				obj_player.stats[? currentEffect.stat] = currentEffect.effectValue;
+				obj_player.stats[? currentEffect.stat] += currentEffect.effectValue;
 		}
 	}
 }
@@ -29,10 +27,8 @@ function remove_effect(item)
 		{
 			case effectTypes.multiplier:
 				obj_player.modifiers[? currentEffect.stat] -= currentEffect.effectValue;
-			case effectTypes.additive:
-				obj_player.additives[? currentEffect.stat] -= currentEffect.effectValue;
 			case effectTypes.modify:
-				obj_player.stats[? currentEffect.stat] = 0;
+				obj_player.stats[? currentEffect.stat] -= currentEffect.effectValue;
 		}
 	}
 }
@@ -45,17 +41,29 @@ function equip_item(inventoryIndex, slot)
 	unequip_item(slot)
 	
 	obj_player.equipped[? slot] = item;
-	apply_effect(item);
+	
+	if item.itemType != itemTypes.weaponItem
+	{
+		apply_effect(item);
+	}
 }
 
 function unequip_item(slot)
 {
 	if is_struct(obj_player.equipped[? slot])
 	{
-		remove_effect(obj_player.equipped[? slot])
+		if obj_player.equipped[? slot].itemType != itemTypes.weaponItem
+		{
+			remove_effect(obj_player.equipped[? slot])
+		}
 		ds_list_add(obj_player.inventory, obj_player.equipped[? slot])
 		obj_player.equipped[? slot] = 0
 	}
+}
+
+function is_equipped(slot)
+{
+	return is_struct(obj_player.equipped[? slot])	
 }
 
 function add_item(item)
@@ -80,5 +88,6 @@ function remove_item(index)
 
 function get_stat(statName)
 {
-	return (obj_player.stats[? statName] + obj_player.additives[? statName]) * obj_player.modifiers[? statName]
+	//return (obj_player.stats[? statName] + obj_player.additives[? statName]) * obj_player.modifiers[? statName]
+	return obj_player.stats[? statName] * obj_player.modifiers[? statName]
 }

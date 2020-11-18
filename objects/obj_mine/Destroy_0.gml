@@ -13,12 +13,12 @@ if explode
 	for (var i = 0; i < ds_list_size(damageRadius); i++)
 	{
 		var currentObject = damageRadius[| i]
+		currentObject.currentHealth -= (obj_mine.damage)/4;
 		with (currentObject)
 		{
 			audio_stop_sound(snd_hit2)
 			audio_play_sound(snd_hit2, 0, false);
 			flash = 2
-			currentHealth -= (obj_mine.damage)/4;
 		}
 	}
 
@@ -33,7 +33,7 @@ if explode
 		}
 		else
 		{
-			obj_player.currentHealth -= damage;
+			obj_player.currentHealth -= (damage - (damage * (get_stat("armorStat") / 100)));
 		}
 	}
 

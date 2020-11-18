@@ -6,6 +6,6 @@ audio_play_sound(snd_hit2, 0, false);
 other.flash = 2
 if instance_exists(obj_player)
 {
-	other.currentHealth -= get_stat("damageStat")
+	other.currentHealth -= damage
 }
 instance_destroy();

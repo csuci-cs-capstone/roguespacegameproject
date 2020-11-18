@@ -14,6 +14,6 @@ if !canDestroy && instance_exists(obj_jumpMechanics) && !obj_jumpMechanics.immun
 	}
 	else
 	{
-		obj_player.currentHealth -= damage;
+		obj_player.currentHealth -= (damage - (damage * (get_stat("armorStat") / 100)));
 	}
 }

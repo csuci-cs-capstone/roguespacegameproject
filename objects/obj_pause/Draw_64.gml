@@ -20,6 +20,8 @@ if paused
 		draw_sprite(spr_resetButton, 1, 273, 209);
 		if mouse_check_button_released(mb_left)
 		{
+			physics_pause_enable(false);
+			instance_activate_all();
 			room_restart();
 		}
 	}

@@ -36,22 +36,6 @@ ds_map_add(stats, "firerateStat", 0);
 ds_map_add(stats, "accuracyStat", 0);
 #endregion
 
-#region // Additive Modifiers
-additives = ds_map_create();
-ds_map_add(additives, "hullStat", 0);
-ds_map_add(additives, "armorStat", 0);
-ds_map_add(additives, "shieldStat", 0);
-ds_map_add(additives, "shieldRechargeStat", 0)
-ds_map_add(additives, "engineStat", 0);
-ds_map_add(additives, "dodgeSpeedMultStat", 0);
-ds_map_add(additives, "dodgeRechargeStat", 0);
-ds_map_add(additives, "damageStat", 0);
-ds_map_add(additives, "projectileSpeedStat", 0);
-ds_map_add(additives, "projectileWeightStat", 0);
-ds_map_add(additives, "firerateStat", 0);
-ds_map_add(additives, "accuracyStat", 0);
-#endregion
-
 #region // Modifiers
 modifiers = ds_map_create();
 ds_map_add(modifiers, "hullStat", 1);
@@ -100,6 +84,15 @@ equip_item(0, "specialSlot");
 add_item(obj_itemData.basic_weapon);
 equip_item(0, "basicWeaponSlot");
 
+add_item(obj_itemData.basic_missile);
+equip_item(0, "missileWeaponSlot");
+
+add_item(obj_itemData.basic_area);
+equip_item(0, "areaWeaponSlot");
+
+add_item(obj_itemData.basic_tractor);
+equip_item(0, "tractorWeaponSlot");
+
 #endregion
 
 currentShields = get_stat("shieldStat");
@@ -122,11 +115,20 @@ hardpointLeft = [-8, -3];
 hardpointRight = [8, -3];
 //
 
-leftWeapon = instance_create_layer(0, 0, "Interactible", obj_leftWeapon);
-leftWeapon.sprite_index = equipped[? "basicWeaponSlot"].equipSprite
+currentWeapon = equipped[? "basicWeaponSlot"]
+apply_effect(currentWeapon)
 
-rightWeapon = instance_create_layer(0, 0, "Interactible", obj_rightWeapon);
-rightWeapon.sprite_index = equipped[? "basicWeaponSlot"].equipSprite
+leftWeapon = instance_create_layer(0, 0, "UI", obj_leftWeapon);
+leftWeapon.sprite_index = currentWeapon.equipSprite
+
+rightWeapon = instance_create_layer(0, 0, "UI", obj_rightWeapon);
+rightWeapon.sprite_index = currentWeapon.equipSprite
+
+instance_create_layer(0, 0, "OtherLogic", obj_weaponController);
+
+weaponIndex = 0
+
+moveDirection = true;
 
 // 
 
@@ -151,10 +153,3 @@ canRecharge = true;
 shieldAlpha = 0;
 
 playHitSound = true;
-
-// weapon stuff
-side = false
-
-alarm_set(3, room_speed * (1 / (get_stat("firerateStat") * 2)));
-
-move_wrap(true, true, 0)

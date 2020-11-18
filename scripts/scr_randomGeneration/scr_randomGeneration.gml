@@ -91,6 +91,10 @@ function remove_all_objects()
 	{
 		obj_destroyableWeapon.explode = false;
 	}
+	if instance_exists(obj_missileParent)
+	{
+		obj_missileParent.explode = false;
+	}
 	
 	instance_destroy(obj_defaultEnemyParams);
 	instance_destroy(obj_obstacleParent);
@@ -98,7 +102,12 @@ function remove_all_objects()
 	instance_destroy(obj_enemyWeapons);
 	instance_destroy(obj_destroyableWeapon);
 	instance_destroy(obj_spaceStation);
+	instance_destroy(obj_missileParent);
 	
+	if instance_exists(obj_missileParent)
+	{
+		obj_missileParent.explode = true;
+	}
 	if instance_exists(obj_destroyableWeapon)
 	{
 		obj_destroyableWeapon.explode = true;

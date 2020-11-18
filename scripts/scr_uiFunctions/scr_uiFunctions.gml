@@ -343,7 +343,7 @@ function draw_equip_menu()
 	{
 		if is_struct(obj_player.equipped[? "basicWeaponSlot"])
 		{
-			draw_sprite(obj_player.equipped[? "basicWeaponSlot"].itemSprite, -1, 413, 121)
+			draw_sprite(obj_player.equipped[? "basicWeaponSlot"].itemSprite, -1, 413, 122)
 			if point_in_rectangle(mousex, mousey, 396, 105, 429, 138)
 			{
 				if mouse_check_button(mb_left)
@@ -351,7 +351,7 @@ function draw_equip_menu()
 					infoIndex = obj_player.equipped[? "basicWeaponSlot"]
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.weaponType == weaponTypes.basic
 				{
 					equip_item(carriedItemIndex, "basicWeaponSlot")
 				}
@@ -359,7 +359,7 @@ function draw_equip_menu()
 		}
 		if is_struct(obj_player.equipped[? "missileWeaponSlot"])
 		{
-			draw_sprite(obj_player.equipped[? "missileWeaponSlot"].itemSprite, -1, 413, 163)
+			draw_sprite(obj_player.equipped[? "missileWeaponSlot"].itemSprite, -1, 413, 170)
 			if point_in_rectangle(mousex, mousey, 396, 147, 429, 180)
 			{
 				if mouse_check_button(mb_left)
@@ -367,7 +367,7 @@ function draw_equip_menu()
 					infoIndex = obj_player.equipped[? "missileWeaponSlot"]
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.weaponType == weaponTypes.missile
 				{
 					equip_item(carriedItemIndex, "missileWeaponSlot")
 				}
@@ -375,7 +375,7 @@ function draw_equip_menu()
 		}
 		if is_struct(obj_player.equipped[? "areaWeaponSlot"])
 		{
-			draw_sprite(obj_player.equipped[? "areaWeaponSlot"].itemSprite, -1, 413, 226)
+			draw_sprite(obj_player.equipped[? "areaWeaponSlot"].itemSprite, -1, 413, 218)
 			if point_in_rectangle(mousex, mousey, 396, 209, 429, 242)
 			{
 				if mouse_check_button(mb_left)
@@ -383,7 +383,7 @@ function draw_equip_menu()
 					infoIndex = obj_player.equipped[? "areaWeaponSlot"]
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.weaponType == weaponTypes.area
 				{
 					equip_item(carriedItemIndex, "areaWeaponSlot")
 				}
@@ -391,7 +391,7 @@ function draw_equip_menu()
 		}
 		if is_struct(obj_player.equipped[? "tractorWeaponSlot"])
 		{
-			draw_sprite(obj_player.equipped[? "tractorWeaponSlot"].itemSprite, -1, 413, 268)
+			draw_sprite(obj_player.equipped[? "tractorWeaponSlot"].itemSprite, -1, 413, 266)
 			if point_in_rectangle(mousex, mousey, 396, 251, 429, 284)
 			{
 				if mouse_check_button(mb_left)
@@ -399,7 +399,7 @@ function draw_equip_menu()
 					infoIndex = obj_player.equipped[? "tractorWeaponSlot"]
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.weaponType == weaponTypes.tractor
 				{
 					equip_item(carriedItemIndex, "tractorWeaponSlot")
 				}
@@ -419,7 +419,7 @@ function draw_equip_menu()
 					infoIndex = obj_player.equipped[? "hullSlot"]
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.itemType == itemTypes.hullItem
 				{
 					equip_item(carriedItemIndex, "hullSlot")
 				}
@@ -435,7 +435,7 @@ function draw_equip_menu()
 					infoIndex = obj_player.equipped[? "armorSlot"]
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.itemType == itemTypes.armorItem
 				{
 					equip_item(carriedItemIndex, "armorSlot")
 				}
@@ -451,7 +451,7 @@ function draw_equip_menu()
 					infoIndex = obj_player.equipped[? "shieldSlot"]
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.itemType == itemTypes.shieldItem
 				{
 					equip_item(carriedItemIndex, "shieldSlot")
 				}
@@ -467,7 +467,7 @@ function draw_equip_menu()
 					infoIndex = obj_player.equipped[? "engineSlot"]
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.itemType == itemTypes.engineItem
 				{
 					equip_item(carriedItemIndex, "engineSlot")
 				}
@@ -483,7 +483,7 @@ function draw_equip_menu()
 					infoIndex = obj_player.equipped[? "specialSlot"]
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1)
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.itemType == itemTypes.specialItem
 				{
 					equip_item(carriedItemIndex, "specialSlot")
 				}

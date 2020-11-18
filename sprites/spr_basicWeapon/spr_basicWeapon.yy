@@ -9,13 +9,13 @@
   "swfPrecision": 2.525,
   "bbox_left": 0,
   "bbox_right": 8,
-  "bbox_top": 0,
-  "bbox_bottom": 3,
+  "bbox_top": 1,
+  "bbox_bottom": 4,
   "HTile": false,
   "VTile": false,
   "For3D": false,
   "width": 9,
-  "height": 4,
+  "height": 6,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -24,9 +24,9 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"c9cd362f-20a5-4de8-a641-b2b02fe8db18","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"c9cd362f-20a5-4de8-a641-b2b02fe8db18","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},"LayerId":{"name":"3401bd18-99eb-4605-9042-ba21bf963bb2","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_basicWeapon","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},"resourceVersion":"1.0","name":"c9cd362f-20a5-4de8-a641-b2b02fe8db18","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"f40e46c8-d898-4b49-ab8e-8e9394c0a97c","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"f40e46c8-d898-4b49-ab8e-8e9394c0a97c","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},"LayerId":{"name":"d4368a5d-199f-4f33-8330-62f992a19469","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_basicWeapon","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},"resourceVersion":"1.0","name":"f40e46c8-d898-4b49-ab8e-8e9394c0a97c","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_basicWeapon","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"c97f5029-2dfc-47d1-97e3-5e6b88c72904","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"c9cd362f-20a5-4de8-a641-b2b02fe8db18","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"78f80e0c-4e41-421a-9cb4-809a3631466c","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"f40e46c8-d898-4b49-ab8e-8e9394c0a97c","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
     "visibleRange": null,
@@ -55,7 +55,7 @@
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
     "xorigin": 3,
-    "yorigin": 2,
+    "yorigin": 3,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_basicWeapon","path":"sprites/spr_basicWeapon/spr_basicWeapon.yy",},
@@ -65,11 +65,11 @@
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"3401bd18-99eb-4605-9042-ba21bf963bb2","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"d4368a5d-199f-4f33-8330-62f992a19469","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "Weapons",
-    "path": "folders/Sprites/Weapons.yy",
+    "name": "Weapon Equip Sprites",
+    "path": "folders/Sprites/Weapons/Weapon Equip Sprites.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_basicWeapon",

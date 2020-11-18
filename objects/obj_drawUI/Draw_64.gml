@@ -16,6 +16,8 @@ if not hideUI && instance_exists(obj_player)
 	draw_sprite_part(spr_shieldBar, 0, 0, 0, (obj_player.currentShields / get_stat("shieldStat")) * 149, 10, 8, 8)
 
 	draw_text(17, 31, string(obj_player.money));
+	
+	draw_sprite(obj_player.currentWeapon.itemSprite, 0, 32, 336)
 
 	draw_radar_blip(obj_defaultEnemyParams, spr_enemyBlip);			// Enemy Blips
 	draw_radar_blip(obj_obstacleParent, spr_obstacleBlip);			// Obstacle Blips
@@ -35,23 +37,20 @@ if not hideUI && instance_exists(obj_player)
 		infoIndex = 0;
 	}
 	
-	if !obj_leftWeapon.canFire || !obj_rightWeapon.canFire
+	if !obj_weaponController.canFire
 	{
-		obj_leftWeapon.canFire = true;
-		obj_rightWeapon.canFire = true;
+		obj_weaponController.canFire = true;
 	}
 	
 	if (keyboard_check(vk_tab))
 	{
 		menuOpen = true;
-		obj_leftWeapon.canFire = false;
-		obj_rightWeapon.canFire = false;
+		obj_weaponController.canFire = false;
 		draw_menu()
 	}
 	else if (keyboard_check(vk_shift))
 	{
-		obj_leftWeapon.canFire = false;
-		obj_rightWeapon.canFire = false;
+		obj_weaponController.canFire = false;
 		draw_jump_menu()
 		if mouse_check_button_pressed(mb_left)
 		{
