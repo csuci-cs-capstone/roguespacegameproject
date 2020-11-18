@@ -5,7 +5,7 @@ weaponIndex -= 1
 
 if weaponIndex < 0
 {
-	weaponIndex = 4	
+	weaponIndex = 3	
 }
 
 moveDirection = false;

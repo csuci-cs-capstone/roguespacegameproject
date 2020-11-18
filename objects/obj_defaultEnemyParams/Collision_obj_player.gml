@@ -3,7 +3,7 @@
 
 if !obj_jumpMechanics.immune
 {
-	var totalKineticEnergy = phy_mass * power(speedChange, 2) * 0.5 + other.phy_mass * power(other.speedChange, 2) * 0.5;
+	var totalKineticEnergy = (phy_mass * power(speedChange, 2) * 0.5) + (other.phy_mass * power(other.speedChange, 2) * 0.5);
 
 	currentHealth -= totalKineticEnergy/2
 

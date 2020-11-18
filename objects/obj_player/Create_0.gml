@@ -34,6 +34,8 @@ ds_map_add(stats, "projectileSpeedStat", 0);
 ds_map_add(stats, "projectileWeightStat", 0);
 ds_map_add(stats, "firerateStat", 0);
 ds_map_add(stats, "accuracyStat", 0);
+ds_map_add(stats, "chargeTimeStat", 0);
+ds_map_add(stats, "pulseLifetimeStat", 0);
 #endregion
 
 #region // Modifiers
@@ -50,6 +52,8 @@ ds_map_add(modifiers, "projectileSpeedStat", 1);
 ds_map_add(modifiers, "projectileWeightStat", 1);
 ds_map_add(modifiers, "firerateStat", 1);
 ds_map_add(modifiers, "accuracyStat", 1);
+ds_map_add(modifiers, "chargeTimeStat", 1);
+ds_map_add(modifiers, "pulseLifetimeStat", 1);
 #endregion
 
 #region // EquipSlots

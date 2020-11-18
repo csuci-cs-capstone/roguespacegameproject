@@ -16,10 +16,10 @@ if !obj_jumpMechanics.immune
 	if currentShields >= 0
 	{
 		shieldAlpha = 1;
-		currentShields -= phy_mass * power(speedChange, 2) * 0.5
+		currentShields -= (phy_mass * power(speedChange, 2) * 0.5) + (other.phy_mass * power(other.speedChange, 2) * 0.5);
 	}
 	else
 	{
-		currentHealth -= phy_mass * power(speedChange, 2) * 0.5
+		currentHealth -= (phy_mass * power(speedChange, 2) * 0.5) + (other.phy_mass * power(other.speedChange, 2) * 0.5);
 	}
 }
