@@ -386,7 +386,7 @@ function draw_equip_menu()
 		if is_struct(obj_player.equipped[? "basicWeaponSlot"])
 		{
 			draw_sprite(obj_player.equipped[? "basicWeaponSlot"].itemSprite, -1, 413, 122)
-			if point_in_rectangle(mousex, mousey, 396, 105, 429, 138)
+			if point_in_rectangle(mousex, mousey, 398, 108, 427, 137)
 			{
 				if mouse_check_button(mb_left)
 				{
@@ -403,7 +403,7 @@ function draw_equip_menu()
 		if is_struct(obj_player.equipped[? "missileWeaponSlot"])
 		{
 			draw_sprite(obj_player.equipped[? "missileWeaponSlot"].itemSprite, -1, 413, 170)
-			if point_in_rectangle(mousex, mousey, 396, 147, 429, 180)
+			if point_in_rectangle(mousex, mousey, 398, 156, 427, 185)
 			{
 				if mouse_check_button(mb_left)
 				{
@@ -420,7 +420,7 @@ function draw_equip_menu()
 		if is_struct(obj_player.equipped[? "areaWeaponSlot"])
 		{
 			draw_sprite(obj_player.equipped[? "areaWeaponSlot"].itemSprite, -1, 413, 218)
-			if point_in_rectangle(mousex, mousey, 396, 209, 429, 242)
+			if point_in_rectangle(mousex, mousey, 398, 204, 427, 233)
 			{
 				if mouse_check_button(mb_left)
 				{
@@ -437,7 +437,7 @@ function draw_equip_menu()
 		if is_struct(obj_player.equipped[? "tractorWeaponSlot"])
 		{
 			draw_sprite(obj_player.equipped[? "tractorWeaponSlot"].itemSprite, -1, 413, 266)
-			if point_in_rectangle(mousex, mousey, 396, 251, 429, 284)
+			if point_in_rectangle(mousex, mousey, 398, 252, 427, 281)
 			{
 				if mouse_check_button(mb_left)
 				{
