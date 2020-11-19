@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"9e991b23-130f-4335-bf71-0f3141904b16","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "Map",
+    "path": "folders/Sprites/UI/Menu/Map.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_sectorShopSquare",

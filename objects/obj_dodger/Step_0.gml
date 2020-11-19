@@ -26,7 +26,7 @@ if step
 			{
 				state = behaviorStates.avoid;	
 			}
-			if canDodge && distance_to_object(obj_projectileParent) <= 50
+			if canDodge && distance_to_object(obj_allPlayerProjectiles) <= 50
 			{
 				previousState = behaviorStates.idle
 				state = behaviorStates.dash;	
@@ -44,7 +44,7 @@ if step
 			{
 				state = behaviorStates.idle;	
 			}
-			if canDodge && distance_to_object(obj_projectileParent) <= 50
+			if canDodge && distance_to_object(obj_allPlayerProjectiles) <= 50
 			{
 				previousState = behaviorStates.pursue
 				state = behaviorStates.dash;	
@@ -70,7 +70,7 @@ if step
 			{
 				state = behaviorStates.idle;	
 			}
-			if canDodge && distance_to_object(obj_projectileParent) <= 50
+			if canDodge && distance_to_object(obj_allPlayerProjectiles) <= 50
 			{
 				previousState = behaviorStates.avoid
 				state = behaviorStates.dash;	

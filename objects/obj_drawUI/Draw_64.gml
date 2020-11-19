@@ -17,6 +17,8 @@ if not hideUI && instance_exists(obj_player)
 
 	draw_text(17, 31, string(obj_player.money));
 	
+	draw_text(17, 45, string(obj_player.missiles));
+	
 	draw_sprite(obj_player.currentWeapon.itemSprite, 0, 32, 336)
 
 	draw_radar_blip(obj_defaultEnemyParams, spr_enemyBlip);			// Enemy Blips
@@ -32,7 +34,7 @@ if not hideUI && instance_exists(obj_player)
 	mousex = window_mouse_get_x() / round(view_wport[0]/640);
 	mousey = window_mouse_get_y() / round(view_hport[0]/360);
 
-	if mouse_check_button_pressed(mb_left)
+	if mouse_check_button_pressed(mb_left) && !doNotDisable
 	{
 		infoIndex = 0;
 	}
@@ -104,6 +106,11 @@ if not hideUI && instance_exists(obj_player)
 	//{
 	//	draw_text(16,80, string(obj_universe.visitedSectors[? get_coordinates_string()].sectorDanger))
 	//}
+}
+
+if menuMode == 2 && !instance_exists(obj_spaceStation)
+{
+	menuMode = 0;	
 }
 
 if obj_gameOver.dead

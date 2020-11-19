@@ -5,6 +5,7 @@ if !dead && (obj_player.currentHealth <= 0)
 {
 	audio_stop_all()
 	instance_destroy(obj_weaponController);
+	instance_destroy(obj_target);
 	instance_destroy(obj_leftWeapon);
 	instance_destroy(obj_rightWeapon);
 	instance_destroy(obj_player);

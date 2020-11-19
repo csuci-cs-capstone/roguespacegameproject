@@ -71,3 +71,7 @@ movementDirection = 0;
 
 value = 0;
 dropMoney = true;
+
+//
+
+objectName = object_index

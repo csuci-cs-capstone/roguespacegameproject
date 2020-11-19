@@ -72,8 +72,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"d22f9337-74d8-4ddf-82c8-c999ba9b2a20","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "HUD",
+    "path": "folders/Sprites/UI/HUD.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_jumpbutton",

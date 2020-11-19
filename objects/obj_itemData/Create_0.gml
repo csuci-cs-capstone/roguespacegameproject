@@ -41,6 +41,14 @@ enum firingPatterns
 	burstCharge,
 	stream
 }
+
+enum targetModes
+{
+	doesNotTarget,
+	enemies,
+	enemiesAndObstacles,
+	enemiesObstaclesAndDestroyableWeapons
+}
 #endregion
 
 #region //structs
@@ -51,7 +59,7 @@ Effect = function(_stat, _type, _value) constructor
 	effectValue = _value
 }
 
-Item = function(_name, _spr, _itemType, _weaponType, _description, _value, _effects, _sprite, _projectile, _firePattern) constructor
+Item = function(_name, _spr, _itemType, _weaponType, _description, _value, _effects, _sprite, _projectile, _firePattern, _targetable) constructor
 {
 	name = _name
 	itemSprite = _spr
@@ -63,6 +71,7 @@ Item = function(_name, _spr, _itemType, _weaponType, _description, _value, _effe
 	equipSprite = _sprite
 	projectile = _projectile
 	firePattern = _firePattern
+	targetMode = _targetable;
 }
 #endregion
 
@@ -78,7 +87,8 @@ test_item = new Item("test",
 					[],
 					spr_testItem,
 					0,
-					firingPatterns.notAWeapon);
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
 
 ds_list_add(itemList, test_item);
 
@@ -91,7 +101,8 @@ basic_hull = new Item("Basic Hull",
 					[new Effect("hullStat", effectTypes.modify, 100)],
 					spr_testItem,
 					0,
-					firingPatterns.notAWeapon);
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
 					
 ds_list_add(itemList, basic_hull);
 
@@ -104,7 +115,8 @@ basic_armor = new Item("Titanium Armor",
 					[new Effect("armorStat", effectTypes.modify, 5)],
 					spr_testItem,
 					0,
-					firingPatterns.notAWeapon);
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
 					
 ds_list_add(itemList, basic_armor);
 
@@ -118,7 +130,8 @@ basic_shields = new Item("Standard Shields",
 					new Effect("shieldRechargeStat", effectTypes.modify, 0.075)],
 					spr_testItem,
 					0,
-					firingPatterns.notAWeapon);
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
 					
 ds_list_add(itemList, basic_shields);
 
@@ -131,7 +144,8 @@ basic_engine = new Item("Ion Engine",
 					[new Effect("engineStat", effectTypes.modify, 80)],
 					spr_testItem,
 					0,
-					firingPatterns.notAWeapon);
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
 					
 ds_list_add(itemList, basic_engine);
 
@@ -145,7 +159,8 @@ basic_special = new Item("Overdrive Boosters",
 					new Effect("dodgeRechargeStat", effectTypes.modify, 5)],
 					spr_testItem,
 					0,
-					firingPatterns.notAWeapon);
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
 					
 ds_list_add(itemList, basic_special);
 #endregion
@@ -164,7 +179,8 @@ basic_weapon = new Item("Plasma Blasters",
 					new Effect("accuracyStat", effectTypes.modify, 1)],
 					spr_basicWeapon,
 					obj_basicProjectile,
-					firingPatterns.alternate);
+					firingPatterns.alternate,
+					targetModes.doesNotTarget);
 					
 ds_list_add(itemList, basic_weapon);
 
@@ -174,14 +190,15 @@ basic_missile = new Item("Homing Missiles",
 					weaponTypes.missile,
 					"Missiles that blindly seeks a targeted enemy, or any closest enemy if no target is chosen.", 
 					25,
-					[new Effect("damageStat", effectTypes.modify, 20),
+					[new Effect("damageStat", effectTypes.modify, 10),
 					new Effect("projectileSpeedStat", effectTypes.modify, 10),
 					new Effect("projectileWeightStat", effectTypes.modify, 0.5),
 					new Effect("firerateStat", effectTypes.modify, 0.5),
 					new Effect("accuracyStat", effectTypes.modify, 0)],
 					spr_missileWeapon,
 					obj_basicMissile,
-					firingPatterns.unison);
+					firingPatterns.unison,
+					targetModes.enemies);
 					
 ds_list_add(itemList, basic_missile);
 
@@ -189,9 +206,9 @@ basic_area = new Item("Wave Launcher",
 					spr_basicAreaIcon, 
 					itemTypes.weaponItem, 
 					weaponTypes.area,
-					"Launches an energy pulse that pushes away and damages enemies.", 
+					"Launches an energy pulse that pushes away and damages enemies and obstacles.", 
 					25,
-					[new Effect("damageStat", effectTypes.modify, 10),
+					[new Effect("damageStat", effectTypes.modify, 5),
 					new Effect("projectileSpeedStat", effectTypes.modify, 15),
 					new Effect("projectileWeightStat", effectTypes.modify, 0.5),
 					new Effect("firerateStat", effectTypes.modify, 1.5),
@@ -200,7 +217,8 @@ basic_area = new Item("Wave Launcher",
 					new Effect("pulseLifetimeStat", effectTypes.modify, 1.5)],
 					spr_areaWeapon,
 					obj_waveProjectile,
-					firingPatterns.charge);
+					firingPatterns.charge,
+					targetModes.doesNotTarget);
 					
 ds_list_add(itemList, basic_area);
 
@@ -210,14 +228,15 @@ basic_tractor = new Item("Tractor Beam",
 					weaponTypes.missile,
 					"Beams that take hold of objects and allows the user to move them around.", 
 					25,
-					[new Effect("damageStat", effectTypes.modify, 10),
+					[new Effect("damageStat", effectTypes.modify, 0),
 					new Effect("projectileSpeedStat", effectTypes.modify, 10),
 					new Effect("projectileWeightStat", effectTypes.modify, 0.5),
 					new Effect("firerateStat", effectTypes.modify, 0),
 					new Effect("accuracyStat", effectTypes.modify, 0)],
 					spr_tractorWeapon,
 					obj_basicProjectile,
-					firingPatterns.stream);
+					firingPatterns.stream,
+					targetModes.enemiesObstaclesAndDestroyableWeapons);
 					
 ds_list_add(itemList, basic_tractor);
 #endregion

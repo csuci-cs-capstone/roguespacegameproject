@@ -2,5 +2,3 @@
 // You can write your code in this editor
 
 image_speed = 1/room_speed
-
-closeEnough = false;

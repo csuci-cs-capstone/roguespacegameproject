@@ -36,7 +36,7 @@ if step && instance_exists(obj_player)
 			break;
 		case behaviorStates.move:
 			behavior_move();
-			if get_distance_to_dest() < 10 || distance_to_object(obj_projectileParent) <= 40
+			if get_distance_to_dest() < 10 || distance_to_object(obj_allPlayerProjectiles) <= 40
 			{
 				state = behaviorStates.attack;	
 			}

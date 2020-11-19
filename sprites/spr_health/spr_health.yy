@@ -168,8 +168,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"493b7fcf-c809-4781-b1da-da914ef3c0f2","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "HUD",
+    "path": "folders/Sprites/UI/HUD.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_health",

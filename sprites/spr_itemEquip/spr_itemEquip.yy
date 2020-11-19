@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"e072bdb8-7327-44d4-ab60-7874db0b97cb","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "INV",
+    "path": "folders/Sprites/UI/Menu/INV.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_itemEquip",

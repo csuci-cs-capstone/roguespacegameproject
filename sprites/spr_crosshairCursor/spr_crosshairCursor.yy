@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"33a4d373-a6fe-48a1-95c9-e21479371c78","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "HUD",
+    "path": "folders/Sprites/UI/HUD.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_crosshairCursor",

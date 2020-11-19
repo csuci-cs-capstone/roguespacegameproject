@@ -4,7 +4,10 @@
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "obj_allPlayerProjectiles",
+    "path": "objects/obj_allPlayerProjectiles/obj_allPlayerProjectiles.yy",
+  },
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,

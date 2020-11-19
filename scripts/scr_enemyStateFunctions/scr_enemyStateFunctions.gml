@@ -72,12 +72,12 @@ function behavior_attracted()
 function behavior_dash()
 {
 	
-	var projectile = instance_nearest(phy_position_x, phy_position_y, obj_projectileParent)
+	var projectile = instance_nearest(phy_position_x, phy_position_y, obj_allPlayerProjectiles)
 	if projectile == noone
 	{
 		projectile = instance_find(obj_player, 0)
 	}
-	var theta = generate_opposite_direction_avoid_obstacles(obj_grid.grid, phy_position_x, phy_position_y, point_direction(phy_position_x, phy_position_y, projectile.phy_position_x, projectile.phy_position_y));
+	var theta = generate_opposite_direction_avoid_obstacles(obj_grid.grid, phy_position_x, phy_position_y, point_direction(phy_position_x, phy_position_y, projectile.x, projectile.y));
 	
 	canDodge = false;
 	dodging = true;

@@ -19,6 +19,9 @@ pressedY = 0
 infoIndex = 0
 jumpDirection = 0;
 
+doNotDisable = false;
+fromEquipment = false;
+
 menuOpen = false;
 hideUI = false;
 alarm_value = -1;

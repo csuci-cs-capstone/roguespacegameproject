@@ -42,7 +42,9 @@ Sector = function(_x, _y, _hasShop, _mass, _danger) constructor
 	sectorType = sectorTypes.empty;
 	sectorHasShop = _hasShop;
 	sectorShopRotation = -1;
-	sectorShopInv = [];
+	
+	sectorShopInv = 0;
+	
 	sectorEnemyList = ds_map_create();
 	
 	static add_enemy = function(enemy)
@@ -66,6 +68,21 @@ Sector = function(_x, _y, _hasShop, _mass, _danger) constructor
 				sectorEnemyList[? enemy] -= 1;
 			}
 		}
+	}
+	
+	static initialize_shop_inv = function()
+	{
+		sectorShopInv = ds_list_create()	
+	}
+	
+	static addItemToShop = function(item)
+	{
+		ds_list_insert(sectorShopInv, 0, item)	
+	}
+	
+	static removeItemFromShop = function(item)
+	{
+		ds_list_delete(sectorShopInv, ds_list_find_index(sectorShopInv, item))	
 	}
 }
 

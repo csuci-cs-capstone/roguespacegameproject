@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"c3ddac67-81b8-4fa0-88f3-b906b2255489","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "Map",
+    "path": "folders/Sprites/UI/Menu/Map.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_sectorBorder",

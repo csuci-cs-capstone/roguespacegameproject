@@ -14,7 +14,15 @@ function draw_radar_blip(_object, _sprite)
 function draw_menu()
 {
 	draw_sprite(spr_menu, -1, 0, 0);
-	if (point_in_rectangle(mousex, mousey, 91, 41, 145, 75))
+	
+	draw_text_transformed(298, 56, string(obj_player.money), 2, 2, 0)
+	
+	draw_text_transformed(390, 56, string(obj_player.missiles), 2, 2, 0)
+	
+	draw_text_transformed(482, 56, string(obj_player.currentHealth), 2, 2, 0)
+	
+	// Map button
+	if (point_in_rectangle(mousex, mousey, 91, 39, 145, 75))
 	{
 		draw_sprite(spr_mapButton, 1, 91, 51);
 		if mouse_check_button(mb_left)
@@ -27,6 +35,8 @@ function draw_menu()
 	{
 		draw_sprite(spr_mapButton, 0, 91, 51);
 	}
+	
+	// INV button
 	if (point_in_rectangle(mousex, mousey, 149, 51, 203, 75))
 	{
 		draw_sprite(spr_invButton, 1, 149, 51);
@@ -40,30 +50,61 @@ function draw_menu()
 	{
 		draw_sprite(spr_invButton, 0, 149, 51);
 	}
+	
+	if instance_exists(obj_spaceStation)
+	{
+		// INV button
+		if (point_in_rectangle(mousex, mousey, 207, 51, 261, 75))
+		{
+			draw_sprite(spr_shopButton, 1, 207, 51);
+			if mouse_check_button(mb_left)
+			{
+				draw_sprite(spr_shopButton, 2, 207, 51);
+				menuMode = 2;
+			}
+		}
+		else
+		{
+			draw_sprite(spr_shopButton, 0, 207, 51);
+		}
+	}
+	
+	// Draw menu based on menu mode
 	if menuMode == 0
 	{
 		draw_sector_map()
 	}
-	else
+	else if menuMode == 1
 	{
 		draw_sprite(spr_invMenu, -1, 0, 0);
-		draw_inventory(98, 101, 4, 7, obj_player.inventory)
+		draw_inventory(98, 101, 4, 7, obj_player.inventory, true)
 		if invHeight + invScroll >= 203
 		{
 			draw_scrollbar(373, 101)
 		}
 		draw_equip_menu()
-		draw_info()
+		draw_info(441, 86)
 		follow_mouse()
+		draw_sell_button();
+	}
+	else if menuMode == 2
+	{
+		draw_sprite(spr_shopMenu, -1, 0, 0)
+		draw_inventory(108, 91, 4, 4, obj_universe.generatedSectors[? get_coordinates_string()].sectorShopInv, false)
+		draw_info(290, 85)
+		draw_buy_button();
+		draw_repair_buttons();
+		draw_missile_buttons();
 	}
 }
 
 
-function draw_inventory(originx, originy, spacing, columns, list)
+
+function draw_inventory(originx, originy, spacing, columns, list, draggable)
 {
 	if !surface_exists(invSurface)
 	{
-		invSurface = surface_create(269, 203);	
+		invSurface = surface_create((35 * columns) + (4 * (columns - 1)), 203);	
 	}
 	surface_set_target(invSurface);
 	draw_clear_alpha(c_white, 0);
@@ -118,8 +159,9 @@ function draw_inventory(originx, originy, spacing, columns, list)
 					if mouse_check_button(mb_left) && (carriedItemIndex == -1)
 					{
 						infoIndex = list[| i];
+						fromEquipment = false;
 						infoScroll = 0;
-						if point_distance(pressedX, pressedY, surfaceMouseX, surfaceMouseY) > 8
+						if draggable && point_distance(pressedX, pressedY, surfaceMouseX, surfaceMouseY) > 8
 						{
 							carriedItemIndex = i;
 							carriedItem = list[| i]
@@ -147,14 +189,14 @@ function draw_inventory(originx, originy, spacing, columns, list)
 	surface_reset_target();
 	if surface_exists(invSurface)
 	{
-		draw_surface_part(invSurface, 0, 0, 269, 203, originx, originy);
+		draw_surface_part(invSurface, 0, 0, (35 * columns) + (4 * (columns - 1)), 203, originx, originy);
 		surface_free(invSurface)
 	}
 }
 
-function draw_info()
+function draw_info(_x, _y)
 {
-	if point_in_rectangle(mousex, mousey, 443, 186, 443 + 96, 186 + 55)
+	if point_in_rectangle(mousex, mousey, _x + 2, _y + 100, _x + 98, _y + 155)
 	{
 		if mouse_wheel_up()
 		{
@@ -175,7 +217,7 @@ function draw_info()
 	if is_struct(infoIndex)
 	{
 		var sprite = infoIndex.itemSprite
-		draw_sprite_ext(sprite, 0, 492, 137, 2, 2, 0, c_white, 1);
+		draw_sprite_ext(sprite, 0, _x + 51, _y + 51, 2, 2, 0, c_white, 1);
 		
 		if !surface_exists(infoSurface)
 		{
@@ -240,15 +282,15 @@ function draw_info()
 		
 		if surface_exists(infoSurface)
 		{
-			draw_surface_part(infoSurface, 0, 0, 96, 55, 443, 186);
+			draw_surface_part(infoSurface, 0, 0, 96, 55, _x + 2, _y + 100);
 			surface_free(infoSurface)
 		}
 		
-		draw_text_ext_transformed(445, 245, string(infoIndex.description), 8, 184, 0.5, 0.5, 0);
+		draw_text_ext_transformed(_x + 4, _y + 159, string(infoIndex.description), 8, 184, 0.5, 0.5, 0);
 	}
 	else
 	{
-		draw_sprite_ext(spr_player, 0, 492, 137, 3, 3, 90, c_white, 1);
+		draw_sprite_ext(spr_player, 0, _x + 51, _y + 51, 3, 3, 90, c_white, 1);
 		
 		if !surface_exists(infoSurface)
 		{
@@ -320,11 +362,11 @@ function draw_info()
 		
 		if surface_exists(infoSurface)
 		{
-			draw_surface_part(infoSurface, 0, 0, 96, 55, 443, 186);
+			draw_surface_part(infoSurface, 0, 0, 96, 55, _x + 2, _y + 100);
 			surface_free(infoSurface)
 		}
 		
-		draw_text_ext_transformed(445, 245, string(obj_player.description), 8, 184, 0.5, 0.5, 0);
+		draw_text_ext_transformed(_x + 4, _y + 159, string(obj_player.description), 8, 184, 0.5, 0.5, 0);
 	}
 }
 
@@ -349,9 +391,10 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "basicWeaponSlot"]
+					fromEquipment = true;
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.weaponType == weaponTypes.basic
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItem.weaponType == weaponTypes.basic
 				{
 					equip_item(carriedItemIndex, "basicWeaponSlot")
 				}
@@ -365,9 +408,10 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "missileWeaponSlot"]
+					fromEquipment = true;
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.weaponType == weaponTypes.missile
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItem.weaponType == weaponTypes.missile
 				{
 					equip_item(carriedItemIndex, "missileWeaponSlot")
 				}
@@ -381,9 +425,10 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "areaWeaponSlot"]
+					fromEquipment = true;
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.weaponType == weaponTypes.area
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItem.weaponType == weaponTypes.area
 				{
 					equip_item(carriedItemIndex, "areaWeaponSlot")
 				}
@@ -397,9 +442,10 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "tractorWeaponSlot"]
+					fromEquipment = true;
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.weaponType == weaponTypes.tractor
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItem.weaponType == weaponTypes.tractor
 				{
 					equip_item(carriedItemIndex, "tractorWeaponSlot")
 				}
@@ -417,9 +463,10 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "hullSlot"]
+					fromEquipment = true;
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.itemType == itemTypes.hullItem
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItem.itemType == itemTypes.hullItem
 				{
 					equip_item(carriedItemIndex, "hullSlot")
 				}
@@ -433,9 +480,10 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "armorSlot"]
+					fromEquipment = true;
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.itemType == itemTypes.armorItem
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItem.itemType == itemTypes.armorItem
 				{
 					equip_item(carriedItemIndex, "armorSlot")
 				}
@@ -449,9 +497,10 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "shieldSlot"]
+					fromEquipment = true;
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.itemType == itemTypes.shieldItem
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItem.itemType == itemTypes.shieldItem
 				{
 					equip_item(carriedItemIndex, "shieldSlot")
 				}
@@ -465,9 +514,10 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "engineSlot"]
+					fromEquipment = true;
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.itemType == itemTypes.engineItem
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItem.itemType == itemTypes.engineItem
 				{
 					equip_item(carriedItemIndex, "engineSlot")
 				}
@@ -481,9 +531,10 @@ function draw_equip_menu()
 				if mouse_check_button(mb_left)
 				{
 					infoIndex = obj_player.equipped[? "specialSlot"]
+					fromEquipment = true;
 					infoScroll = 0;
 				}
-				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItemIndex.itemType == itemTypes.specialItem
+				if mouse_check_button_released(mb_left) && (carriedItemIndex != -1) && carriedItem.itemType == itemTypes.specialItem
 				{
 					equip_item(carriedItemIndex, "specialSlot")
 				}
@@ -605,5 +656,329 @@ function draw_sector_map()
 	{
 		draw_surface_part(invSurface, 0, 0, 458, 230, 92, 80);
 		surface_free(invSurface)
+	}
+}
+
+function draw_buy_button()
+{
+	if is_struct(infoIndex)
+	{
+		if (point_in_rectangle(mousex, mousey, 292, 284, 387, 300))
+		{
+			doNotDisable = true;
+			
+			draw_sprite(spr_buy, 1, 292, 284);
+			if mouse_check_button(mb_left) && infoIndex.value <= obj_player.money
+			{
+				draw_sprite(spr_buy, 2, 292, 284);
+				obj_universe.generatedSectors[? get_coordinates_string()].removeItemFromShop(infoIndex)
+				add_item(infoIndex)
+				
+				obj_player.money -= infoIndex.value;
+				
+				infoIndex = 0
+				doNotDisable = false;
+			}
+		}
+		else
+		{
+			draw_sprite(spr_buy, 0, 292, 284);
+		}
+		
+		if is_struct(infoIndex)
+		{
+			if infoIndex.value <= obj_player.money
+			{
+				draw_set_halign(fa_center);
+				draw_text_transformed(340, 285, string(infoIndex.value), 2, 2, 0);
+				draw_set_halign(fa_left);
+			}
+			else
+			{
+				draw_set_halign(fa_center);
+				draw_set_color(c_red);
+				draw_text_transformed(340, 285, string(infoIndex.value), 2, 2, 0);
+				draw_set_color(c_white);
+				draw_set_halign(fa_left);
+			}
+		}
+	}
+	else
+	{
+		draw_sprite(spr_buy, 0, 292, 284);
+		
+		draw_set_halign(fa_center);
+		draw_text_transformed(340, 285, "--", 2, 2, 0);
+		draw_set_halign(fa_left);
+	}
+}
+
+function draw_sell_button()
+{
+	{
+	if is_struct(infoIndex) && !fromEquipment
+	{
+		if (point_in_rectangle(mousex, mousey, 443, 285, 538, 301))
+		{
+			doNotDisable = true;
+			
+			draw_sprite(spr_sellButton, 1, 443, 285);
+			if mouse_check_button(mb_left)
+			{
+				draw_sprite(spr_sellButton, 2, 443, 285);
+			}
+			if mouse_check_button_released(mb_left)
+			{
+				remove_item(infoIndex)
+				obj_universe.generatedSectors[? get_coordinates_string()].addItemToShop(infoIndex)
+				obj_player.money += infoIndex.value/2;
+				
+				infoIndex = 0
+				doNotDisable = false;
+			}
+		}
+		else
+		{
+			draw_sprite(spr_sellButton, 0, 443, 285);
+		}
+		
+		if is_struct(infoIndex)
+		{
+			draw_set_halign(fa_center);
+			draw_text_transformed(491, 285, string(infoIndex.value/2), 2, 2, 0);
+			draw_set_halign(fa_left);
+		}
+	}
+	else
+	{
+		draw_sprite(spr_sellButton, 0, 443, 285);
+		
+		draw_set_halign(fa_center);
+		draw_text_transformed(491, 285, "--", 2, 2, 0);
+		draw_set_halign(fa_left);
+	}
+}
+}
+
+function draw_repair_buttons()
+{
+	if obj_player.currentHealth < get_stat("hullStat")
+	{
+		var missingHealth = get_stat("hullStat") - obj_player.currentHealth
+		
+		if (point_in_rectangle(mousex, mousey, 403, 108, 540, 139)) && !(missingHealth < 10 && obj_player.money < missingHealth) && obj_player.money >= 10
+		{
+			doNotDisable = true;
+			
+			draw_sprite(spr_repair, 1, 403, 108);
+			if mouse_check_button(mb_left)
+			{
+				draw_sprite(spr_repair, 2, 403, 108);
+			}
+			if mouse_check_button_pressed(mb_left)
+			{
+				if missingHealth < 10 && obj_player.money >= missingHealth
+				{
+					obj_player.money -= round(missingHealth);
+					obj_player.currentHealth += missingHealth;
+				}
+				else if obj_player.money >= 10
+				{
+					obj_player.money -= 10;
+					obj_player.currentHealth += 10;
+				}
+			}
+			if mouse_check_button_released(mb_left)
+			{
+				doNotDisable = false;
+			}
+		}
+		else
+		{
+			draw_sprite(spr_repair, 0, 403, 108);
+		}
+	
+		if (point_in_rectangle(mousex, mousey, 403, 142, 540, 173)) && obj_player.money >= missingHealth
+		{
+			doNotDisable = true;
+			
+			draw_sprite_ext(spr_repair, 1, 541, 174, 1, 1, 180, c_white, 1);
+			if mouse_check_button(mb_left)
+			{
+				draw_sprite_ext(spr_repair, 2, 541, 174, 1, 1, 180, c_white, 1);
+			}
+			if mouse_check_button_pressed(mb_left)
+			{
+				if obj_player.money >= missingHealth
+				{
+					obj_player.money -= round(missingHealth);
+					obj_player.currentHealth += missingHealth;
+				}
+			}
+			if mouse_check_button_released(mb_left)
+			{
+				doNotDisable = false;
+			}
+		}
+		else
+		{
+			draw_sprite_ext(spr_repair, 0, 541, 174, 1, 1, 180, c_white, 1);
+		}
+		
+		draw_set_halign(fa_center);
+		
+		if missingHealth < 10 && missingHealth != 0
+		{
+			draw_text_transformed(472, 108, "Fix" + string(round(missingHealth)) + "Hull", 2, 2, 0);
+			if obj_player.money >= missingHealth
+			{
+				draw_text_transformed(472, 124, string(round(missingHealth)) + " Scrap", 2, 2, 0);
+			}
+			else
+			{
+				draw_set_color(c_red);
+				draw_text_transformed(472, 124, string(round(missingHealth)) + " Scrap", 2, 2, 0);
+				draw_set_color(c_white);
+			}
+		}
+		else
+		{
+			draw_text_transformed(472, 108, "Fix 10 Hull", 2, 2, 0);
+			
+			if obj_player.money >= 10
+			{
+				draw_text_transformed(472, 124, "10 Scrap", 2, 2, 0);
+			}
+			else
+			{
+				draw_set_color(c_red);
+				draw_text_transformed(472, 124, "10 Scrap", 2, 2, 0);
+				draw_set_color(c_white);
+			}
+		}
+		
+		draw_text_transformed(472, 142, "Fix All Hull", 2, 2, 0);
+		
+		if obj_player.money >= missingHealth
+		{
+			draw_text_transformed(472, 158, string(round(missingHealth)) + " Scrap", 2, 2, 0);
+		}
+		else
+		{
+			draw_set_color(c_red);
+			draw_text_transformed(472, 158, string(round(missingHealth)) + " Scrap", 2, 2, 0);
+			draw_set_color(c_white);
+		}
+		
+		draw_set_halign(fa_left);
+		
+	}
+	else
+	{
+		draw_sprite(spr_repair, 0, 403, 108);
+		draw_sprite_ext(spr_repair, 0, 541, 174, 1, 1, 180, c_white, 1);
+		
+		draw_set_halign(fa_center);
+		
+		draw_text_transformed(472, 116, "Repairs", 2, 2, 0);
+		draw_text_transformed(472, 150, "Not Needed", 2, 2, 0);
+		
+		draw_set_halign(fa_left);
+	}
+}
+
+function draw_missile_buttons()
+{
+	if obj_player.money >= 7
+	{
+		
+		if (point_in_rectangle(mousex, mousey, 403, 216, 540, 247))
+		{
+			doNotDisable = true;
+			
+			draw_sprite(spr_buyMissile, 1, 403, 216);
+			if mouse_check_button(mb_left)
+			{
+				draw_sprite(spr_buyMissile, 2, 403, 216);
+			}
+			if mouse_check_button_pressed(mb_left)
+			{
+				if obj_player.money >= 7
+				{
+					obj_player.money -= 7;
+					obj_player.missiles ++;
+				}
+			}
+			if mouse_check_button_released(mb_left)
+			{
+				doNotDisable = false;
+			}
+		}
+		else
+		{
+			draw_sprite(spr_buyMissile, 0, 403, 216);
+		}
+		
+		draw_set_halign(fa_center);
+		draw_text_transformed(472, 216, "1 Missile", 2, 2, 0);
+		draw_text_transformed(472, 232, "7 Scrap", 2, 2, 0);
+		draw_set_halign(fa_left);
+	}
+	else
+	{
+		draw_sprite(spr_buyMissile, 0, 403, 216);
+		
+		draw_set_halign(fa_center);
+		draw_text_transformed(472, 216, "1 Missile", 2, 2, 0);
+		draw_set_color(c_red);
+		draw_text_transformed(472, 232, "7 Scrap", 2, 2, 0);
+		draw_set_color(c_white);
+		draw_set_halign(fa_left);
+	}
+	
+	if obj_player.money >= 35
+	{
+		if (point_in_rectangle(mousex, mousey, 403, 250, 540, 281))
+		{
+			doNotDisable = true;
+			
+			draw_sprite_ext(spr_buyMissile, 1, 541, 282, 1, 1, 180, c_white, 1);
+			if mouse_check_button(mb_left)
+			{
+				draw_sprite_ext(spr_buyMissile, 2, 541, 282, 1, 1, 180, c_white, 1);
+			}
+			if mouse_check_button_pressed(mb_left)
+			{
+				if obj_player.money >= 35
+				{
+					obj_player.money -= 35;
+					obj_player.missiles += 5;
+				}
+			}
+			if mouse_check_button_released(mb_left)
+			{
+				doNotDisable = false;
+			}
+		}
+		else
+		{
+			draw_sprite_ext(spr_buyMissile, 0, 541, 282, 1, 1, 180, c_white, 1);
+		}
+		
+		draw_set_halign(fa_center);
+		draw_text_transformed(472, 250, "5 Missiles", 2, 2, 0);
+		draw_text_transformed(472, 266, "35 Scrap", 2, 2, 0);
+		draw_set_halign(fa_left);
+	}
+	else
+	{
+		draw_sprite_ext(spr_buyMissile, 0, 541, 282, 1, 1, 180, c_white, 1);
+		
+		draw_set_halign(fa_center);
+		draw_text_transformed(472, 250, "5 Missiles", 2, 2, 0);
+		draw_set_color(c_red);
+		draw_text_transformed(472, 266, "35 Scrap", 2, 2, 0);
+		draw_set_color(c_white);
+		draw_set_halign(fa_left);
 	}
 }

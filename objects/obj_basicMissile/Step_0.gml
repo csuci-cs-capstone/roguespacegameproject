@@ -5,8 +5,16 @@ var closestEnemy = instance_nearest(phy_position_x, phy_position_y, obj_defaultE
 
 if closestEnemy != noone
 {
-	var playerTheta = point_direction(phy_position_x, phy_position_y, closestEnemy.phy_position_x, closestEnemy.phy_position_y);
-	phy_rotation += clamp(sin(degtorad(-phy_rotation - playerTheta)) * rotationSpeed, -2, 2);
+	if instance_exists(obj_target) && obj_target.visible
+	{
+		var playerTheta = point_direction(phy_position_x, phy_position_y, obj_target.x, obj_target.y);
+		phy_rotation += clamp(sin(degtorad(-phy_rotation - playerTheta)) * rotationSpeed, -2, 2);
+	}
+	else
+	{
+		var playerTheta = point_direction(phy_position_x, phy_position_y, closestEnemy.phy_position_x, closestEnemy.phy_position_y);
+		phy_rotation += clamp(sin(degtorad(-phy_rotation - playerTheta)) * rotationSpeed, -2, 2);
+	}
 	
 	if distance_to_object(closestEnemy) < 10
 	{

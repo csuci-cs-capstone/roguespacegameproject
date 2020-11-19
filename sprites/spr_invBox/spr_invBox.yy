@@ -72,8 +72,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"04181f5a-22d7-4022-9c5d-06e97802406a","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "INV",
+    "path": "folders/Sprites/UI/Menu/INV.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_invBox",

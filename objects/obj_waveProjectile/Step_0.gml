@@ -11,9 +11,29 @@ if instance_exists(obj_player)
 
 	for (var i = 0; i < ds_list_size(listOfCollisions); i++)
 	{
-		with(listOfCollisions[| i])
+		var touchingObject = listOfCollisions[| i]
+		
+		if instance_exists(touchingObject) && ds_list_find_index(collisionBlacklist, touchingObject) == -1
 		{
-			physics_apply_impulse(x, y, lengthdir_x(80, point_direction(x, y, obj_player.x, obj_player.y) - 180), lengthdir_y(80, point_direction(x, y, obj_player.x, obj_player.y) - 180))
+			ds_list_insert(collisionBlacklist, 0, touchingObject);
+			with(touchingObject)
+			{
+				physics_apply_impulse(x, y, lengthdir_x(300, point_direction(obj_player.x, obj_player.y, x, y)), lengthdir_y(300, point_direction(obj_player.x, obj_player.y, x, y)))
+			}
+			if object_is_ancestor(touchingObject.object_index, obj_defaultEnemyParams) || object_is_ancestor(touchingObject.object_index, obj_destroyableWeapon)
+			{
+				touchingObject.currentHealth -= damage;
+				with (touchingObject)
+				{
+					audio_stop_sound(snd_hit2)
+					audio_play_sound(snd_hit2, 0, false);
+					flash = 2
+				}
+			}
+		}
+		else
+		{
+			ds_list_delete(listOfCollisions, i)
 		}
 	}
 }

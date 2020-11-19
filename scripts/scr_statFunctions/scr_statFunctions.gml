@@ -76,7 +76,7 @@ function add_item(item)
 	}
 }
 
-function remove_item(index)
+function remove_item_index(index)
 {
 	var item = ds_list_find_value(obj_player.inventory, index)
 	if (item.itemType == itemTypes.passiveItem)
@@ -84,6 +84,15 @@ function remove_item(index)
 		remove_effect(item)
 	}
 	ds_list_delete(obj_player.inventory, index)
+}
+
+function remove_item(item)
+{
+	if (item.itemType == itemTypes.passiveItem)
+	{
+		remove_effect(item)
+	}
+	ds_list_delete(obj_player.inventory, ds_list_find_index(obj_player.inventory, item))
 }
 
 function get_stat(statName)

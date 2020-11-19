@@ -76,8 +76,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"535d16ed-520c-4ce0-a885-728821e7f567","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "Menu",
+    "path": "folders/Sprites/UI/Menu.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_invButton",

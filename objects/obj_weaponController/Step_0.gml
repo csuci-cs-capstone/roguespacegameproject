@@ -3,9 +3,16 @@
 
 weaponIndex = obj_player.weaponIndex
 
-if canFire && !obj_player.dodging && mouse_check_button(mb_left) && !obj_jumpMechanics.jump
+obj_target.enabled = (obj_player.currentWeapon.targetMode != targetModes.doesNotTarget) && !(weaponIndex == 3 && mouse_check_button(mb_left))
+
+if (canFire && !obj_player.dodging && mouse_check_button(mb_left) && !obj_jumpMechanics.jump) && !(weaponIndex == 1 && obj_player.missiles <= 0)
 {
 	firingMode = obj_player.currentWeapon.firePattern
+	
+	if weaponIndex == 1 && charged[1]
+	{
+		obj_player.missiles--;	
+	}
 	
 	switch (firingMode)
 	{
@@ -30,6 +37,7 @@ if canFire && !obj_player.dodging && mouse_check_button(mb_left) && !obj_jumpMec
 				alarm_set(weaponIndex, room_speed * 1/(get_stat("firerateStat")))
 				charged[weaponIndex] = false;	
 			}
+			break;
 		case firingPatterns.unison:
 			if charged[weaponIndex]
 			{
@@ -44,6 +52,7 @@ if canFire && !obj_player.dodging && mouse_check_button(mb_left) && !obj_jumpMec
 				alarm_set(weaponIndex, room_speed * 1/(get_stat("firerateStat")))
 				charged[weaponIndex] = false;	
 			}
+			break;
 		case firingPatterns.charge:
 			if charged[weaponIndex]
 			{
@@ -53,6 +62,10 @@ if canFire && !obj_player.dodging && mouse_check_button(mb_left) && !obj_jumpMec
 					alarmSet = true;
 				}
 			}
+			break;
+		case firingPatterns.stream:
+			event_user(0)
+			break;
 	}
 }
 
@@ -78,6 +91,23 @@ if mouse_check_button_released(mb_left)
 		alarm_set(weaponIndex, room_speed * 1/(get_stat("firerateStat")))
 		charged[weaponIndex] = false;
 	}
+	
+	if connection
+	{
+		physics_joint_delete(connection)
+		connectedInstance = noone;
+		jointCreated = false;
+		connection = 0
+	}
+	
 	alarmSet = false;
 	alarm_set(4, -1);
+}
+
+if !instance_exists(obj_target.currentTargetedInstance)
+{
+	physics_joint_delete(connection)
+	connectedInstance = noone;
+	jointCreated = false;
+	connection = 0
 }

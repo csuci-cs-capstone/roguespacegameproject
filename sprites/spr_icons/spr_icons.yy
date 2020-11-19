@@ -96,8 +96,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"98a022ed-7395-41a3-83b5-3cf320a9bedd","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "INV",
+    "path": "folders/Sprites/UI/Menu/INV.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_icons",

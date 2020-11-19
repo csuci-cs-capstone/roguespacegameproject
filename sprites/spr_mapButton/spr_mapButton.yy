@@ -76,8 +76,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"d780939d-f769-4f38-8088-ae3017c545d3","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "Menu",
+    "path": "folders/Sprites/UI/Menu.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_mapButton",

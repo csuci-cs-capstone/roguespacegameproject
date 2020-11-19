@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"962b111e-49bd-4ba0-9319-6ef7cfb8faad","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "INV",
+    "path": "folders/Sprites/UI/Menu/INV.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_weaponEquip",

@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"b4abc3d4-3b2f-45f4-8e73-cbd1f63a35a5","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "Map",
+    "path": "folders/Sprites/UI/Menu/Map.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_sectorSquare",
