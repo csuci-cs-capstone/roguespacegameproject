@@ -125,7 +125,7 @@ function generate_sector_data(_x, _y)
 		
 	var massValue = (perlin_octaves(_x/8, _y/8, 6, 0.5, vector_array) * 10) + 10
 		
-	var hasShop = (((power(perlin_octaves(_x/2, _y/2, 1, 0.5, vector_array), 7) + 1) / 2) * 255) >= 128
+	var hasShop = (((power(perlin_octaves(_x/2, _y/2, 1, 0.5, vector_array), 3) + 1) / 2) * 255) >= 128
 		
 	return new Sector(_x, _y, hasShop, massValue, dangerValue)	
 }
@@ -163,21 +163,17 @@ function generate_sector_from_data(sectorData)
 	
 	#region //Danger value
 	if sectorData.sectorHasShop
-	{
-		
+	{	
 		if sectorData.sectorShopRotation == -1
 		{
-			
 			sectorData.sectorShopRotation = random_range(0, 360)
-			
-			sectorData.initialize_shop_inv()
 			
 			ds_list_shuffle(obj_itemData.itemList)
 		
 			for (var i = 0; i < irandom_range(3, 20) && i < ds_list_size(obj_itemData.itemList); i++)
 			{
 				sectorData.addItemToShop(obj_itemData.itemList[| i])
-			}
+			}	
 		}
 		
 		var station = instance_create_layer(room_width/2, room_height/2, "Interactible", obj_spaceStation)

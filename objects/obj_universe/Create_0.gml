@@ -43,7 +43,7 @@ Sector = function(_x, _y, _hasShop, _mass, _danger) constructor
 	sectorHasShop = _hasShop;
 	sectorShopRotation = -1;
 	
-	sectorShopInv = 0;
+	sectorShopInv = ds_list_create();
 	
 	sectorEnemyList = ds_map_create();
 	
@@ -68,11 +68,6 @@ Sector = function(_x, _y, _hasShop, _mass, _danger) constructor
 				sectorEnemyList[? enemy] -= 1;
 			}
 		}
-	}
-	
-	static initialize_shop_inv = function()
-	{
-		sectorShopInv = ds_list_create()	
 	}
 	
 	static addItemToShop = function(item)
