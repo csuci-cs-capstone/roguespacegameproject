@@ -125,7 +125,7 @@ function generate_sector_data(_x, _y)
 		
 	var massValue = (perlin_octaves(_x/8, _y/8, 6, 0.5, vector_array) * 10) + 10
 		
-	var hasShop = (((power(perlin_octaves(_x/2, _y/2, 1, 0.5, vector_array), 3) + 1) / 2) * 255) >= 128
+	var hasShop = (((power(perlin_octaves(_x/2, _y/2, 1, 0.5, vector_array), 7) + 1) / 2) * 255) >= 128
 		
 	return new Sector(_x, _y, hasShop, massValue, dangerValue)	
 }
