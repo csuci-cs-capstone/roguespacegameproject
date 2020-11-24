@@ -134,6 +134,8 @@ function generate_sector_data(_x, _y)
 		
 	var hasShop = (((1 - power(abs(sin(0.628318 * _x)), 0.8)) + (1 - power(abs(sin(0.628318 * _y)), 0.8)))/2) >= 0.98
 	
+	dangerValue += distance_from_center(_x, _y)
+	
 	return new Sector(_x, _y, hasShop, massValue, dangerValue)	
 }
 
@@ -188,24 +190,24 @@ function generate_sector_from_data(sectorData)
 	}
 	else
 	{
-		var hasBoss
-		
-		if !global.bossGenerated
+		if ds_map_empty(sectorData.sectorEnemyList) && !(sectorData.sectorDanger <= 0) // If there are no enemies in the enemy list, and the danger is not 0, then new enemies will be generated
 		{
-			hasBoss = random_range(0, 20) < get_distance_from_center()
-			
-			if hasBoss
+			var hasBoss
+		
+			if !global.bossGenerated
 			{
-				global.bossGenerated = true;
+				hasBoss = random_range(0, 20) < get_distance_from_center()
+			
+				if hasBoss
+				{
+					global.bossGenerated = true;
+				}
 			}
-		}
-		else
-		{
-			hasBoss = false;
-		}
-		
-		if ds_map_empty(sectorData.sectorEnemyList) // If there are no enemies in the enemy list, and the danger is not 0, then new enemies will be generated
-		{
+			else
+			{
+				hasBoss = false;
+			}
+			
 			if hasBoss
 			{
 				instance_create_layer(choose(100, room_width - 100), choose(100, room_height - 100), "Interactible", obj_Boss);
@@ -215,7 +217,7 @@ function generate_sector_from_data(sectorData)
 			else
 			{
 				
-				var dangerCount = sectorData.sectorDanger + get_distance_from_center() * 3	;
+				var dangerCount = sectorData.sectorDanger;
 				while dangerCount > 0
 				{
 					switch (irandom_range(1, ((dangerCount >= 1) + (dangerCount >= 2) + (dangerCount >= 4) + (dangerCount >= 7) + (dangerCount >= 10))))
@@ -284,4 +286,9 @@ function get_coordinates_string()
 function get_distance_from_center()
 {
 	return abs(obj_universe.playerSectorX) + abs(obj_universe.playerSectorY)
+}
+
+function distance_from_center(_x, _y)
+{
+	return abs(_x) + abs(_y)
 }
