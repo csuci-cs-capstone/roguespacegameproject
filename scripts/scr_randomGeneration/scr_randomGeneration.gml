@@ -196,7 +196,7 @@ function generate_sector_from_data(sectorData)
 		
 			if !global.bossGenerated
 			{
-				hasBoss = random_range(0, 20) < get_distance_from_center()
+				hasBoss = random_range(0, 40) < get_distance_from_center()
 			
 				if hasBoss
 				{
