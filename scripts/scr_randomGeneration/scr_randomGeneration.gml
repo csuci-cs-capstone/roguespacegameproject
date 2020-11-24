@@ -104,6 +104,14 @@ function remove_all_objects()
 	instance_destroy(obj_spaceStation);
 	instance_destroy(obj_missileParent);
 	
+	instance_destroy(obj_Boss_Cannon);
+	instance_destroy(obj_Boss_Rapid);
+	instance_destroy(obj_Boss_Shotgun);
+	instance_destroy(obj_BossInnerShellLeft);
+	instance_destroy(obj_BossInnerShellRight);
+	instance_destroy(obj_BossOuterShellLeft);
+	instance_destroy(obj_BossOuterShellRight);
+	
 	if instance_exists(obj_missileParent)
 	{
 		obj_missileParent.explode = true;
@@ -124,7 +132,7 @@ function generate_sector_data(_x, _y)
 		
 	var massValue = (perlin_octaves(_x/8, _y/8, 6, 0.5, vector_array) * 10) + 10
 		
-	var hasShop = (((power(perlin_octaves(_x/2, _y/2, 1, 0.5, vector_array), 7) + 1) / 2) * 255) >= 128
+	var hasShop = (((1 - power(abs(sin(0.628318 * _x)), 0.8)) + (1 - power(abs(sin(0.628318 * _y)), 0.8)))/2) >= 0.98
 	
 	return new Sector(_x, _y, hasShop, massValue, dangerValue)	
 }
