@@ -34,12 +34,13 @@ enum firingPatterns
 {
 	notAWeapon,
 	unison,
-	alternate,
 	burstUnison,
+	alternate,
 	burstAlternate,
 	charge,
 	burstCharge,
-	stream
+	stream,
+	swarm
 }
 
 enum targetModes
@@ -90,7 +91,7 @@ test_item = new Item("test",
 					firingPatterns.notAWeapon,
 					targetModes.doesNotTarget);
 
-ds_list_add(itemList, test_item);
+//ds_list_add(itemList, test_item);
 
 basic_hull = new Item("Basic Hull", 
 					spr_basicHull, 
@@ -104,7 +105,7 @@ basic_hull = new Item("Basic Hull",
 					firingPatterns.notAWeapon,
 					targetModes.doesNotTarget);
 					
-ds_list_add(itemList, basic_hull);
+//ds_list_add(itemList, basic_hull);
 
 basic_armor = new Item("Titanium Armor", 
 					spr_basicArmor, 
@@ -118,7 +119,7 @@ basic_armor = new Item("Titanium Armor",
 					firingPatterns.notAWeapon,
 					targetModes.doesNotTarget);
 					
-ds_list_add(itemList, basic_armor);
+//ds_list_add(itemList, basic_armor);
 
 basic_shields = new Item("Standard Shields", 
 					spr_basicShields, 
@@ -133,7 +134,7 @@ basic_shields = new Item("Standard Shields",
 					firingPatterns.notAWeapon,
 					targetModes.doesNotTarget);
 					
-ds_list_add(itemList, basic_shields);
+//ds_list_add(itemList, basic_shields);
 
 basic_engine = new Item("Ion Engine", 
 					spr_basicEngine, 
@@ -147,7 +148,7 @@ basic_engine = new Item("Ion Engine",
 					firingPatterns.notAWeapon,
 					targetModes.doesNotTarget);
 					
-ds_list_add(itemList, basic_engine);
+//ds_list_add(itemList, basic_engine);
 
 basic_special = new Item("Overdrive Boosters", 
 					spr_basicSpecial, 
@@ -162,8 +163,150 @@ basic_special = new Item("Overdrive Boosters",
 					firingPatterns.notAWeapon,
 					targetModes.doesNotTarget);
 					
-ds_list_add(itemList, basic_special);
+//ds_list_add(itemList, basic_special);
 #endregion
+
+titanium_hull = new Item("Compressed Titanium Hull", 
+					spr_titaniumHull, 
+					itemTypes.hullItem, 
+					weaponTypes.notAWeapon,
+					"Triple compressed titanium material.",
+					50,
+					[new Effect("hullStat", effectTypes.modify, 150)],
+					spr_testItem,
+					0,
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
+					
+ds_list_add(itemList, titanium_hull);
+
+composite_hull = new Item("Composite Bracing", 
+					spr_compositeHull,
+					itemTypes.hullItem, 
+					weaponTypes.notAWeapon,
+					"Hull made of composite material.",
+					75,
+					[new Effect("hullStat", effectTypes.modify, 200)],
+					spr_testItem,
+					0,
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
+					
+ds_list_add(itemList, composite_hull);
+
+adamantium_hull = new Item("Adamantium Structure", 
+					spr_adamantiumHull, 
+					itemTypes.hullItem, 
+					weaponTypes.notAWeapon,
+					"Rare materials make good hulls.",
+					150,
+					[new Effect("hullStat", effectTypes.modify, 300)],
+					spr_testItem,
+					0,
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
+					
+ds_list_add(itemList, adamantium_hull);
+
+neutronium_hull = new Item("Neutronium Plating", 
+					spr_neutroniumHull, 
+					itemTypes.hullItem, 
+					weaponTypes.notAWeapon,
+					"Exotic neutronium material shaped into ship hull",
+					300,
+					[new Effect("hullStat", effectTypes.modify, 500)],
+					spr_testItem,
+					0,
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
+					
+ds_list_add(itemList, neutronium_hull);
+
+unobtanium_hull = new Item("Unobtanium Construction", 
+					spr_unobtaniumHull, 
+					itemTypes.hullItem, 
+					weaponTypes.notAWeapon,
+					"Despite the name, this material is very much obtainable.",
+					500,
+					[new Effect("hullStat", effectTypes.modify, 1000)],
+					spr_testItem,
+					0,
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
+					
+ds_list_add(itemList, unobtanium_hull);
+
+heavy_shields = new Item("Heavy Shields", 
+					spr_heavyShields, 
+					itemTypes.shieldItem, 
+					weaponTypes.notAWeapon,
+					"More shielding, but recharges slower.", 
+					10,
+					[new Effect("shieldStat", effectTypes.modify, 200),
+					new Effect("shieldRechargeStat", effectTypes.modify, 0.050)],
+					spr_testItem,
+					0,
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
+					
+ds_list_add(itemList, heavy_shields);
+					
+flash_shields = new Item("Flash Shields", 
+					spr_lightShields, 
+					itemTypes.shieldItem, 
+					weaponTypes.notAWeapon,
+					"Light but fast recharging shields.", 
+					75,
+					[new Effect("shieldStat", effectTypes.modify, 50),
+					new Effect("shieldRechargeStat", effectTypes.modify, 0.15)],
+					spr_testItem,
+					0,
+					firingPatterns.notAWeapon,
+					targetModes.doesNotTarget);
+					
+ds_list_add(itemList, flash_shields);
+
+weapon_cooler = new Item("Weapon Cooler",
+						spr_item1,
+						itemTypes.passiveItem,
+						weaponTypes.notAWeapon,
+						"Improves weapon cooling, which improves firerate",
+						50,
+						[new Effect("firerateStat", effectTypes.multiplier, 0.01)],
+						spr_item1,
+						0,
+						firingPatterns.notAWeapon,
+						targetModes.doesNotTarget);
+
+ds_list_add(itemList, weapon_cooler);
+
+energy_focuser = new Item("Energy Focuser",
+						spr_item1,
+						itemTypes.passiveItem,
+						weaponTypes.notAWeapon,
+						"Focuses energy to increase damage.",
+						50,
+						[new Effect("damageStat", effectTypes.multiplier, 0.1)],
+						spr_item1,
+						0,
+						firingPatterns.notAWeapon,
+						targetModes.doesNotTarget);
+
+ds_list_add(itemList, energy_focuser);
+
+shield_recharger = new Item("Shield Recharger",
+						spr_recharger,
+						itemTypes.passiveItem,
+						weaponTypes.notAWeapon,
+						"Increases Shield Recharge Rate",
+						50,
+						[new Effect("shieldRechargeStat", effectTypes.multiplier, 0.05)],
+						spr_item1,
+						0,
+						firingPatterns.notAWeapon,
+						targetModes.doesNotTarget);
+
+ds_list_add(itemList, shield_recharger);
 
 #region //weapons
 basic_weapon = new Item("Plasma Blasters", 
@@ -182,7 +325,7 @@ basic_weapon = new Item("Plasma Blasters",
 					firingPatterns.alternate,
 					targetModes.doesNotTarget);
 					
-ds_list_add(itemList, basic_weapon);
+//ds_list_add(itemList, basic_weapon);
 
 basic_missile = new Item("Homing Missiles", 
 					spr_basicMissileIcon, 
@@ -200,7 +343,7 @@ basic_missile = new Item("Homing Missiles",
 					firingPatterns.unison,
 					targetModes.enemies);
 					
-ds_list_add(itemList, basic_missile);
+//ds_list_add(itemList, basic_missile);
 
 basic_area = new Item("Wave Launcher", 
 					spr_basicAreaIcon, 
@@ -220,7 +363,7 @@ basic_area = new Item("Wave Launcher",
 					firingPatterns.charge,
 					targetModes.doesNotTarget);
 					
-ds_list_add(itemList, basic_area);
+//ds_list_add(itemList, basic_area);
 
 basic_tractor = new Item("Tractor Beam", 
 					spr_basicTractorIcon, 
@@ -238,5 +381,5 @@ basic_tractor = new Item("Tractor Beam",
 					firingPatterns.stream,
 					targetModes.enemiesObstaclesAndDestroyableWeapons);
 					
-ds_list_add(itemList, basic_tractor);
+//ds_list_add(itemList, basic_tractor);
 #endregion

@@ -13,7 +13,7 @@ currentHealth = maxHealth;
 
 enginePower = 80;
 
-value = 15
+value = 10
 count = 0;
 
 alarm_set(4, room_speed * 5)

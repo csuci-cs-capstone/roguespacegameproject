@@ -121,12 +121,11 @@ function remove_all_objects()
 function generate_sector_data(_x, _y)
 {
 	var dangerValue = (perlin_octaves(_x/8, _y/8, 6, 0.5, vector_array) * 20) + 20
-	dangerValue += get_distance_from_center() * 2	
 		
 	var massValue = (perlin_octaves(_x/8, _y/8, 6, 0.5, vector_array) * 10) + 10
 		
 	var hasShop = (((power(perlin_octaves(_x/2, _y/2, 1, 0.5, vector_array), 7) + 1) / 2) * 255) >= 128
-		
+	
 	return new Sector(_x, _y, hasShop, massValue, dangerValue)	
 }
 
@@ -181,39 +180,65 @@ function generate_sector_from_data(sectorData)
 	}
 	else
 	{
+		var hasBoss
+		
+		if !global.bossGenerated
+		{
+			hasBoss = random_range(0, 20) < get_distance_from_center()
+			
+			if hasBoss
+			{
+				global.bossGenerated = true;
+			}
+		}
+		else
+		{
+			hasBoss = false;
+		}
+		
 		if ds_map_empty(sectorData.sectorEnemyList) // If there are no enemies in the enemy list, and the danger is not 0, then new enemies will be generated
 		{
-			var dangerCount = sectorData.sectorDanger;
-			while dangerCount > 0
+			if hasBoss
 			{
-				switch (irandom_range(1, ((dangerCount >= 1) + (dangerCount >= 2) + (dangerCount >= 4) + (dangerCount >= 7) + (dangerCount >= 10))))
+				instance_create_layer(choose(100, room_width - 100), choose(100, room_height - 100), "Interactible", obj_Boss);
+				sectorData.add_enemy(obj_Boss);
+				sectorData.sectorDanger = 1000;
+			}
+			else
+			{
+				
+				var dangerCount = sectorData.sectorDanger + get_distance_from_center() * 3	;
+				while dangerCount > 0
 				{
-					case 5:
-						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_sniper);
-						sectorData.add_enemy(obj_sniper)
-						dangerCount -= obj_sniper.danger;
-						break;
-					case 4:
-						var enemy = choose(obj_mineLayer, obj_launcher)
-						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", enemy);
-						sectorData.add_enemy(enemy)
-						dangerCount -= enemy.danger;
-						break;
-					case 3:
-						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_dodger);
-						sectorData.add_enemy(obj_dodger)
-						dangerCount -= obj_dodger.danger;
-						break;
-					case 2:
-						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_spreadShot);
-						sectorData.add_enemy(obj_spreadShot)
-						dangerCount -= obj_spreadShot.danger;
-						break;
-					case 1:
-						instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_basicShip);
-						sectorData.add_enemy(obj_basicShip)
-						dangerCount -= obj_basicShip.danger;
-						break;
+					switch (irandom_range(1, ((dangerCount >= 1) + (dangerCount >= 2) + (dangerCount >= 4) + (dangerCount >= 7) + (dangerCount >= 10))))
+					{
+						case 5:
+							instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_sniper);
+							sectorData.add_enemy(obj_sniper)
+							dangerCount -= obj_sniper.danger;
+							break;
+						case 4:
+							var enemy = choose(obj_mineLayer, obj_launcher)
+							instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", enemy);
+							sectorData.add_enemy(enemy)
+							dangerCount -= enemy.danger;
+							break;
+						case 3:
+							instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_dodger);
+							sectorData.add_enemy(obj_dodger)
+							dangerCount -= obj_dodger.danger;
+							break;
+						case 2:
+							instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_spreadShot);
+							sectorData.add_enemy(obj_spreadShot)
+							dangerCount -= obj_spreadShot.danger;
+							break;
+						case 1:
+							instance_create_layer(random_range(300, room_width - 300), random_range(300, room_height - 300), "Interactible", obj_basicShip);
+							sectorData.add_enemy(obj_basicShip)
+							dangerCount -= obj_basicShip.danger;
+							break;
+					}
 				}
 			}
 		}

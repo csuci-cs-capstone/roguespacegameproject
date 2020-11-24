@@ -34,6 +34,29 @@ if (canFire && !obj_player.dodging && mouse_check_button(mb_left) && !obj_jumpMe
 					}	
 				}
 				side = !side
+				//alarm_set(weaponIndex, room_speed * (1/(get_stat("firerateStat"))))
+				alarm_set(weaponIndex, room_speed * (1/(get_stat("firerateStat"))))
+				charged[weaponIndex] = false;	
+			}
+			break;
+		case firingPatterns.burstAlternate:
+			if charged[weaponIndex]
+			{
+				if side
+				{
+					with(obj_player.leftWeapon)
+					{
+						event_user(0)	
+					}
+				}
+				else
+				{
+					with(obj_player.rightWeapon)
+					{
+						event_user(0)
+					}	
+				}
+				side = !side
 				alarm_set(weaponIndex, room_speed * 1/(get_stat("firerateStat")))
 				charged[weaponIndex] = false;	
 			}
@@ -53,6 +76,8 @@ if (canFire && !obj_player.dodging && mouse_check_button(mb_left) && !obj_jumpMe
 				charged[weaponIndex] = false;	
 			}
 			break;
+		case firingPatterns.burstUnison:
+			break;
 		case firingPatterns.charge:
 			if charged[weaponIndex]
 			{
@@ -63,8 +88,12 @@ if (canFire && !obj_player.dodging && mouse_check_button(mb_left) && !obj_jumpMe
 				}
 			}
 			break;
+		case firingPatterns.burstCharge:
+			break;
 		case firingPatterns.stream:
 			event_user(0)
+			break;
+		case firingPatterns.swarm:
 			break;
 	}
 }

@@ -25,6 +25,11 @@ if generateSector
 	// ds_map_destroy(sectorData.sectorEnemyList);
 	
 	generateSector = false;
+	if sectorData.sectorDanger > 0
+	{
+		obj_drawUI.canJump = false;
+		alarm_set(0, room_speed * 10)
+	}
 }
 
 if activate

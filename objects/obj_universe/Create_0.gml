@@ -12,6 +12,8 @@ vector_array = ds_list_create();
 populate_vector_array(vector_array)
 #endregion
 
+global.bossGenerated = false;
+
 #region //Sector Data
 
 //Player Sector Coordinates
@@ -42,6 +44,7 @@ Sector = function(_x, _y, _hasShop, _mass, _danger) constructor
 	sectorType = sectorTypes.empty;
 	sectorHasShop = _hasShop;
 	sectorShopRotation = -1;
+	isBossSector = false;
 	
 	sectorShopInv = ds_list_create();
 	

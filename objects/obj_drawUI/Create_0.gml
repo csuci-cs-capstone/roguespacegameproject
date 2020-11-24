@@ -26,6 +26,8 @@ menuOpen = false;
 hideUI = false;
 alarm_value = -1;
 
+canJump = true;
+
 window_set_cursor(cr_none);
 
 //cursor_sprite = spr_crosshairCursor;

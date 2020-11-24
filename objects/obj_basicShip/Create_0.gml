@@ -13,4 +13,4 @@ maxHealth = 35;
 currentHealth = maxHealth;
 
 alarm_set(0, room_speed);
-value = 3
+value = 2

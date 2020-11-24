@@ -102,7 +102,7 @@ equip_item(0, "tractorWeaponSlot");
 currentShields = get_stat("shieldStat");
 currentHealth = get_stat("hullStat");
 description = "Your ship, it has seen a few battles."
-money = 100;
+money = 0;
 missiles = 5;
 
 depth = 0;

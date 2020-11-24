@@ -10,6 +10,6 @@ danger = 4;
 maxHealth = 30;
 currentHealth = maxHealth;
 
-value = 10
+value = 5
 count = 0;
 alarm_set(4, room_speed);
