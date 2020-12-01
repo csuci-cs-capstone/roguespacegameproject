@@ -28,7 +28,11 @@ else
 
 if fadeToBlackAlpha == 1
 {
-	room_goto(rm_sandbox);
+	if !alarmSet
+	{
+		alarm_set(1, room_speed/2)
+		alarmSet = true;
+	}
 }
 
 if (flashCount < 4)
@@ -43,4 +47,9 @@ if (flashCount < 4)
 if keyboard_check(vk_anykey) || mouse_check_button(mb_any)
 {
 	starting = true
+	if playSound
+	{
+		audio_play_sound(snd_playerDefeat, 0, false);
+		playSound = false
+	}
 }

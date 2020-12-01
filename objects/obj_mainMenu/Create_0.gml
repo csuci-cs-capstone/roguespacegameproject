@@ -15,4 +15,8 @@ previousAlphaValue = 0;
 
 fadeToBlackAlpha = 0;
 
+playSound = true;
+
+alarmSet = false;
+
 draw_set_halign(fa_center);
