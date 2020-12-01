@@ -67,5 +67,7 @@ if explode
 		}
 	}
 	
+	audio_play_sound(snd_explosion, 1, false)
+	
 	ds_list_destroy(damageRadius);
 }

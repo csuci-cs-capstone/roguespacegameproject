@@ -4,3 +4,5 @@ phy_rotation = -aimTowards;
 
 phy_speed_x = obj_player.phy_speed_x
 phy_speed_y = obj_player.phy_speed_y
+
+audio_play_sound(snd_missileFire2, 1, false);

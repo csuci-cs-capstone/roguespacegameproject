@@ -1,5 +1,5 @@
 {
-  "option_windows_display_name": "Rogue Space: GOTY Edition: Ultimate - Expansion Pack 3 Remastered",
+  "option_windows_display_name": "Rogue Space",
   "option_windows_executable_name": "Rogue Space",
   "option_windows_version": "0.0.1.0",
   "option_windows_company_info": "10/10 Games",
@@ -7,7 +7,7 @@
   "option_windows_copyright_info": "(c) 2018 10/10 Games",
   "option_windows_description_info": "A Roguelike Space Shooter",
   "option_windows_display_cursor": true,
-  "option_windows_icon": "${project_dir}/options/windows/icons/icon.ico",
+  "option_windows_icon": "icons/icon.ico",
   "option_windows_save_location": 0,
   "option_windows_splash_screen": "${project_dir}/options/windows/splash/splash.png",
   "option_windows_use_splash": false,

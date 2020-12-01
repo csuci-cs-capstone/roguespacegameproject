@@ -124,8 +124,10 @@ function swarm_missile()
 		if count < 10
 		{
 			canShoot = false;
+			audio_stop_sound(snd_missileFire2)
 			audio_stop_sound(snd_enemyFire)
-			audio_play_sound(snd_enemyFire, 0, false);
+			audio_play_sound(snd_missileFire2, 1, false)
+			audio_play_sound(snd_enemyFire, 1, false)
 			
 			var projectileDirection = -phy_rotation + random_range(-accuracy, accuracy);
 		
@@ -165,8 +167,8 @@ function attack_sniper()
 	if !dodging && canShoot && canSee
 	{
 		canShoot = false;
-		audio_stop_sound(snd_enemyFire)
-		audio_play_sound(snd_enemyFire, 0, false);
+		audio_stop_sound(snd_sniperFire)
+		audio_play_sound(snd_sniperFire, 0, false);
 		
 		physics_apply_impulse(phy_position_x, phy_position_y, lengthdir_x(150, -phy_rotation + 180) , lengthdir_y(150, -phy_rotation + 180));
 		

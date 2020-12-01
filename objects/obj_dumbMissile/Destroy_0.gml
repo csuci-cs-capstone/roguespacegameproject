@@ -43,4 +43,6 @@ if explode
 			obj_player.currentHealth -= (damage - (damage * (get_stat("armorStat") / 100)));
 		}
 	}
+	
+	audio_play_sound(snd_explosion, 1, false)
 }
